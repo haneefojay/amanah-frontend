@@ -16,7 +16,7 @@ body{margin:0;background:#ffffff}
 a{color:inherit}
 .m-nav-links a:hover{color:#146c43}
 @container (max-width: 900px){.m-nav-links{display:none !important}.m-menu{display:flex !important}.m-hero{grid-template-columns:1fr !important}.m-arch-wrap{justify-self:center;width:100% !important;max-width:460px}.m-bento{grid-template-columns:1fr 1fr !important}.m-bento .b-fund{grid-column:span 2 !important;grid-row:auto !important}.m-steps{grid-template-columns:1fr 1fr !important}.m-cap{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr 1fr !important}.m-foot-top{grid-template-columns:1fr 1fr !important}.m-foot-brand{grid-column:span 2 !important}}
-@container (max-width: 600px){.m-nav-cta{display:none !important}.m-bento{grid-template-columns:1fr !important}.m-bento .b-fund{grid-column:auto !important}.m-steps{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr !important}.m-ledger{position:relative !important;left:auto !important;bottom:auto !important;margin:-120px 16px 0 !important;width:auto !important}.m-chip{display:none !important}.m-arch{height:420px !important}.m-orgs-pattern{display:none !important}.m-hero-ctas{flex-wrap:nowrap !important}.m-hero-ctas a{font-size:16px !important;padding-left:20px !important;padding-right:20px !important;white-space:nowrap}.m-hero-ctas a.m-link{padding-left:4px !important;padding-right:4px !important}.m-statement{font-size:30px !important}}
+@container (max-width: 600px){.m-nav-cta{display:none !important}.m-bento{grid-template-columns:1fr !important}.m-bento .b-fund{grid-column:auto !important}.m-steps{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr !important}.m-ledger{position:relative !important;left:auto !important;bottom:auto !important;margin:-120px 16px 0 !important;width:auto !important}.m-chip{display:none !important}.m-arch{height:420px !important}.m-orgs-pattern{display:none !important}.m-hero-ctas{flex-wrap:nowrap !important}.m-hero-ctas a{font-size:16px !important;padding-left:20px !important;padding-right:20px !important;white-space:nowrap}.m-hero-ctas a.m-link{padding-left:4px !important;padding-right:4px !important}.m-statement{font-size:30px !important}.m-sig{padding-bottom:20px !important}.m-sig span{margin-bottom:0 !important}}
 </style>
 </helmet>
 <div id="top" style="container-type: inline-size; font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #161a20; background: #ffffff; min-width: 0">
@@ -209,7 +209,7 @@ a{color:inherit}
       <li style="background: #ffffff; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
         <span style="width: 44px; height: 52px; border-radius: 999px 999px 10px 10px; background: #0f5132; color: #ffffff; font-weight: 800; font-size: 18px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; box-sizing: border-box">3</span>
         <h3 style="margin: 0; font-size: 19px; font-weight: 700">You give</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4b5260">Pay securely through Paystack. Your amount is held for you while you pay, so the target is never overshot.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4b5260">Pay securely online. Your amount is held for you while you pay, so the target is never overshot.</p>
       </li>
       <li style="background: #ffffff; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
         <span style="width: 44px; height: 52px; border-radius: 999px 999px 10px 10px; background: #0f5132; color: #ffffff; font-weight: 800; font-size: 18px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; box-sizing: border-box">4</span>
@@ -230,10 +230,10 @@ a{color:inherit}
   <div class="m-cap" style="max-width: 1240px; margin: 0 auto; padding: clamp(72px, 9cqi, 128px) clamp(20px, 4cqi, 40px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6cqi, 96px); align-items: center">
     <div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
       <h2 id="cap-h" style="margin: 0; font-size: clamp(36px, 4.4cqi, 64px); line-height: 1; letter-spacing: -0.04em; font-weight: 800; color: #0f2a1d">Never a kobo beyond the target.</h2>
-      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #4b5260; max-width: 44ch">When a campaign is fully funded, it closes itself. No organisation on Amanah can receive more than it asked for. The system enforces it, not good intentions.</p>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #4b5260; max-width: 44ch">When a campaign is fully funded, it closes itself. No organisation on Amanah can receive more than it asked for. Amanah enforces it, not good intentions.</p>
       <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; font-size: 16px; line-height: 1.55">
         <li style="padding: 16px 0; border-top: 1px solid #ecebe6">Targets are fixed before a campaign goes live, and locked after the first gift.</li>
-        <li style="padding: 16px 0; border-top: 1px solid #ecebe6">Two donors paying for the last ₦100,000 at the same moment cannot push it over. Amounts are reserved before payment.</li>
+        <li style="padding: 16px 0; border-top: 1px solid #ecebe6">Two donors paying for the last ₦100,000 at the same moment cannot push it over. Each amount is set aside while the donor pays.</li>
         <li style="padding: 16px 0; border-top: 1px solid #ecebe6; border-bottom: 1px solid #ecebe6">If a late payment ever slips past, the excess is returned to the donor, or passed to Bayt al-Mal where return is not possible.</li>
       </ul>
     </div>
@@ -285,7 +285,7 @@ a{color:inherit}
       <div style="background: #ffffff; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
         <h3 style="margin: 0; font-size: 20px; font-weight: 700">The Amanah team</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4b5260">Verifies organisations, reviews every campaign before it goes live, and keeps a permanent audit log.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4b5260">Verifies organisations, reviews every campaign before it goes live, and keeps a permanent record of every action.</p>
       </div>
     </div>
   </div>
@@ -352,14 +352,14 @@ a{color:inherit}
 
   <!-- Signature band: the lattice and the word -->
   <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4cqi, 40px)">
-    <div style="position: relative; border-top: 1px solid rgba(247,244,236,0.14); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-top: 32px; overflow: hidden">
-      <span style="font-size: clamp(72px, 15cqi, 216px); font-weight: 800; letter-spacing: -0.06em; line-height: 0.78; color: #f7f4ec; margin-bottom: -0.04em">Amanah</span>
+    <div class="m-sig" style="position: relative; border-top: 1px solid rgba(247,244,236,0.14); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-top: 32px; overflow: hidden">
+      <span style="font-size: clamp(48px, 14cqi, 216px); font-weight: 800; letter-spacing: -0.06em; line-height: 0.78; color: #f7f4ec; margin-bottom: -0.04em">Amanah</span>
       <span lang="ar" dir="rtl" style="font-family: 'Reem Kufi', serif; font-weight: 700; font-size: clamp(56px, 10cqi, 150px); line-height: 0.9; color: {{accent}}; margin-bottom: -0.1em">أمانة</span>
     </div>
   </div>
   <div style="max-width: 1240px; margin: 0 auto; padding: 24px clamp(20px, 4cqi, 40px) 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: rgba(247,244,236,0.6); border-top: 1px solid rgba(247,244,236,0.14)">
     <span>© 2026 Amanah</span>
-    <span>General donations only. Payments by Paystack.</span>
+    <span>General donations only.</span>
   </div>
 </footer>
 

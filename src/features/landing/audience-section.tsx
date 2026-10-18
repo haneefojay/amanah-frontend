@@ -19,7 +19,7 @@ const audiences = [
   },
   {
     title: "The Amanah team",
-    body: "Verifies organisations, reviews every campaign before it goes live, and keeps a permanent audit log.",
+    body: "Verifies organisations, reviews every campaign before it goes live, and keeps a permanent record of every action.",
     Icon: ShieldIcon,
   },
 ] as const;

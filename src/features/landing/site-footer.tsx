@@ -77,15 +77,15 @@ export function SiteFooter({ registerHref, contactHref }: Props) {
       <Container>
         <div
           aria-hidden="true"
-          className="flex items-end justify-between gap-6 overflow-hidden border-t border-sand-100/15 pt-8"
+          className="flex items-end justify-between gap-6 overflow-hidden border-t border-sand-100/15 pt-8 pb-5 min-[600px]:pb-0"
         >
-          <span className="-mb-[0.04em] text-[clamp(72px,15vw,216px)] leading-[0.78] font-extrabold tracking-[-0.06em] text-sand-100">
+          <span className="text-[clamp(48px,14vw,216px)] leading-[0.78] font-extrabold tracking-[-0.06em] text-sand-100 min-[600px]:-mb-[0.04em]">
             Amanah
           </span>
           <span
             lang="ar"
             dir="rtl"
-            className="-mb-[0.1em] font-arabic-display text-[clamp(56px,10vw,150px)] leading-[0.9] font-bold text-gold-500"
+            className="font-arabic-display text-[clamp(56px,10vw,150px)] leading-[0.9] font-bold text-gold-500 min-[600px]:-mb-[0.1em]"
           >
             أمانة
           </span>
@@ -93,7 +93,7 @@ export function SiteFooter({ registerHref, contactHref }: Props) {
       </Container>
       <Container className="flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-sand-100/15 pt-6 pb-7 text-sm text-sand-100/60">
         <span>© {new Date().getFullYear()} Amanah</span>
-        <span>General donations only. Payments by Paystack.</span>
+        <span>General donations only.</span>
       </Container>
     </footer>
   );

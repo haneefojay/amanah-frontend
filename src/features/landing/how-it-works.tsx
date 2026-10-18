@@ -13,7 +13,7 @@ const steps = [
   },
   {
     title: "You give",
-    body: "Pay securely through Paystack. Your amount is held for you while you pay, so the target is never overshot.",
+    body: "Pay securely online. Your amount is held for you while you pay, so the target is never overshot.",
   },
   {
     title: "Spending, with proof",

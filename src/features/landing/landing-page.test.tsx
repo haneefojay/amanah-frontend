@@ -128,5 +128,9 @@ describe("LandingPage", () => {
   it("never shows internal or pilot wording on the public page", () => {
     const { container } = render(<LandingPage />);
     expect(container.textContent).not.toMatch(/pilot|test mode|hackathon|AMETTSA|sample/i);
+    // No payment-provider names or technical terms either.
+    expect(container.textContent).not.toMatch(
+      /paystack|audit log|server|database|\bAPI\b|webhook|reservation|timestamp/i,
+    );
   });
 });

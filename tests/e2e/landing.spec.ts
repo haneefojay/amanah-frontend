@@ -49,7 +49,18 @@ test.describe("Landing page (F2.6)", () => {
   test("never shows out-of-scope or internal wording", async ({ page }) => {
     await page.goto("/");
     const text = (await page.locator("body").innerText()).toLowerCase();
-    for (const term of ["zakat", "waqf", "pilot", "test mode", "hackathon", "ametts"]) {
+    for (const term of [
+      "zakat",
+      "waqf",
+      "pilot",
+      "test mode",
+      "hackathon",
+      "ametts",
+      "paystack",
+      "audit log",
+      "server",
+      "database",
+    ]) {
       expect(text).not.toContain(term);
     }
   });

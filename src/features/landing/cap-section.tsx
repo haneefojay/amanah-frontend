@@ -6,7 +6,7 @@ import { sectionIds } from "./nav-links";
 
 const rules = [
   "Targets are fixed before a campaign goes live, and locked after the first gift.",
-  `Two donors paying for the last ${formatNaira(10_000_000)} at the same moment cannot push it over. Amounts are reserved before payment.`,
+  `Two donors paying for the last ${formatNaira(10_000_000)} at the same moment cannot push it over. Each amount is set aside while the donor pays.`,
   "If a late payment ever slips past, the excess is returned to the donor, or passed to Bayt al-Mal where return is not possible.",
 ] as const;
 
@@ -39,7 +39,7 @@ export function CapSection() {
           </h2>
           <p className="max-w-[44ch] text-[19px] leading-[1.6] text-ink-600">
             When a campaign is fully funded, it closes itself. No organisation on Amanah can receive
-            more than it asked for. The system enforces it, not good intentions.
+            more than it asked for. Amanah enforces it, not good intentions.
           </p>
           <ul className="flex flex-col text-base leading-[1.55]">
             {rules.map((rule) => (
