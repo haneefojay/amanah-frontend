@@ -134,3 +134,48 @@ test.describe("Campaign page (F2.3)", () => {
     }
   });
 });
+
+test.describe("Organisation profile (F2.4)", () => {
+  test("goes from a campaign page to its organisation and back to a campaign", async ({ page }) => {
+    await page.goto("/campaigns/ramadan-food-drive-offa");
+    await page.getByRole("link", { name: "View organisation" }).click();
+    await expect(page).toHaveURL(/\/organisations\/8f2a1c3d-4b5e-4f60-8a7b-9c0d1e2f3a41$/);
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Central Mosque, Offa" }),
+    ).toBeVisible();
+    await expect(page.getByText("12 Station Road, Offa, Kwara State")).toBeVisible();
+    await expect(page.getByText(/registration number/i)).toHaveCount(0);
+    const cards = page.getByRole("region", { name: "Campaigns" }).getByRole("article");
+    await expect(cards).toHaveCount(3);
+    await page.getByRole("button", { name: /^Past/ }).click();
+    await expect(cards).toHaveCount(1);
+    await page.getByRole("button", { name: /^All/ }).click();
+    await page.getByRole("link", { name: /Give to this campaign\s*: Ramadan food drive/ }).click();
+    await expect(page).toHaveURL(/\/campaigns\/ramadan-food-drive-offa$/);
+  });
+
+  test("an unknown organisation shows not found", async ({ page }) => {
+    await page.goto("/organisations/8f2a1c3d-4b5e-4f60-8a7b-000000000000");
+    await expect(
+      page.getByRole("heading", { name: "We couldn’t find that organisation" }),
+    ).toBeVisible();
+    await expect(page.locator('head meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  });
+
+  test("does not scroll sideways at 360px, 980px or 1440px", async ({ page }) => {
+    for (const width of [360, 980, 1440]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto("/organisations/8f2a1c3d-4b5e-4f60-8a7b-9c0d1e2f3a43");
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow, `${width}px`).toBeLessThanOrEqual(0);
+    }
+  });
+
+  test("has no automatically detectable accessibility violations", async ({ page }) => {
+    await page.goto("/organisations/8f2a1c3d-4b5e-4f60-8a7b-9c0d1e2f3a41");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expectNoA11yViolations(page);
+  });
+});

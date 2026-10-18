@@ -95,6 +95,19 @@ export const campaignDetail = campaignSummary.extend({
 export type CampaignDetail = z.infer<typeof campaignDetail>;
 export const campaignDetailResponse = z.object({ data: campaignDetail });
 
+/**
+ * A verified organisation's public profile with its public campaigns (GET /api/organisations/:id,
+ * B3.4). Unverified organisations answer 404. Type and registration number are never public.
+ */
+export const organisationProfile = organisationSummary.extend({
+  address: z.string().min(1),
+  /** Total raised across its public campaigns. */
+  raisedAmount: kobo,
+  campaigns: z.array(campaignSummary),
+});
+export type OrganisationProfile = z.infer<typeof organisationProfile>;
+export const organisationProfileResponse = z.object({ data: organisationProfile });
+
 export const apiErrorBody = z.object({
   error: z.object({ code: z.string(), message: z.string() }),
 });

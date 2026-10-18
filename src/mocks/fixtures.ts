@@ -5,6 +5,7 @@ import type {
   CampaignStatus,
   CampaignSummary,
   CurrentUser,
+  OrganisationProfile,
   OrganisationSummary,
   UserRole,
 } from "@/lib/api/schemas";
@@ -184,12 +185,18 @@ export function campaignListBody(
 
 const ended: CampaignStatus[] = ["CLOSED", "COMPLETED"];
 
-type OrganisationSeed = Pick<OrganisationSummary, "id" | "name" | "city" | "state" | "verifiedAt">;
+type OrganisationSeed = Pick<
+  OrganisationSummary,
+  "id" | "name" | "city" | "state" | "verifiedAt"
+> & {
+  address: string;
+};
 
 const organisationSeeds: OrganisationSeed[] = [
   {
     id: organisationIds.mosque,
     name: "Central Mosque, Offa",
+    address: "12 Station Road, Offa, Kwara State",
     city: "Offa",
     state: "Kwara",
     verifiedAt: "2026-09-04T10:00:00.000Z",
@@ -197,6 +204,7 @@ const organisationSeeds: OrganisationSeed[] = [
   {
     id: organisationIds.orphanage,
     name: "Darul Aytam Orphan Home",
+    address: "5 Unity Close, Ilorin, Kwara State",
     city: "Ilorin",
     state: "Kwara",
     verifiedAt: "2026-09-12T10:00:00.000Z",
@@ -204,6 +212,7 @@ const organisationSeeds: OrganisationSeed[] = [
   {
     id: organisationIds.society,
     name: "An-Nur Islamic Society",
+    address: "21 Oke-Ode Road, Ogbomoso, Oyo State",
     city: "Ogbomoso",
     state: "Oyo",
     verifiedAt: "2026-09-20T10:00:00.000Z",
@@ -211,7 +220,8 @@ const organisationSeeds: OrganisationSeed[] = [
 ];
 
 /** Verified organisations with counts computed from the public campaigns above. */
-export const organisations: OrganisationSummary[] = organisationSeeds.map((org) => {
+export const organisations: OrganisationSummary[] = organisationSeeds.map(({ address, ...org }) => {
+  void address;
   const own = publicCampaigns.filter((c) => c.organisationId === org.id);
   return {
     ...org,
@@ -330,6 +340,21 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
       organisation: organisations.find((o) => o.id === c.organisationId)!,
     };
     return [c.slug, detail];
+  }),
+);
+
+/** Public profiles by organisation id. Any other id is not a verified organisation (404). */
+export const organisationProfiles: Record<string, OrganisationProfile> = Object.fromEntries(
+  organisationSeeds.map((seed) => {
+    const summary = organisations.find((o) => o.id === seed.id)!;
+    const own = publicCampaigns.filter((c) => c.organisationId === seed.id);
+    const profile: OrganisationProfile = {
+      ...summary,
+      address: seed.address,
+      raisedAmount: own.reduce((sum, c) => sum + c.raisedAmount, 0),
+      campaigns: own,
+    };
+    return [seed.id, profile];
   }),
 );
 

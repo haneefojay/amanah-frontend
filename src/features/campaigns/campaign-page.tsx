@@ -80,7 +80,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
             <h1 className="text-[clamp(32px,4vw,56px)] leading-[1.02] font-extrabold tracking-[-0.04em] [overflow-wrap:anywhere] text-brand-950">
               {c.title}
             </h1>
-            <a
+            <Link
               href={`/organisations/${org.id}`}
               className="inline-flex items-center gap-2 self-start text-base text-ink-700"
             >
@@ -89,7 +89,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
                 By <strong className="text-ink-900">{org.name}</strong>
                 <span className="sr-only"> (verified)</span>
               </span>
-            </a>
+            </Link>
           </div>
           <FundingPanel campaign={c} />
         </div>
@@ -151,12 +151,12 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
                 ["Completed", `${org.completedCount} of ${org.endedCount} ended`],
               ]}
             />
-            <a
+            <Link
               href={`/organisations/${org.id}`}
               className="inline-flex min-h-12 items-center justify-center rounded-full border-[1.5px] border-brand-300 px-5 font-bold text-brand-900 hover:border-brand-700"
             >
               View organisation
-            </a>
+            </Link>
           </section>
 
           <section aria-labelledby="c-details" className={card}>

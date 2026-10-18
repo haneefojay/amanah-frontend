@@ -25,8 +25,8 @@ The three pages use the landing page's header, footer and tokens (see `../landin
 - **Funding lines** use the exact spec copy: "Target nearly reached. Pending payments are being processed.", "Target reached. Donations closed.", plus "Ended below target. Funds go to its stated purpose." (closed) and "All items delivered and confirmed" (completed).
 - **List:** filters by city and organisation live in the URL; six cards per page; "Page 1 of 2" with Previous and Next. Filtered-empty, empty and error states are written out in `states.dc.html`.
 - **Campaign page:** two rows on desktop so neither side is empty. It has a "Give to this campaign" button next to Share, separate from the header's generic "Give now". The button is **visual only until the checkout phase (F4)**, where its action is built.
-- **Organisation profile:** verified badge, location, a short "about", counts and a full-width Campaigns section of cards with an All / Raising now / Past switch. **Type and registration number are not shown**, by the owner's decision.
+- **Organisation profile:** verified badge, location, address, when they joined, a track record (completed of ended campaigns, campaigns, total raised), what verified means, and a full-width Campaigns section of cards with an All / Raising now / Past switch. **Type and registration number are not shown**, by the owner's decision.
 
 ## Data the design needs (mock contract now, backend later)
 
-Listed so the backend roadmap items match: B5.1 (list: `organisationId`, `filters`, `meta`), B5.2 (campaign detail: description, purpose, items summary, organisation), B3.4 (organisation: `verifiedAt`, `createdAt`, campaign and completed counts, location). Only verified organisations are returned publicly.
+Listed so the backend roadmap items match: B5.1 (list: `organisationId`, `filters`, `meta`), B5.2 (campaign detail: description, purpose, items summary, organisation), B3.4 (organisation: `verifiedAt`, `address`, `raisedAmount`, campaign, ended and completed counts, its campaigns). Only verified organisations are returned publicly.

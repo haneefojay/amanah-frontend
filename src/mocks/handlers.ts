@@ -2,6 +2,7 @@ import { http, HttpResponse } from "msw";
 import type { UserRole } from "@/lib/api/schemas";
 import {
   campaignDetails,
+  organisationProfiles,
   campaignListBody,
   PAGE_SIZE,
   publicCampaigns,
@@ -48,6 +49,17 @@ export const handlers = [
       ? HttpResponse.json({ data: detail })
       : HttpResponse.json(
           { error: { code: "NOT_FOUND", message: "Campaign not found" } },
+          { status: 404 },
+        );
+  }),
+
+  // A verified organisation's public profile (B3.4). Unknown or unverified ids are 404.
+  http.get("*/api/organisations/:id", ({ params }) => {
+    const profile = organisationProfiles[String(params.id)];
+    return profile
+      ? HttpResponse.json({ data: profile })
+      : HttpResponse.json(
+          { error: { code: "NOT_FOUND", message: "Organisation not found" } },
           { status: 404 },
         );
   }),

@@ -1,5 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
+import { organisationIds } from "@/mocks/fixtures";
 import { server } from "@/mocks/node";
 import { api, ApiError } from "./client";
 
@@ -43,6 +44,23 @@ describe("api client", () => {
   it("answers 404 for an unknown or draft campaign", async () => {
     await expect(api.getCampaign("nope")).rejects.toMatchObject({ status: 404, code: "NOT_FOUND" });
     await expect(api.getCampaign("draft-campaign")).rejects.toMatchObject({ status: 404 });
+  });
+
+  it("returns a verified organisation with its public campaigns", async () => {
+    const { data } = await api.getOrganisation(organisationIds.orphanage);
+    expect(data.name).toBe("Darul Aytam Orphan Home");
+    expect(data.campaigns.every((c) => c.organisationId === data.id)).toBe(true);
+    expect(data.campaignCount).toBe(data.campaigns.length);
+    expect(data.raisedAmount).toBe(data.campaigns.reduce((sum, c) => sum + c.raisedAmount, 0));
+    expect(data).not.toHaveProperty("registrationNumber");
+  });
+
+  it("answers 404 for an organisation that is not verified", async () => {
+    await expect(api.getOrganisation("8f2a1c3d-4b5e-4f60-8a7b-000000000000")).rejects.toMatchObject(
+      {
+        status: 404,
+      },
+    );
   });
 
   it("turns error bodies into ApiError", async () => {

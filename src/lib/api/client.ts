@@ -5,6 +5,7 @@ import {
   campaignDetailResponse,
   campaignListResponse,
   currentUserResponse,
+  organisationProfileResponse,
 } from "./schemas";
 
 export class ApiError extends Error {
@@ -69,5 +70,7 @@ export const api = {
   },
   getCampaign: (slug: string, init?: RequestInit) =>
     apiFetch(`/api/campaigns/${encodeURIComponent(slug)}`, campaignDetailResponse, init),
+  getOrganisation: (id: string, init?: RequestInit) =>
+    apiFetch(`/api/organisations/${encodeURIComponent(id)}`, organisationProfileResponse, init),
   getMe: () => apiFetch("/api/me", currentUserResponse),
 };
