@@ -10,6 +10,7 @@ Project-level skills live here, one folder per skill, each with a `SKILL.md`. Cl
 | `impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | Main design skill for product screens (build, critique, polish, harden) | Downloads its helper binary from the official GitHub releases on first run |
 | `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Searchable UX guidelines, palettes, font pairings, accessibility checks | Python 3 |
 | `design-taste-frontend` | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Art direction for landing/marketing surfaces only (not dashboards) | Node 22+, Chrome or Edge |
+| `frontend-design` | [anthropics/skills](https://github.com/anthropics/skills) (official) | Design planning for new surfaces and UX-writing guidance | — |
 | `agent-browser` | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | Drive a real browser to check pages and dogfood flows | `npm i -g agent-browser && agent-browser install` |
 | `emil-design-eng`, `animate`, `animation-vocabulary`, `animation-performance`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `apple-design`, `mobile-native`, `break-ui`, `pick-ui-library`, `prototype`, `ask-sonner` | [emilkowalski/skill](https://github.com/emilkowalski/skill) | Polish, motion, native feel on mobile, worst-case data testing, library picks | — |
 

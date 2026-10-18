@@ -11,6 +11,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 ### Added
 
 - Project skill `.claude/skills/amanah` (project rules, domain rules, frontend conventions, workflow, design-skill routing).
+- Anthropic's official `frontend-design` skill, with its role added to the Amanah design-skills guide.
 - Third-party skills via the `skills` CLI, pinned in `skills-lock.json`: impeccable, ui-ux-pro-max, design-taste-frontend, agent-browser and 13 Emil Kowalski skills (excluding native-only `write-swift` and `animate-expo`).
 
 ### Changed
