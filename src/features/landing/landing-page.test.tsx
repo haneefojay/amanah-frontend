@@ -56,14 +56,11 @@ describe("LandingPage", () => {
     }
   });
 
-  it("marks the Arabic signature as Arabic, right to left, in both the phone and wide layouts", () => {
+  it("marks the Arabic signature as Arabic, right to left", () => {
     render(<LandingPage />);
-    const words = screen.getAllByText("أمانة");
-    expect(words).toHaveLength(2); // one shown on phones, one on wider screens
-    for (const word of words) {
-      expect(word).toHaveAttribute("lang", "ar");
-      expect(word).toHaveAttribute("dir", "rtl");
-    }
+    const word = screen.getByText("أمانة");
+    expect(word).toHaveAttribute("lang", "ar");
+    expect(word).toHaveAttribute("dir", "rtl");
   });
 
   it("hides the contact button when no contact email is configured", () => {

@@ -18,15 +18,7 @@ test.describe("Landing page (F2.6)", () => {
     );
     const ledger = page.getByRole("article", { name: "Ramadan food drive" });
     await expect(ledger.getByText("Target reached. Donations closed.")).toBeVisible();
-    await expect(page.getByText("أمانة").filter({ visible: true })).toHaveCount(1);
-  });
-
-  test("shows the أمانة signature on the first screen of a phone", async ({ page, isMobile }) => {
-    test.skip(!isMobile, "Phone layout only");
-    await page.goto("/");
-    const word = page.getByText("أمانة").filter({ visible: true });
-    await expect(word).toBeInViewport({ ratio: 1 });
-    await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
+    await expect(page.getByText("أمانة")).toBeVisible();
   });
 
   test("never scrolls sideways at 360px or 1440px", async ({ page }) => {
