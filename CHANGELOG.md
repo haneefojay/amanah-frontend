@@ -50,6 +50,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Decisions
 
+- ADR-010 Public accountability data and live refresh: witnesses named publicly, spent derived from the expenses, 15-second polling while visible, coordinates with an OpenStreetMap link, server upload time authoritative.
 - ADR-009 UI components on shadcn/ui. It resolves the open "UI primitives" row of ADR-006.
 
 ### Added

@@ -26,6 +26,7 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 ## Conventions to remember
 
 - Money: integer **kobo** everywhere. Format with `formatNaira()` and parse input with `parseNairaToKobo()`.
+- **Campaign pages are live (F3.7, ADR-010):** `LiveCampaign` polls `GET /api/campaigns/:slug` every 15 s while visible; anything showing campaign money reads from it (`src/features/accountability/live-campaign.tsx`). Derived figures come from `accountabilityTotals()`; spent is the sum of the expenses. Witnesses are named publicly.
 - Status copy must match the spec exactly, for example "Target reached. Donations closed." and "Target nearly reached. Pending payments are being processed."
 - Use design tokens (`bg-brand-700`, `text-ink-600`, …) from `src/app/globals.css`, never raw hex values in components.
 - Tests sit next to source files (`*.test.ts(x)`). E2E tests live in `tests/e2e/` and run against a production build on the `mobile-chrome` and `desktop-chrome` projects.

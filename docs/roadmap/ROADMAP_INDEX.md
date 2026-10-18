@@ -8,7 +8,7 @@
 | [BACKEND_ROADMAP.md](./BACKEND_ROADMAP.md)     | Phases `B0` to `B12`: the API service (stack pending, ADR-004) |
 | [../amanah-mvp-spec.md](../amanah-mvp-spec.md) | The product specification both roadmaps are derived from       |
 
-**Last updated:** 18 October 2026, by Claude (initial setup).
+**Last updated:** 18 October 2026, by Claude (F3 accountability section).
 
 ---
 
@@ -45,8 +45,8 @@
 
 ## 2. Current focus
 
-- **Now:** F1 is done. Next: F2.1 to F2.3 and F3 (public campaign pages and the accountability section) against mocks. F0.6 (Vercel) is still needed to publish F2.6. B0.1 (backend stack decision, ADR-004) is waiting on the team.
-- **Next:** F2 and F3 (public pages and the accountability section) against mocks, so the core feature is demonstrable early.
+- **Now:** F1, F2.1 to F2.4 and all of F3 (accountability section) are done against mocks, which meets M1's frontend exit criteria. Next: F4 (checkout) against mocks. F0.6 (Vercel) is still needed to publish F2.6. B0.1 (backend stack decision, ADR-004) is waiting on the team.
+- **Next:** F4 (donation checkout) against mocks; F3 integrates with the backend in M3 (B5.2, B5.3, B8.2, B8.3, B9.2, B9.3).
 - **Decisions needed from the team:** ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
 
 ---
@@ -122,7 +122,7 @@ These are suggested dates. Adjust them here if the team changes them, and record
 | F8.4  | Log expense form                        | P0  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
 | F8.5  | Mark item purchased                     | P1  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
 | F9.1  | Post update                             | P1  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
-| F9.2  | Assign witness                          | P0  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
+| F9.2  | Assign witness                          | P0  | Not started   |        |            | From ADR-010: witnesses are named on public pages, so assignment must tell the witness and record their agreement                                                                                                                                                                                                                 |
 | F10.1 | Witness: assigned campaigns             | P0  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
 | F10.2 | Witness: confirm or dispute             | P0  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
 | F11.1 | Admin: organisation verification queue  | P0  | Not started   |        |            |                                                                                                                                                                                                                                                                                                                                   |
@@ -227,9 +227,10 @@ Defaults from spec §11 are assumed until the team decides. When one is decided,
 
 ## 7. Index change log
 
-| Date       | Change                                                                               | By     |
-| ---------- | ------------------------------------------------------------------------------------ | ------ |
-| 2026-10-18 | F1.1 to F1.6 complete (F1.4 mocked until auth). ADR-009 shadcn/ui.                   | Claude |
-| 2026-10-18 | F2.6 landing page built and tested; waiting on deployment.                           | Claude |
-| 2026-10-18 | Added F2.6 public landing page (design approved). Raised F0.6 hosting to P0.         | Claude |
-| 2026-10-18 | Roadmaps created from the MVP spec. F0.1 to F0.4 completed during environment setup. | Claude |
+| Date       | Change                                                                                            | By     |
+| ---------- | ------------------------------------------------------------------------------------------------- | ------ |
+| 2026-10-18 | F3.1 to F3.7 complete against mocks (accountability section, ADR-010). F4.1 and F9.2 notes added. | Claude |
+| 2026-10-18 | F1.1 to F1.6 complete (F1.4 mocked until auth). ADR-009 shadcn/ui.                                | Claude |
+| 2026-10-18 | F2.6 landing page built and tested; waiting on deployment.                                        | Claude |
+| 2026-10-18 | Added F2.6 public landing page (design approved). Raised F0.6 hosting to P0.                      | Claude |
+| 2026-10-18 | Roadmaps created from the MVP spec. F0.1 to F0.4 completed during environment setup.              | Claude |
