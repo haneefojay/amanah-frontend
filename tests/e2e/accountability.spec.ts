@@ -77,3 +77,27 @@ test.describe("Evidence gallery (F3.4)", () => {
     ).toBeVisible();
   });
 });
+
+test.describe("Spent and held (F3.5)", () => {
+  test("splits the amount raised into spent and held, matching the expenses", async ({ page }) => {
+    await page.goto("/campaigns/ramadan-food-drive-offa");
+    const split = page.getByRole("region", { name: "Spent and held" });
+    await expect(split).toContainText("Of ₦300,000 raised so far");
+    await expect(
+      split.getByRole("img", { name: "₦280,000 spent and ₦20,000 held, of ₦300,000 raised" }),
+    ).toBeVisible();
+    await expect(page.locator('text="Total spent" >> visible=true')).toBeVisible();
+    await expect(page.locator("text=/^₦280,000$/ >> visible=true").first()).toBeVisible();
+  });
+
+  test("does not scroll sideways at 360px with the whole section", async ({ page }) => {
+    for (const slug of ["ramadan-food-drive-offa", "school-supplies-40-orphans"]) {
+      await page.setViewportSize({ width: 360, height: 800 });
+      await page.goto(`/campaigns/${slug}`);
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow, slug).toBeLessThanOrEqual(0);
+    }
+  });
+});

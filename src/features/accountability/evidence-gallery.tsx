@@ -28,9 +28,17 @@ export function phoneTimeIfDifferent(photo: EvidencePhoto): string | null {
   return taken === formatDateTime(photo.uploadedAtServer) ? null : taken;
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({
+  label,
+  children,
+  centred = false,
+}: {
+  label: string;
+  children: React.ReactNode;
+  centred?: boolean;
+}) {
   return (
-    <div className="flex justify-between gap-3">
+    <div className={cn("flex justify-between gap-3", centred && "items-center")}>
       <dt className="text-ink-600">{label}</dt>
       <dd className="text-right">{children}</dd>
     </div>
@@ -109,7 +117,7 @@ export function EvidenceGallery({
                       </span>
                     </Row>
                     {taken && <Row label="Taken on the phone">{taken}</Row>}
-                    <Row label="Location">
+                    <Row label="Location" centred>
                       {lat !== null && lng !== null ? (
                         <a
                           href={mapLink(lat, lng)}

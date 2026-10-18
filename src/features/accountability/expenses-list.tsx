@@ -6,7 +6,7 @@ import { ReceiptViewer } from "./receipt-viewer";
 
 function NoReceipt() {
   return (
-    <span className="flex h-[72px] w-14 flex-none items-center justify-center rounded-[10px] border border-dashed border-sand-600 text-center text-[11px] leading-tight text-ink-600">
+    <span className="flex h-[72px] w-14 flex-none items-center justify-center rounded-[10px] border border-dashed border-sand-600 px-1.5 text-center text-[11px] leading-tight text-ink-600">
       No receipt
     </span>
   );
@@ -76,7 +76,7 @@ export function ExpensesList({ expenses, items }: { expenses: Expense[]; items: 
                     <td className="px-3 py-3.5 text-[15px] whitespace-nowrap text-ink-700">
                       {formatShortDate(e.spentAt)}
                     </td>
-                    <td className="px-5 py-3.5 text-right font-bold whitespace-nowrap tabular-nums">
+                    <td className="px-5 py-3.5 text-right font-bold whitespace-nowrap">
                       {formatNaira(e.amount)}
                     </td>
                   </tr>
@@ -91,7 +91,7 @@ export function ExpensesList({ expenses, items }: { expenses: Expense[]; items: 
                   >
                     Total spent
                   </th>
-                  <td className="px-5 py-4 text-right font-extrabold whitespace-nowrap text-brand-950 tabular-nums">
+                  <td className="px-5 py-4 text-right font-extrabold whitespace-nowrap text-brand-950">
                     {formatNaira(spent)}
                   </td>
                 </tr>
