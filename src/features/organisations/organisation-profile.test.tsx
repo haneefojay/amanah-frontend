@@ -13,22 +13,45 @@ describe("OrganisationProfile", () => {
   it("shows who the organisation is, its record and its campaigns as cards", async () => {
     const { container } = render(<OrganisationProfile organisation={mosque} />);
     expect(screen.getByRole("heading", { level: 1, name: "Central Mosque, Offa" })).toBeVisible();
-    expect(screen.getByText("Verified")).toBeInTheDocument();
+    expect(screen.getByText("Verified by Amanah")).toBeInTheDocument();
     expect(screen.getByText("Offa, Kwara State")).toBeInTheDocument();
     expect(screen.getByText("12 Station Road, Offa, Kwara State")).toBeInTheDocument();
     expect(screen.getByText("September 2026")).toBeInTheDocument();
     expect(screen.getByText("Since 4 Sept 2026")).toBeInTheDocument();
     const record = screen.getByRole("region", { name: "Track record" });
     expect(
-      within(record).getByText("of 1 ended campaigns completed and confirmed"),
+      within(record).getByText("of 1 ended campaign completed and confirmed"),
     ).toBeInTheDocument();
     expect(
       within(record).getByRole("img", { name: "1 completed, 0 still delivering" }),
     ).toBeInTheDocument();
-    expect(within(record).getByText("₦860,000")).toBeInTheDocument();
+    expect(within(record).getByText("₦1,130,000")).toBeInTheDocument();
     const campaigns = screen.getByRole("region", { name: "Campaigns" });
     expect(within(campaigns).getAllByRole("article")).toHaveLength(mosque.campaigns.length);
     await expectNoA11yViolations(container);
+  });
+
+  it("does not repeat the organisation's name on each campaign card", () => {
+    render(<OrganisationProfile organisation={mosque} />);
+    const campaigns = screen.getByRole("region", { name: "Campaigns" });
+    expect(within(campaigns).queryByText("Central Mosque, Offa")).toBeNull();
+  });
+
+  it("shows the organisation's photo when it has one", () => {
+    const { container, rerender } = render(
+      <OrganisationProfile organisation={make({ coverImageUrl: null })} />,
+    );
+    const profile = screen.getByRole("region", { name: "Central Mosque, Offa" });
+    expect(profile.querySelector("img")).toBeNull();
+    rerender(
+      <OrganisationProfile
+        organisation={make({ coverImageUrl: "/images/organisations/central-mosque-offa.jpg" })}
+      />,
+    );
+    expect(
+      screen.getByRole("region", { name: "Central Mosque, Offa" }).querySelector("img"),
+    ).not.toBeNull();
+    expect(container).toBeTruthy();
   });
 
   it("never shows the organisation type or registration number", () => {
@@ -88,7 +111,7 @@ describe("OrganisationProfile", () => {
     render(<OrganisationProfile organisation={society} />);
     const record = screen.getByRole("region", { name: "Track record" });
     expect(
-      within(record).getByText("of 1 ended campaigns completed and confirmed"),
+      within(record).getByText("of 1 ended campaign completed and confirmed"),
     ).toBeInTheDocument();
     expect(
       within(record).getByRole("img", { name: "0 completed, 1 still delivering" }),

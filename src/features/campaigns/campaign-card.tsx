@@ -22,7 +22,7 @@ const badgeTone: Record<CampaignStatus, string> = {
   LIVE: "bg-brand-100 text-brand-900",
   FUNDED: "bg-brand-900 text-white",
   CLOSED: "bg-mist-200 text-ink-700",
-  COMPLETED: "bg-gold-400 text-brand-950",
+  COMPLETED: "bg-gold-500 text-brand-950",
 };
 
 /** Arch outline shown when a campaign has no cover photo yet. */
@@ -52,9 +52,15 @@ export function CampaignCard({
   campaign: c,
   className,
   headingLevel = 3,
+  showOrganisation = true,
+  compact = false,
 }: {
   campaign: CampaignSummary;
   className?: string;
+  /** Leave the organisation out where the page is already about it (organisation profile). */
+  showOrganisation?: boolean;
+  /** Smaller cover and title, for four cards in a row. */
+  compact?: boolean;
   /** Heading level of the title: 3 under a section heading, 2 directly under the page title. */
   headingLevel?: 2 | 3;
 }) {
@@ -70,7 +76,9 @@ export function CampaignCard({
         className,
       )}
     >
-      <div className="relative h-[188px] bg-mist-100">
+      <div
+        className={cn("relative overflow-hidden bg-mist-100", compact ? "h-[164px]" : "h-[188px]")}
+      >
         {c.coverImageUrl ? (
           <Image
             src={c.coverImageUrl}
@@ -95,21 +103,31 @@ export function CampaignCard({
           {campaignStatusLabel[c.status]}
         </span>
       </div>
-      <div className="flex flex-1 flex-col gap-3.5 px-[22px] pt-5 pb-[22px]">
+      <div
+        className={cn(
+          "flex flex-1 flex-col gap-3.5",
+          compact ? "px-5 pt-[18px] pb-5" : "px-[22px] pt-5 pb-[22px]",
+        )}
+      >
         <div className="flex flex-col gap-1.5">
           <Heading
             id={`campaign-${c.id}`}
-            className="line-clamp-2 text-[19px] leading-tight font-bold tracking-[-0.01em]"
+            className={cn(
+              "line-clamp-2 leading-tight font-bold tracking-[-0.01em]",
+              compact ? "text-lg" : "text-[19px]",
+            )}
           >
             {c.title}
           </Heading>
-          <span className="flex items-center gap-1.5 text-sm text-ink-600">
-            <VerifiedIcon size={15} strokeWidth={2.4} className="flex-none text-brand-700" />
-            <span className="min-w-0 truncate">
-              {c.organisationName}
-              <span className="sr-only"> (verified)</span>
+          {showOrganisation && (
+            <span className="flex items-center gap-1.5 text-sm text-ink-600">
+              <VerifiedIcon size={15} strokeWidth={2.4} className="flex-none text-brand-700" />
+              <span className="min-w-0 truncate">
+                {c.organisationName}
+                <span className="sr-only"> (verified)</span>
+              </span>
             </span>
-          </span>
+          )}
         </div>
         <div className="mt-auto flex flex-col gap-2">
           <ProgressBar

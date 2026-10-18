@@ -20,7 +20,7 @@ describe("CampaignList", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Campaigns" })).toBeInTheDocument();
     const grid = screen.getByRole("region", { name: "Campaigns" });
     expect(within(grid).getAllByRole("article")).toHaveLength(6);
-    expect(screen.getByRole("status")).toHaveTextContent("8 campaigns live or recently completed");
+    expect(screen.getByRole("status")).toHaveTextContent("9 campaigns live or recently completed");
     expect(screen.getByLabelText("City")).toHaveValue("");
     expect(screen.getByRole("option", { name: "Ilorin" })).toBeInTheDocument();
     expect(screen.getByRole("option", { name: "Central Mosque, Offa" })).toBeInTheDocument();

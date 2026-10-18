@@ -70,7 +70,7 @@ export const campaigns: CampaignSummary[] = [
     organisationName: "Central Mosque, Offa",
     city: "Offa",
     state: "Kwara",
-    coverImageUrl: null,
+    coverImageUrl: "/images/campaigns/eid-clothes.jpg",
     status: "LIVE",
     targetAmount: 40_000_000,
     raisedAmount: 38_000_000,
@@ -84,7 +84,7 @@ export const campaigns: CampaignSummary[] = [
     organisationName: "Darul Aytam Orphan Home",
     city: "Ilorin",
     state: "Kwara",
-    coverImageUrl: null,
+    coverImageUrl: "/images/campaigns/quran-class.jpg",
     status: "LIVE",
     targetAmount: 30_000_000,
     raisedAmount: 6_000_000,
@@ -98,7 +98,7 @@ export const campaigns: CampaignSummary[] = [
     organisationName: "An-Nur Islamic Society",
     city: "Ogbomoso",
     state: "Oyo",
-    coverImageUrl: null,
+    coverImageUrl: "/images/campaigns/roof-repair.jpg",
     status: "CLOSED",
     targetAmount: 90_000_000,
     raisedAmount: 61_000_000,
@@ -112,7 +112,7 @@ export const campaigns: CampaignSummary[] = [
     organisationName: "Darul Aytam Orphan Home",
     city: "Ilorin",
     state: "Kwara",
-    coverImageUrl: null,
+    coverImageUrl: "/images/campaigns/clinic-medicines.jpg",
     status: "COMPLETED",
     targetAmount: 25_000_000,
     raisedAmount: 25_000_000,
@@ -126,10 +126,24 @@ export const campaigns: CampaignSummary[] = [
     organisationName: "Central Mosque, Offa",
     city: "Offa",
     state: "Kwara",
-    coverImageUrl: null,
+    coverImageUrl: "/images/campaigns/blankets.jpg",
     status: "COMPLETED",
     targetAmount: 18_000_000,
     raisedAmount: 18_000_000,
+    availableAmount: 0,
+  },
+  {
+    id: id(10),
+    slug: "prayer-mats-womens-section",
+    title: "Prayer mats for the women’s section",
+    organisationId: organisationIds.mosque,
+    organisationName: "Central Mosque, Offa",
+    city: "Offa",
+    state: "Kwara",
+    coverImageUrl: "/images/campaigns/prayer-mats.jpg",
+    status: "FUNDED",
+    targetAmount: 27_000_000,
+    raisedAmount: 27_000_000,
     availableAmount: 0,
   },
   // Not public: must never appear in the public list.
@@ -190,6 +204,7 @@ type OrganisationSeed = Pick<
   "id" | "name" | "city" | "state" | "verifiedAt"
 > & {
   address: string;
+  coverImageUrl: string;
 };
 
 const organisationSeeds: OrganisationSeed[] = [
@@ -197,6 +212,7 @@ const organisationSeeds: OrganisationSeed[] = [
     id: organisationIds.mosque,
     name: "Central Mosque, Offa",
     address: "12 Station Road, Offa, Kwara State",
+    coverImageUrl: "/images/organisations/central-mosque-offa.jpg",
     city: "Offa",
     state: "Kwara",
     verifiedAt: "2026-09-04T10:00:00.000Z",
@@ -205,6 +221,7 @@ const organisationSeeds: OrganisationSeed[] = [
     id: organisationIds.orphanage,
     name: "Darul Aytam Orphan Home",
     address: "5 Unity Close, Ilorin, Kwara State",
+    coverImageUrl: "/images/organisations/darul-aytam-ilorin.jpg",
     city: "Ilorin",
     state: "Kwara",
     verifiedAt: "2026-09-12T10:00:00.000Z",
@@ -213,6 +230,7 @@ const organisationSeeds: OrganisationSeed[] = [
     id: organisationIds.society,
     name: "An-Nur Islamic Society",
     address: "21 Oke-Ode Road, Ogbomoso, Oyo State",
+    coverImageUrl: "/images/organisations/an-nur-ogbomoso.jpg",
     city: "Ogbomoso",
     state: "Oyo",
     verifiedAt: "2026-09-20T10:00:00.000Z",
@@ -220,16 +238,19 @@ const organisationSeeds: OrganisationSeed[] = [
 ];
 
 /** Verified organisations with counts computed from the public campaigns above. */
-export const organisations: OrganisationSummary[] = organisationSeeds.map(({ address, ...org }) => {
-  void address;
-  const own = publicCampaigns.filter((c) => c.organisationId === org.id);
-  return {
-    ...org,
-    campaignCount: own.length,
-    endedCount: own.filter((c) => ended.includes(c.status)).length,
-    completedCount: own.filter((c) => c.status === "COMPLETED").length,
-  };
-});
+export const organisations: OrganisationSummary[] = organisationSeeds.map(
+  ({ address, coverImageUrl, ...org }) => {
+    void address;
+    void coverImageUrl;
+    const own = publicCampaigns.filter((c) => c.organisationId === org.id);
+    return {
+      ...org,
+      campaignCount: own.length,
+      endedCount: own.filter((c) => ended.includes(c.status)).length,
+      completedCount: own.filter((c) => c.status === "COMPLETED").length,
+    };
+  },
+);
 
 type ItemSeed = [name: string, quantity: number, unitNaira: number, status: CampaignItem["status"]];
 
@@ -300,6 +321,16 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       ["Timber and labour", 1, 360_000, "NEEDED"],
     ],
   },
+  "prayer-mats-womens-section": {
+    purpose: "New prayer mats for the women’s section, which has outgrown its old ones.",
+    description: [
+      "The women’s section fills up every Jumu’ah and the old mats are worn through. The new mats are bought from a weaver in Offa.",
+    ],
+    items: [
+      ["Prayer mats", 45, 5_000, "PURCHASED"],
+      ["Underlay rolls", 3, 15_000, "PURCHASED"],
+    ],
+  },
   "clinic-medicines-ilorin": {
     purpose: "Basic medicines for the community clinic that serves the home’s neighbourhood.",
     description: [
@@ -351,6 +382,7 @@ export const organisationProfiles: Record<string, OrganisationProfile> = Object.
     const profile: OrganisationProfile = {
       ...summary,
       address: seed.address,
+      coverImageUrl: seed.coverImageUrl,
       raisedAmount: own.reduce((sum, c) => sum + c.raisedAmount, 0),
       campaigns: own,
     };

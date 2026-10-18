@@ -7,7 +7,7 @@ test.describe("Campaign list (F2.1)", () => {
   test("lists campaigns with their funding state", async ({ page }) => {
     await page.goto("/campaigns");
     await expect(page.getByRole("heading", { level: 1, name: "Campaigns" })).toBeVisible();
-    await expect(page.getByRole("status")).toContainText("8 campaigns");
+    await expect(page.getByRole("status")).toContainText("9 campaigns");
     const cards = page.getByRole("region", { name: "Campaigns" }).getByRole("article");
     await expect(cards).toHaveCount(6);
     await expect(page.getByRole("article", { name: "Ramadan food drive" })).toContainText(
@@ -21,11 +21,11 @@ test.describe("Campaign list (F2.1)", () => {
     await page.getByLabel("City").selectOption("Offa");
     await expect(page).toHaveURL(/\/campaigns\?city=Offa$/);
     const cards = page.getByRole("region", { name: "Campaigns" }).getByRole("article");
-    await expect(cards).toHaveCount(3);
-    await expect(page.getByRole("status")).toContainText("3 campaigns");
+    await expect(cards).toHaveCount(4);
+    await expect(page.getByRole("status")).toContainText("4 campaigns");
     await page.reload();
     await expect(page.getByLabel("City")).toHaveValue("Offa");
-    await expect(cards).toHaveCount(3);
+    await expect(cards).toHaveCount(4);
   });
 
   test("moves to the next page and back", async ({ page }) => {
@@ -34,7 +34,7 @@ test.describe("Campaign list (F2.1)", () => {
     await expect(page).toHaveURL(/page=2$/);
     await expect(page.getByText("Page 2 of 2")).toBeVisible();
     await expect(page.getByRole("region", { name: "Campaigns" }).getByRole("article")).toHaveCount(
-      2,
+      3,
     );
     await page.getByRole("link", { name: /Previous/ }).click();
     await expect(page.getByText("Page 1 of 2")).toBeVisible();
@@ -146,9 +146,9 @@ test.describe("Organisation profile (F2.4)", () => {
     await expect(page.getByText("12 Station Road, Offa, Kwara State")).toBeVisible();
     await expect(page.getByText(/registration number/i)).toHaveCount(0);
     const cards = page.getByRole("region", { name: "Campaigns" }).getByRole("article");
-    await expect(cards).toHaveCount(3);
+    await expect(cards).toHaveCount(4);
     await page.getByRole("button", { name: /^Past/ }).click();
-    await expect(cards).toHaveCount(1);
+    await expect(cards).toHaveCount(2);
     await page.getByRole("button", { name: /^All/ }).click();
     await page.getByRole("link", { name: /Give to this campaign\s*: Ramadan food drive/ }).click();
     await expect(page).toHaveURL(/\/campaigns\/ramadan-food-drive-offa$/);

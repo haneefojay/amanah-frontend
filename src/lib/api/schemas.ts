@@ -101,6 +101,8 @@ export const campaignDetailResponse = z.object({ data: campaignDetail });
  */
 export const organisationProfile = organisationSummary.extend({
   address: z.string().min(1),
+  /** A photo of the organisation's building or work. Same rules as campaign covers. */
+  coverImageUrl: z.union([z.url(), z.string().regex(/^\/[^/]/)]).nullable(),
   /** Total raised across its public campaigns. */
   raisedAmount: kobo,
   campaigns: z.array(campaignSummary),
