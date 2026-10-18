@@ -1,6 +1,6 @@
 # Landing page design
 
-- **Status:** Approved by the project owner on 2026-10-18. Phone hero refinement approved the same day (shorter intro; on phones the example campaign follows the hero).
+- **Status:** Approved by the project owner on 2026-10-18. Phone hero refinement approved the same day (shorter intro; on phones the example campaign follows the hero). Phone and narrow-desktop pass approved the same day (see Responsive behaviour).
 - **Canvas (live, editable):** https://claude.ai/artifact/FCJs8QR2Pp9VkjWsyBR3Nt. It's private: the owner shares it from the canvas's Share menu.
 - **Source snapshot:** [`landing-page.dc.html`](./landing-page.dc.html), the canvas markup at approval time. The canvas is the source of truth if the two differ.
 - **Roadmap:** F2.6, the public landing page.
@@ -25,7 +25,7 @@ The page shows a campaign's money trail as its main image, because proof is what
 
 1. Header and nav (collapses to a menu button under about 760px).
 2. Hero: "Give with certainty. Follow every naira.", a one-sentence intro and the two original buttons. On wide screens the example campaign ledger sits beside it (₦500,000 target, three items at different stages, spent and balance held). On phones the ledger comes right after the hero, on sand.
-3. The أمانة signature and the meaning of the word, closing the hero at the bottom right (about 84px on phones).
+3. The أمانة signature and the meaning of the word, closing the hero at the bottom right. On phones the word is left out and the meaning sentence closes the hero.
 4. Why: "Generosity runs on trust. Trust needs proof."
 5. How it works: five steps, from verification to witness confirmation.
 6. The cap: "Never a kobo beyond the target." with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).
@@ -40,3 +40,12 @@ The page shows a campaign's money trail as its main image, because proof is what
 - The example campaign is static content until live campaigns exist (F2.1, F3). It stays labelled "Example campaign".
 - Evidence shows the **upload (server) time** as the official time, labelled for donors as "Uploaded …". The phone's capture time only appears in the details and admin views (spec §7).
 - `[CONTACT EMAIL]` is a placeholder until the team provides one.
+
+## Responsive behaviour
+
+The canvas has three boards: Desktop (1440px), Mobile (390px) and "Desktop site on a phone" (980px, what a phone browser shows when the reader asks for the desktop site).
+
+- **Phones (below 768px):** the two hero buttons share one line ("Browse campaigns" pill, "See how it works" link, 16px). أمانة is left out of the hero and the meaning sentence sits close under the buttons. The menu button replaces the section links.
+- **768px to 1180px:** the section links stay on one line (15px, tighter gaps). "For organisations" is left out because "Register your organisation" goes to the same place; below 900px "The cap" is left out too.
+- **900px to 1180px:** the example campaign stays beside the headline and the five "How it works" steps share one row, so a 980px "desktop site" looks like the desktop page.
+- **Above 1180px:** the original desktop design, unchanged.

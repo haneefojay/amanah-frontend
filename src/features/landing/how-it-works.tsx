@@ -45,7 +45,7 @@ export function HowItWorks() {
             see it.
           </p>
         </div>
-        <ol className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-7 gap-y-10">
+        <ol className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-7 gap-y-10 min-[900px]:max-[1180px]:grid-cols-5 min-[900px]:max-[1180px]:gap-x-5">
           {steps.map((step, i) => {
             const last = i === steps.length - 1;
             return (

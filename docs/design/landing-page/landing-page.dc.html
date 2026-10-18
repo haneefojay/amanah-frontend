@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&amp;family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap">
 <style>
 body{margin:0;background:#f7f4ec}
-@container (max-width: 760px){.nav-links{display:none !important}.menu-btn{display:flex !important}.ledger-wide{display:none !important}.ledger-narrow{display:block !important}}
+@container (max-width: 760px){.nav-links{display:none !important}.menu-btn{display:flex !important}.ledger-wide{display:none !important}.ledger-narrow{display:block !important}.sig-word{display:none !important}.hero-main{padding-bottom:0 !important}.sig-row{padding-top:28px !important}.sig-row p{margin-bottom:32px !important}.hero-ctas{flex-wrap:nowrap !important;gap:12px !important}.hero-ctas .cta-primary{font-size:16px !important;padding:14px 20px !important;white-space:nowrap}.hero-ctas .cta-secondary{font-size:16px !important;padding:14px 2px !important;white-space:nowrap}}
+@container (min-width: 761px) and (max-width: 1180px){.nav-links{flex-wrap:nowrap !important;gap:8px 20px !important;font-size:15px !important;white-space:nowrap}.nav-dup{display:none !important}}
+@container (min-width: 761px) and (max-width: 899px){.nav-cap{display:none !important}}
+@container (min-width: 900px) and (max-width: 1180px){.hero-main{flex-wrap:nowrap !important;gap:40px !important}.hero-main .hero-copy{flex:1 1 0 !important}.ledger-wide{flex:0 1 420px !important}.steps-grid{grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:40px 20px !important}}
 </style>
 </helmet>
 <div id="top" style="container-type: inline-size; font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #161a20; background: #f7f4ec; min-width: 0">
@@ -27,22 +30,22 @@ body{margin:0;background:#f7f4ec}
     </a>
     <nav class="nav-links" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 16px; font-weight: 500">
       <a href="#how" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">How it works</a>
-      <a href="#cap" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">The cap</a>
+      <a href="#cap" class="nav-cap" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">The cap</a>
       <a href="#trail" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">Accountability</a>
-      <a href="#orgs" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">For organisations</a>
+      <a href="#orgs" class="nav-dup" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">For organisations</a>
       <a href="#orgs" style="color: #0f5132; background: #f7f4ec; text-decoration: none; padding: 12px 20px; border-radius: 999px; font-weight: 600">Register your organisation</a>
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" style="display: none; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; border: 1.5px solid rgba(247,244,236,0.45); background: transparent; color: #f7f4ec; cursor: pointer; flex: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
   </div>
 
-  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(24px, 4cqi, 56px) clamp(20px, 5cqi, 32px) 40px; display: flex; flex-wrap: wrap; gap: clamp(40px, 5cqi, 56px); align-items: flex-start">
-    <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px; padding-top: clamp(0px, 2cqi, 24px)">
+  <div class="hero-main" style="max-width: 1200px; margin: 0 auto; padding: clamp(24px, 4cqi, 56px) clamp(20px, 5cqi, 32px) 40px; display: flex; flex-wrap: wrap; gap: clamp(40px, 5cqi, 56px); align-items: flex-start">
+    <div class="hero-copy" style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px; padding-top: clamp(0px, 2cqi, 24px)">
       <p style="margin: 0; font-size: 17px; color: rgba(247,244,236,0.82)">Transparent giving to verified Islamic organisations in Nigeria</p>
       <h1 style="margin: 0; font-size: clamp(46px, 6.4cqi, 88px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 800">Give with certainty. Follow every naira.</h1>
       <p style="margin: 0; font-size: clamp(18px, 1.6cqi, 20px); line-height: 1.55; max-width: 34ch; color: rgba(247,244,236,0.88)">Mosques, orphanages and community groups list exactly what they need. You give, then follow every naira to delivery.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
-        <a href="#trail" style="background: {{accent}}; color: #161a20; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 28px; border-radius: 999px">Browse campaigns</a>
-        <a href="#how" style="color: #f7f4ec; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 8px; border-bottom: 2px solid rgba(247,244,236,0.4)">See how it works</a>
+      <div class="hero-ctas" style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+        <a href="#trail" class="cta-primary" style="background: {{accent}}; color: #161a20; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 28px; border-radius: 999px">Browse campaigns</a>
+        <a href="#how" class="cta-secondary" style="color: #f7f4ec; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 8px; border-bottom: 2px solid rgba(247,244,236,0.4)">See how it works</a>
       </div>
     </div>
 
@@ -113,9 +116,9 @@ body{margin:0;background:#f7f4ec}
   </div>
 
   <!-- Signature: the word itself -->
-  <div style="max-width: 1200px; margin: 0 auto; padding: 24px clamp(20px, 5cqi, 32px) 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px 40px">
+  <div class="sig-row" style="max-width: 1200px; margin: 0 auto; padding: 24px clamp(20px, 5cqi, 32px) 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px 40px">
     <p style="margin: 0 0 clamp(18px, 3cqi, 40px); flex: 1 1 auto; min-width: 0; max-width: 40ch; font-size: clamp(14px, 1.3cqi, 17px); line-height: 1.55; color: rgba(247,244,236,0.85)"><strong style="color: #f7f4ec; font-weight: 700">Amānah</strong> is the trust placed in your care, and the duty to return it intact. Every campaign on this platform is held to it.</p>
-    <span lang="ar" dir="rtl" style="flex: none; font-family: 'Reem Kufi', serif; font-weight: 700; font-size: clamp(84px, 19cqi, 280px); line-height: 0.95; color: {{accent}}; margin-bottom: -0.16em">أمانة</span>
+    <span class="sig-word" lang="ar" dir="rtl" style="flex: none; font-family: 'Reem Kufi', serif; font-weight: 700; font-size: clamp(84px, 19cqi, 280px); line-height: 0.95; color: {{accent}}; margin-bottom: -0.16em">أمانة</span>
   </div>
 </header>
 
@@ -173,7 +176,7 @@ body{margin:0;background:#f7f4ec}
       <p style="margin: 0; max-width: 42ch; font-size: 18px; line-height: 1.55; color: #4b5260">Five steps, each one visible on the campaign page. If a step is missing, everyone can see it.</p>
     </div>
 
-    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 28px">
+    <ol class="steps-grid" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 28px">
       <li style="display: flex; flex-direction: column; gap: 14px">
         <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #0f5132; color: #f7f4ec; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">1</span><span style="flex: 1; height: 2px; background: #0f5132"></span></div>
         <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">Verified first</h3>

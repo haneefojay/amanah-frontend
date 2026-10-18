@@ -86,6 +86,11 @@ describe("LandingPage", () => {
     expect(word).toHaveAttribute("dir", "rtl");
   });
 
+  it("leaves the Arabic signature out of the phone hero", () => {
+    render(<LandingPage />);
+    expect(screen.getByText("أمانة")).toHaveClass("hidden", "md:block");
+  });
+
   it("hides the contact button when no contact email is configured", () => {
     render(<LandingPage contactEmail={undefined} />);
     expect(screen.queryByRole("link", { name: "Talk to the team" })).not.toBeInTheDocument();

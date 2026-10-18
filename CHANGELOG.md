@@ -20,6 +20,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Changed
 
+- **F2.6 landing, phone and narrow desktop** (approved on the design canvas): on phones the hero buttons share one line, أمانة is left out of the hero and the meaning sentence sits closer to the buttons (phones no longer download the Arabic display font). Between 768px and 1180px the section links stay on one line ("For organisations", and below 900px "The cap", are left out). From 900px to 1180px the example campaign stays beside the headline and the five steps share one row, so "desktop site" on a phone (about 980px) matches the desktop layout. Desktop above 1180px is unchanged. New e2e checks cover the phone buttons and the 980px layout.
 - AmanahMark moved to `src/components/brand/`. Mock fixture organisations renamed to clearly fictional examples.
 
 ### Decisions
