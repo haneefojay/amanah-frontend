@@ -13,8 +13,11 @@ describe("LandingPage", () => {
 
   it("renders every section of the approved design", () => {
     render(<LandingPage />);
+    // The example campaign renders twice: beside the headline (wide) and after the hero (phones).
+    expect(screen.getAllByRole("heading", { level: 2, name: "Ramadan food drive" })).toHaveLength(
+      2,
+    );
     for (const name of [
-      "Ramadan food drive",
       "Generosity runs on trust. Trust needs proof.",
       "From need to delivery, in the open",
       "Never a kobo beyond the target.",
@@ -29,17 +32,37 @@ describe("LandingPage", () => {
 
   it("formats every amount from kobo with the exact spec copy for a funded campaign", () => {
     render(<LandingPage />);
-    const ledger = screen.getByRole("article", { name: "Ramadan food drive" });
-    expect(within(ledger).getByText("₦500,000")).toBeInTheDocument();
-    expect(within(ledger).getByText("of ₦500,000 target")).toBeInTheDocument();
-    expect(within(ledger).getByText("₦420,000")).toBeInTheDocument();
-    expect(within(ledger).getAllByText("₦80,000")).toHaveLength(2); // dates item and balance held
-    expect(within(ledger).getByText("Target reached. Donations closed.")).toBeInTheDocument();
-    expect(within(ledger).getByRole("progressbar", { name: "Raised" })).toHaveAttribute(
-      "aria-valuenow",
-      "100",
-    );
-    expect(within(ledger).getByText("Example campaign")).toBeInTheDocument();
+    const ledgers = screen.getAllByRole("article", { name: "Ramadan food drive" });
+    expect(ledgers).toHaveLength(2);
+    for (const ledger of ledgers) {
+      expect(within(ledger).getByText("₦500,000")).toBeInTheDocument();
+      expect(within(ledger).getByText("of ₦500,000 target")).toBeInTheDocument();
+      expect(within(ledger).getByText("₦420,000")).toBeInTheDocument();
+      expect(within(ledger).getAllByText("₦80,000")).toHaveLength(2); // dates item and balance held
+      expect(within(ledger).getByText("Target reached. Donations closed.")).toBeInTheDocument();
+      expect(within(ledger).getByRole("progressbar", { name: "Raised" })).toHaveAttribute(
+        "aria-valuenow",
+        "100",
+      );
+      expect(within(ledger).getByText("Example campaign")).toBeInTheDocument();
+    }
+  });
+
+  it("keeps the hero short: one-sentence intro and no extra line under the buttons", () => {
+    render(<LandingPage />);
+    expect(
+      screen.getByText(
+        "Mosques, orphanages and community groups list exactly what they need. You give, then follow every naira to delivery.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/Verified organisations only/)).not.toBeInTheDocument();
+  });
+
+  it("shows each layout's copy of the example campaign only at its own screen size", () => {
+    render(<LandingPage />);
+    const [wide, phone] = screen.getAllByRole("article", { name: "Ramadan food drive" });
+    expect(wide).toHaveClass("hidden", "md:flex");
+    expect(phone?.closest("section")).toHaveClass("md:hidden");
   });
 
   it("describes the cap illustration in text for screen readers", () => {

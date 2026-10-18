@@ -2,7 +2,10 @@ import { CampaignLedger } from "./campaign-ledger";
 import { Container } from "./container";
 import { sectionIds } from "./nav-links";
 
-/** Hero and the أمانة signature on the deep green ground. Starts the page's <main>. */
+/**
+ * Hero and the أمانة signature on the deep green ground. Starts the page's <main>.
+ * On phones the example campaign is not in the hero: it follows it (PhoneExampleCampaign).
+ */
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="overflow-hidden bg-brand-900 text-sand-100">
@@ -17,10 +20,9 @@ export function Hero() {
           >
             Give with certainty. Follow every naira.
           </h1>
-          <p className="max-w-[36ch] text-xl leading-[1.55] text-sand-100/90">
-            Mosques, orphanages and Islamic community groups publish exactly what they need. You
-            give to those needs, then watch the money become rice, books and roofs, with receipts,
-            photos and an independent witness to confirm it.
+          <p className="max-w-[34ch] text-[clamp(18px,1.6vw,20px)] leading-[1.55] text-sand-100/90">
+            Mosques, orphanages and community groups list exactly what they need. You give, then
+            follow every naira to delivery.
           </p>
           <div className="flex flex-wrap items-center gap-3.5">
             <a
@@ -36,22 +38,20 @@ export function Hero() {
               See how it works
             </a>
           </div>
-          <p className="text-sm text-sand-100/75">
-            Verified organisations only. Every campaign is capped at its target.
-          </p>
         </div>
-        <CampaignLedger />
+        {/* Wide screens: beside the headline. Phones: after the hero (see LandingPage). */}
+        <CampaignLedger headingId="ledger-title" className="hidden md:flex" />
       </Container>
 
-      <Container className="flex flex-wrap items-end justify-between gap-x-10 gap-y-2 pt-6">
-        <p className="mb-10 max-w-[40ch] flex-[1_1_300px] text-[17px] leading-[1.55] text-sand-100/85">
+      <Container className="flex items-end justify-between gap-x-10 gap-y-5 pt-6">
+        <p className="mb-[clamp(18px,3vw,40px)] max-w-[40ch] min-w-0 flex-auto text-[clamp(14px,1.3vw,17px)] leading-[1.55] text-sand-100/85">
           <strong className="font-bold text-sand-100">Amānah</strong> is the trust placed in your
           care, and the duty to return it intact. Every campaign on this platform is held to it.
         </p>
         <span
           lang="ar"
           dir="rtl"
-          className="-mb-[0.16em] font-arabic-display text-[clamp(120px,19vw,280px)] leading-[0.95] font-bold text-gold-500"
+          className="-mb-[0.16em] flex-none font-arabic-display text-[clamp(84px,19vw,280px)] leading-[0.95] font-bold text-gold-500"
         >
           أمانة
         </span>

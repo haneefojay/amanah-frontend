@@ -1,6 +1,6 @@
 # Landing page design
 
-- **Status:** Approved by the project owner on 2026-10-18.
+- **Status:** Approved by the project owner on 2026-10-18. Phone hero refinement approved the same day (shorter intro; on phones the example campaign follows the hero).
 - **Canvas (live, editable):** https://claude.ai/artifact/FCJs8QR2Pp9VkjWsyBR3Nt. It's private: the owner shares it from the canvas's Share menu.
 - **Source snapshot:** [`landing-page.dc.html`](./landing-page.dc.html), the canvas markup at approval time. The canvas is the source of truth if the two differ.
 - **Roadmap:** F2.6, the public landing page.
@@ -24,8 +24,8 @@ The page shows a campaign's money trail as its main image, because proof is what
 ## Sections (top to bottom)
 
 1. Header and nav (collapses to a menu button under about 760px).
-2. Hero: "Give with certainty. Follow every naira." with an example campaign ledger (₦500,000 target, three items at different stages, spent and balance held).
-3. The أمانة signature and the meaning of the word.
+2. Hero: "Give with certainty. Follow every naira.", a one-sentence intro and the two original buttons. On wide screens the example campaign ledger sits beside it (₦500,000 target, three items at different stages, spent and balance held). On phones the ledger comes right after the hero, on sand.
+3. The أمانة signature and the meaning of the word, closing the hero at the bottom right (about 84px on phones).
 4. Why: "Generosity runs on trust. Trust needs proof."
 5. How it works: five steps, from verification to witness confirmation.
 6. The cap: "Never a kobo beyond the target." with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).

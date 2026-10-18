@@ -54,6 +54,29 @@ test.describe("Landing page (F2.6)", () => {
   });
 });
 
+test.describe("Landing layout on phones", () => {
+  test("the hero closes with أمانة before the example campaign", async ({ page, isMobile }) => {
+    test.skip(!isMobile, "Phone layout only");
+    await page.goto("/");
+    const word = page.getByText("أمانة");
+    const ledger = page.getByRole("article", { name: "Ramadan food drive" });
+    await expect(word).toBeVisible();
+    await expect(ledger).toHaveCount(1); // only the phone copy is visible
+    const wordBox = await word.boundingBox();
+    const ledgerBox = await ledger.boundingBox();
+    expect(wordBox && ledgerBox && wordBox.y < ledgerBox.y).toBe(true);
+    // The word sits at the right of the hero.
+    const viewport = page.viewportSize();
+    expect(wordBox && viewport && wordBox.x + wordBox.width > viewport.width / 2).toBe(true);
+  });
+
+  test("buttons keep the original pill and underlined link", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("link", { name: "Browse campaigns" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "See how it works" })).toBeVisible();
+  });
+});
+
 test.describe("Landing navigation", () => {
   test("desktop: section links scroll to their sections", async ({ page, isMobile }) => {
     test.skip(isMobile, "Desktop navigation only");

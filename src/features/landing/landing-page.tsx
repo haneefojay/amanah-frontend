@@ -1,6 +1,7 @@
 import { publicEnv } from "@/lib/env";
 import { AccountabilitySection } from "./accountability-section";
 import { AudienceSection } from "./audience-section";
+import { CampaignLedger } from "./campaign-ledger";
 import { CapSection } from "./cap-section";
 import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
@@ -9,6 +10,18 @@ import { OrganisationsCta } from "./organisations-cta";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { WhySection } from "./why-section";
+
+/** Phones only: the example campaign follows the hero, on paper, so the hero stays short. */
+function PhoneExampleCampaign() {
+  return (
+    <section aria-label="Example campaign" className="bg-sand-100 px-5 pt-9 md:hidden">
+      <p className="mb-4 text-[15px] font-semibold text-brand-900">
+        What you see on every campaign
+      </p>
+      <CampaignLedger headingId="ledger-title-phone" variant="paper" />
+    </section>
+  );
+}
 
 type LandingPageProps = { contactEmail?: string };
 
@@ -36,6 +49,7 @@ export function LandingPage({
       <SiteHeader registerHref={`#${sectionIds.organisations}`} />
       <main id="main">
         <Hero />
+        <PhoneExampleCampaign />
         <WhySection />
         <HowItWorks />
         <CapSection />

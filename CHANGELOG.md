@@ -22,6 +22,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Changed
 
+- Landing page refinement (approved on the canvas 2026-10-18): hero intro shortened to one sentence and the line under the buttons removed, on all screen sizes. On phones the hero now ends with a smaller أمانة at the bottom right, and the example campaign follows the hero on the sand background under "What you see on every campaign".
 - Design tokens extended (`brand-200`, `gold-100/700/800`, `sand-200` to `sand-600`, `ink-700`). Smooth scrolling for in-page links.
 - `ProgressBar` accepts `showLabel`, `trackClassName` and `barClassName`.
 - Replaced the temporary F0 home page with the landing page. Updated the PWA e2e test accordingly.

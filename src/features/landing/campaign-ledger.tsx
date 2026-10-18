@@ -35,19 +35,33 @@ function TrailMarker({ item, last }: { item: ExampleItem; last: boolean }) {
   );
 }
 
-/** The hero's example campaign: funding state and the item-by-item money trail. */
-export function CampaignLedger() {
+type CampaignLedgerProps = {
+  /** Unique id for the card's heading (the card renders in two places, one per layout). */
+  headingId: string;
+  /** "hero" sits on the green ground; "paper" sits on sand with a border and a softer shadow. */
+  variant?: "hero" | "paper";
+  className?: string;
+};
+
+/** The example campaign: funding state and the item-by-item money trail. */
+export function CampaignLedger({ headingId, variant = "hero", className }: CampaignLedgerProps) {
   const c = exampleCampaign;
   return (
     <article
-      aria-labelledby="ledger-title"
-      className="flex w-full max-w-[480px] min-w-0 flex-[1_1_400px] flex-col gap-[22px] rounded-3xl bg-sand-50 p-6 text-ink-900 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)] sm:p-7"
+      aria-labelledby={headingId}
+      className={cn(
+        "w-full min-w-0 flex-col gap-[22px] rounded-3xl bg-sand-50 p-6 text-ink-900 sm:p-7",
+        variant === "hero"
+          ? "max-w-[480px] flex-[1_1_400px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]"
+          : "border border-sand-400 shadow-[0_18px_40px_-22px_rgba(15,81,50,0.45)]",
+        className ?? "flex",
+      )}
     >
       <header className="flex flex-col gap-1.5">
         <span className="self-start rounded-full bg-sand-300 px-2.5 py-1 text-[13px] font-semibold text-ink-600">
           Example campaign
         </span>
-        <h2 id="ledger-title" className="text-[22px] font-bold tracking-[-0.01em]">
+        <h2 id={headingId} className="text-[22px] font-bold tracking-[-0.01em]">
           {c.title}
         </h2>
         <span className="flex items-center gap-1.5 text-[15px] text-ink-600">
