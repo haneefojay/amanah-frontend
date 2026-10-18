@@ -46,12 +46,12 @@ describe("Button", () => {
   it("can render as a link", async () => {
     const { container } = render(
       <Button asChild>
-        <a href="/campaigns">See campaigns</a>
+        <a href="#campaigns">See campaigns</a>
       </Button>,
     );
     expect(screen.getByRole("link", { name: "See campaigns" })).toHaveAttribute(
       "href",
-      "/campaigns",
+      "#campaigns",
     );
     await expectNoA11yViolations(container);
   });

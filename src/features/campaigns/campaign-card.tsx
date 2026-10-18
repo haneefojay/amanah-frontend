@@ -26,7 +26,7 @@ const badgeTone: Record<CampaignStatus, string> = {
 };
 
 /** Arch outline shown when a campaign has no cover photo yet. */
-function CoverFallback() {
+export function CoverFallback() {
   return (
     <div aria-hidden="true" className="flex h-full items-end justify-center bg-brand-150">
       <svg width="150" height="168" viewBox="0 0 150 168" className="-mb-7 text-brand-300">

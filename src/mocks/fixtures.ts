@@ -1,8 +1,11 @@
 import type {
+  CampaignDetail,
+  CampaignItem,
   CampaignListResponse,
   CampaignStatus,
   CampaignSummary,
   CurrentUser,
+  OrganisationSummary,
   UserRole,
 } from "@/lib/api/schemas";
 
@@ -178,6 +181,157 @@ export function campaignListBody(
     },
   };
 }
+
+const ended: CampaignStatus[] = ["CLOSED", "COMPLETED"];
+
+type OrganisationSeed = Pick<OrganisationSummary, "id" | "name" | "city" | "state" | "verifiedAt">;
+
+const organisationSeeds: OrganisationSeed[] = [
+  {
+    id: organisationIds.mosque,
+    name: "Central Mosque, Offa",
+    city: "Offa",
+    state: "Kwara",
+    verifiedAt: "2026-09-04T10:00:00.000Z",
+  },
+  {
+    id: organisationIds.orphanage,
+    name: "Darul Aytam Orphan Home",
+    city: "Ilorin",
+    state: "Kwara",
+    verifiedAt: "2026-09-12T10:00:00.000Z",
+  },
+  {
+    id: organisationIds.society,
+    name: "An-Nur Islamic Society",
+    city: "Ogbomoso",
+    state: "Oyo",
+    verifiedAt: "2026-09-20T10:00:00.000Z",
+  },
+];
+
+/** Verified organisations with counts computed from the public campaigns above. */
+export const organisations: OrganisationSummary[] = organisationSeeds.map((org) => {
+  const own = publicCampaigns.filter((c) => c.organisationId === org.id);
+  return {
+    ...org,
+    campaignCount: own.length,
+    endedCount: own.filter((c) => ended.includes(c.status)).length,
+    completedCount: own.filter((c) => c.status === "COMPLETED").length,
+  };
+});
+
+type ItemSeed = [name: string, quantity: number, unitNaira: number, status: CampaignItem["status"]];
+
+const story: Record<string, { purpose: string; description: string[]; items: ItemSeed[] }> = {
+  "ramadan-food-drive-offa": {
+    purpose: "Food packs for 120 families in Offa for the last ten nights of Ramadan.",
+    description: [
+      "Every year the mosque’s welfare committee prepares food packs for families who struggle during Ramadan. This year 120 families from the mosque’s community register are on the list, chosen with the ward heads.",
+      "Each pack holds rice, cooking oil, dates and sugar for a family of six. Packs are handed out after Jumu’ah on the last two Fridays of the month, and a witness from the community confirms each delivery.",
+    ],
+    items: [
+      ["Rice, 50 kg bags", 5, 56_000, "PURCHASED"],
+      ["Cooking oil, 25 L kegs", 4, 30_000, "NEEDED"],
+      ["Dates and sugar packs", 40, 2_500, "NEEDED"],
+    ],
+  },
+  "school-supplies-40-orphans": {
+    purpose: "Uniforms, books and bags so 40 children can start the new term ready to learn.",
+    description: [
+      "The home looks after 40 children of school age. Many start each term without a uniform or enough exercise books.",
+      "Supplies are bought in one order from a local supplier and handed out at the home, with a witness present.",
+    ],
+    items: [
+      ["School uniforms", 40, 12_000, "PURCHASED"],
+      ["Exercise books", 400, 800, "PURCHASED"],
+      ["School bags", 40, 10_000, "NEEDED"],
+    ],
+  },
+  "borehole-islamiyya-school": {
+    purpose: "A borehole so the Islamiyya school and its neighbours have clean water on site.",
+    description: [
+      "Pupils and teachers walk to a shared well that runs low in the dry season. A borehole on the school grounds would serve about 300 pupils and the families nearby.",
+    ],
+    items: [
+      ["Drilling and casing", 1, 450_000, "PURCHASED"],
+      ["Submersible pump", 1, 250_000, "PURCHASED"],
+      ["Tank and stand", 1, 150_000, "PURCHASED"],
+    ],
+  },
+  "eid-clothes-30-children": {
+    purpose: "New outfits and shoes for 30 children from families the mosque supports.",
+    description: [
+      "The mosque’s welfare committee has a list of 30 children who would otherwise go without new clothes for Eid.",
+    ],
+    items: [
+      ["Eid outfits", 30, 10_000, "PURCHASED"],
+      ["Shoes", 20, 5_000, "NEEDED"],
+    ],
+  },
+  "quran-learning-materials": {
+    purpose: "Copies of the Qur’an and writing boards for the evening class.",
+    description: [
+      "The evening class has grown to 30 children and shares a handful of copies. Each child should have their own.",
+    ],
+    items: [
+      ["Copies of the Qur’an", 30, 6_000, "NEEDED"],
+      ["Writing boards", 12, 10_000, "NEEDED"],
+    ],
+  },
+  "mosque-roof-repair-oke-ode": {
+    purpose:
+      "Repairing the storm-damaged roof so prayers and classes can continue in the rainy season.",
+    description: [
+      "A storm tore sheets off the roof of the community mosque and its Qur’an school. The campaign closed below its target; the funds raised are used for the repairs listed below.",
+    ],
+    items: [
+      ["Roofing sheets", 60, 9_000, "PURCHASED"],
+      ["Timber and labour", 1, 360_000, "NEEDED"],
+    ],
+  },
+  "clinic-medicines-ilorin": {
+    purpose: "Basic medicines for the community clinic that serves the home’s neighbourhood.",
+    description: [
+      "The clinic ran short of basic medicines. Everything below was bought, delivered and confirmed by a witness.",
+    ],
+    items: [
+      ["Antimalarial courses", 100, 1_500, "DELIVERED"],
+      ["ORS and zinc packs", 100, 1_000, "DELIVERED"],
+    ],
+  },
+  "winter-blankets-offa": {
+    purpose: "Blankets for 60 families through the harmattan season.",
+    description: [
+      "Nights get cold in Offa during the harmattan. Blankets were handed out after Jumu’ah and confirmed by a witness.",
+    ],
+    items: [["Blankets", 60, 3_000, "DELIVERED"]],
+  },
+};
+
+/** Full campaign pages by slug, for the public campaign endpoint. Items total each target. */
+export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntries(
+  publicCampaigns.map((c, index) => {
+    const entry = story[c.slug]!;
+    const detail: CampaignDetail = {
+      ...c,
+      purpose: entry.purpose,
+      description: entry.description,
+      publishedAt: new Date(Date.UTC(2026, 9, 10 - index, 9)).toISOString(),
+      endsAt: null,
+      items: entry.items.map(([name, quantity, unitNaira, status], n) => ({
+        id: `9c4d1e7a-2b3f-4a50-8d61-0e1f2a3b4c${String(index * 10 + n).padStart(2, "0")}`,
+        name,
+        quantity,
+        unitCost: unitNaira * 100,
+        totalCost: quantity * unitNaira * 100,
+        status,
+      })),
+      organisation: organisations.find((o) => o.id === c.organisationId)!,
+    };
+    return [c.slug, detail];
+  }),
+);
 
 /** One demo user per staff role (spec §3). The mock API serves the role in MOCK_ROLE. */
 export const usersByRole: Record<UserRole, CurrentUser> = {

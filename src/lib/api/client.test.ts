@@ -34,6 +34,17 @@ describe("api client", () => {
     expect(statuses).not.toContain("PENDING_REVIEW");
   });
 
+  it("returns one campaign with its items and organisation", async () => {
+    const { data } = await api.getCampaign("ramadan-food-drive-offa");
+    expect(data.items).toHaveLength(3);
+    expect(data.organisation.name).toBe("Central Mosque, Offa");
+  });
+
+  it("answers 404 for an unknown or draft campaign", async () => {
+    await expect(api.getCampaign("nope")).rejects.toMatchObject({ status: 404, code: "NOT_FOUND" });
+    await expect(api.getCampaign("draft-campaign")).rejects.toMatchObject({ status: 404 });
+  });
+
   it("turns error bodies into ApiError", async () => {
     server.use(
       http.get("*/api/campaigns", () =>

@@ -53,6 +53,48 @@ export const campaignListResponse = z.object({
 });
 export type CampaignListResponse = z.infer<typeof campaignListResponse>;
 
+/** The organisation behind a campaign, as shown on the campaign page (B5.2, B3.4). */
+export const organisationSummary = z.object({
+  id: z.uuid(),
+  name: z.string().min(1),
+  city: z.string().min(1),
+  state: z.string().min(1),
+  /** When the Amanah team verified the organisation. Only verified organisations are public. */
+  verifiedAt: z.iso.datetime(),
+  /** Public campaigns (live, funded, closed or completed). */
+  campaignCount: z.number().int().nonnegative(),
+  /** Closed or completed campaigns. */
+  endedCount: z.number().int().nonnegative(),
+  completedCount: z.number().int().nonnegative(),
+});
+export type OrganisationSummary = z.infer<typeof organisationSummary>;
+
+export const itemDisplayStatus = z.enum(["NEEDED", "PURCHASED", "DELIVERED", "DISPUTED"]);
+
+/** One thing the campaign buys. Items add up to the campaign target (spec §4.1). */
+export const campaignItem = z.object({
+  id: z.uuid(),
+  name: z.string().min(1),
+  quantity: z.number().int().positive(),
+  unitCost: kobo,
+  totalCost: kobo,
+  status: itemDisplayStatus,
+});
+export type CampaignItem = z.infer<typeof campaignItem>;
+
+/** A public campaign with its story and items (GET /api/campaigns/:slug, B5.2). */
+export const campaignDetail = campaignSummary.extend({
+  purpose: z.string().min(1),
+  /** Paragraphs of plain text. */
+  description: z.array(z.string().min(1)).min(1),
+  publishedAt: z.iso.datetime(),
+  endsAt: z.iso.datetime().nullable(),
+  items: z.array(campaignItem),
+  organisation: organisationSummary,
+});
+export type CampaignDetail = z.infer<typeof campaignDetail>;
+export const campaignDetailResponse = z.object({ data: campaignDetail });
+
 export const apiErrorBody = z.object({
   error: z.object({ code: z.string(), message: z.string() }),
 });

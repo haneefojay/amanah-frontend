@@ -1,6 +1,12 @@
 import { http, HttpResponse } from "msw";
 import type { UserRole } from "@/lib/api/schemas";
-import { campaignListBody, campaigns, PAGE_SIZE, publicCampaigns, usersByRole } from "./fixtures";
+import {
+  campaignDetails,
+  campaignListBody,
+  PAGE_SIZE,
+  publicCampaigns,
+  usersByRole,
+} from "./fixtures";
 
 function mockRole(): UserRole {
   const role = typeof process !== "undefined" ? process.env.MOCK_ROLE : undefined;
@@ -35,10 +41,11 @@ export const handlers = [
     return HttpResponse.json(body);
   }),
 
+  // One public campaign with its story and items (B5.2). Drafts and unknown slugs are 404.
   http.get("*/api/campaigns/:slug", ({ params }) => {
-    const campaign = campaigns.find((c) => c.slug === params.slug);
-    return campaign
-      ? HttpResponse.json({ data: campaign })
+    const detail = campaignDetails[String(params.slug)];
+    return detail
+      ? HttpResponse.json({ data: detail })
       : HttpResponse.json(
           { error: { code: "NOT_FOUND", message: "Campaign not found" } },
           { status: 404 },

@@ -1,6 +1,11 @@
 import type { z } from "zod";
 import { publicEnv } from "@/lib/env";
-import { apiErrorBody, campaignListResponse, currentUserResponse } from "./schemas";
+import {
+  apiErrorBody,
+  campaignDetailResponse,
+  campaignListResponse,
+  currentUserResponse,
+} from "./schemas";
 
 export class ApiError extends Error {
   constructor(
@@ -62,5 +67,7 @@ export const api = {
     const qs = query.toString();
     return apiFetch(`/api/campaigns${qs ? `?${qs}` : ""}`, campaignListResponse, init);
   },
+  getCampaign: (slug: string, init?: RequestInit) =>
+    apiFetch(`/api/campaigns/${encodeURIComponent(slug)}`, campaignDetailResponse, init),
   getMe: () => apiFetch("/api/me", currentUserResponse),
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { CampaignCard } from "@/features/campaigns/campaign-card";
 import { api } from "@/lib/api/client";
 import type { CampaignSummary } from "@/lib/api/schemas";
@@ -44,12 +45,12 @@ export function RaisingNow() {
               Verified organisations, each with a fixed target and a public record.
             </p>
           </div>
-          <a
+          <Link
             href="/campaigns"
             className="rounded-full border-[1.5px] border-brand-300 px-5 py-3 text-base font-bold text-brand-900 hover:border-brand-700"
           >
             See all campaigns
-          </a>
+          </Link>
         </div>
         <ul
           aria-label="Campaigns raising now"
