@@ -1,7 +1,7 @@
 import type { CampaignSummary } from "@/lib/api/schemas";
 import { formatNaira } from "@/lib/money";
 
-export type FundingNote = { text: string; tone: "neutral" | "nearly" | "closed" };
+export type FundingNote = { text: string; tone: "neutral" | "nearly" | "closed" | "done" };
 
 /** Share of the target at which a live campaign is described as "nearly there". */
 const NEARLY_THERE = 0.9;
@@ -14,6 +14,10 @@ const NEARLY_THERE = 0.9;
 export function fundingNote(
   c: Pick<CampaignSummary, "status" | "targetAmount" | "raisedAmount" | "availableAmount">,
 ): FundingNote {
+  if (c.status === "COMPLETED") return { text: "All items delivered and confirmed", tone: "done" };
+  if (c.status === "CLOSED") {
+    return { text: "Ended below target. Funds go to its stated purpose.", tone: "neutral" };
+  }
   if (c.status !== "LIVE") return { text: "Target reached. Donations closed.", tone: "closed" };
   const toGo = Math.max(0, c.targetAmount - c.raisedAmount);
   if (toGo === 0) return { text: "Target reached. Donations closed.", tone: "closed" };

@@ -28,4 +28,16 @@ describe("fundingNote", () => {
       fundingNote({ ...base, status: "FUNDED", raisedAmount: 50_000_000, availableAmount: 0 }),
     ).toEqual({ text: "Target reached. Donations closed.", tone: "closed" });
   });
+
+  it("says a closed campaign ended below its target", () => {
+    expect(
+      fundingNote({ ...base, status: "CLOSED", raisedAmount: 30_000_000, availableAmount: 0 }),
+    ).toEqual({ text: "Ended below target. Funds go to its stated purpose.", tone: "neutral" });
+  });
+
+  it("says a completed campaign delivered everything", () => {
+    expect(
+      fundingNote({ ...base, status: "COMPLETED", raisedAmount: 50_000_000, availableAmount: 0 }),
+    ).toEqual({ text: "All items delivered and confirmed", tone: "done" });
+  });
 });

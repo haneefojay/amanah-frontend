@@ -1,16 +1,29 @@
 import Image from "next/image";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import type { CampaignSummary } from "@/lib/api/schemas";
+import type { CampaignStatus } from "@/lib/api/schemas";
 import { cn } from "@/lib/cn";
 import { formatNaira } from "@/lib/money";
-import { LockIcon, VerifiedIcon } from "@/features/landing/icons";
+import { campaignStatusLabel } from "@/lib/status";
+import { CheckIcon, LockIcon, VerifiedIcon } from "@/features/landing/icons";
 import { fundingNote } from "./funding-note";
 
 const noteTone = {
   neutral: "text-ink-600",
   nearly: "font-semibold text-gold-800",
   closed: "font-semibold text-brand-900",
+  done: "font-semibold text-brand-900",
 } as const;
+
+const badgeTone: Record<CampaignStatus, string> = {
+  DRAFT: "bg-mist-100 text-ink-700",
+  PENDING_REVIEW: "bg-mist-100 text-ink-700",
+  REJECTED: "bg-mist-100 text-ink-700",
+  LIVE: "bg-brand-100 text-brand-900",
+  FUNDED: "bg-brand-900 text-white",
+  CLOSED: "bg-mist-200 text-ink-700",
+  COMPLETED: "bg-gold-400 text-brand-950",
+};
 
 /** Arch outline shown when a campaign has no cover photo yet. */
 function CoverFallback() {
@@ -44,7 +57,7 @@ export function CampaignCard({
 }) {
   const note = fundingNote(c);
   const href = `/campaigns/${c.slug}`;
-  const isLive = note.tone !== "closed";
+  const isLive = c.status === "LIVE" && note.tone !== "closed";
   return (
     <article
       aria-labelledby={`campaign-${c.id}`}
@@ -69,18 +82,26 @@ export function CampaignCard({
         <span className="absolute top-3.5 left-3.5 rounded-full bg-white/90 px-[11px] py-[5px] text-[13px] font-semibold text-ink-900">
           {c.city}, {c.state}
         </span>
+        <span
+          className={cn(
+            "absolute top-3.5 right-3.5 rounded-full px-[11px] py-[5px] text-xs font-bold",
+            badgeTone[c.status],
+          )}
+        >
+          {campaignStatusLabel[c.status]}
+        </span>
       </div>
       <div className="flex flex-1 flex-col gap-3.5 px-[22px] pt-5 pb-[22px]">
         <div className="flex flex-col gap-1.5">
           <h3
             id={`campaign-${c.id}`}
-            className="text-[19px] leading-tight font-bold tracking-[-0.01em]"
+            className="line-clamp-2 text-[19px] leading-tight font-bold tracking-[-0.01em]"
           >
             {c.title}
           </h3>
           <span className="flex items-center gap-1.5 text-sm text-ink-600">
             <VerifiedIcon size={15} strokeWidth={2.4} className="flex-none text-brand-700" />
-            <span>
+            <span className="min-w-0 truncate">
               {c.organisationName}
               <span className="sr-only"> (verified)</span>
             </span>
@@ -102,6 +123,7 @@ export function CampaignCard({
           </p>
           <p className={cn("flex items-center gap-1.5 text-sm", noteTone[note.tone])}>
             {note.tone === "closed" && <LockIcon size={14} strokeWidth={2.4} />}
+            {note.tone === "done" && <CheckIcon size={14} strokeWidth={2.8} />}
             {note.text}
           </p>
         </div>
