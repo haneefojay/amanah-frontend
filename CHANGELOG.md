@@ -10,6 +10,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Added
 
+- **F3.1 Funding summary:** `accountabilityTotals` in `src/features/accountability/totals.ts` derives remaining, spent, balance held and progress in integer kobo (spec §6) and refuses expenses above the amount raised. The funding panel uses it. Table-driven tests cover every state (live, nearly reached, target reached, funded, closed, completed) with the exact spec copy. Closed as Done (mocked), waiting on B5.2.
 - **F2.4 Organisation profile** (approved on the design canvas): `/organisations/[id]` shows the verified badge, location, address and when the organisation joined, its track record (ended campaigns completed and confirmed, campaigns, total raised), what verified means, and every public campaign as a full card with an All / Raising now / Past switch. The organisation type and registration number are not shown, by the owner's decision. Campaign pages link to it. Unknown or unverified organisations show a not-found page. Closed as Done (mocked), waiting on B3.4.
 - **F2.3 Campaign page** (approved on the design canvas): `/campaigns/[slug]` with the cover, status, organisation, a funding panel (raised, target, remaining, the exact spec sentence for each state), purpose, description, a "What the money buys" table (a list on phones) whose total equals the target, organisation and campaign details, and how the gift is protected. Share uses the phone's share sheet, or copies the link and says so. "Give to this campaign" is shown for live campaigns but does nothing yet; the donation flow attaches to it in F4.1. An unknown or draft campaign shows a branded not-found page that search engines are told to skip. Loading skeleton included. Closed as Done (mocked), waiting on B5.2.
 - **F2.1 Campaign list** (approved on the design canvas, saved in docs/design/campaign-pages): `/campaigns` is server-rendered and always loads fresh data. City and organisation filters and the page number live in the address, so they survive a reload. Six cards per page with Previous and Next, a loading skeleton, and empty, no-match and error states. The landing page's "Browse campaigns" and "Give now" and the footer now lead here, and header and footer section links on other pages go back to the landing page. Closed as Done (mocked), waiting on B5.1 and a Lighthouse run once deployed.
@@ -67,6 +68,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Docs
 
+- F3 accountability design approved on the canvas: snapshots `accountability*.dc.html` and the decisions in `docs/design/campaign-pages/README.md`.
 - Landing page design approved; source and canvas link saved in `docs/design/landing-page/`. Added roadmap item F2.6 and raised F0.6 (hosting) to P0.
 
 ### Added

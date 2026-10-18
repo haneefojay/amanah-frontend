@@ -4,7 +4,8 @@ import { MoneyAmount } from "@/components/ui/money-amount";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import type { CampaignSummary } from "@/lib/api/schemas";
 import { cn } from "@/lib/cn";
-import { formatNaira, progressPercent } from "@/lib/money";
+import { accountabilityTotals } from "@/features/accountability/totals";
+import { formatNaira } from "@/lib/money";
 import { campaignStatusMessage, NEARLY_REACHED_MESSAGE } from "@/lib/status";
 import { ShareButton } from "./campaign-share-button";
 
@@ -46,7 +47,7 @@ function Stat({ label, children }: { label: string; children: ReactNode }) {
 export function FundingPanel({ campaign: c }: { campaign: CampaignSummary }) {
   const note = panelNote(c);
   const accepting = c.status === "LIVE" && c.availableAmount > 0;
-  const remaining = Math.max(0, c.targetAmount - c.raisedAmount);
+  const { remaining, progress } = accountabilityTotals(c);
   return (
     <section
       aria-label="Funding"
@@ -74,7 +75,7 @@ export function FundingPanel({ campaign: c }: { campaign: CampaignSummary }) {
       {accepting && (
         <dl className="grid grid-cols-2 gap-3">
           <Stat label="Remaining">{formatNaira(remaining)}</Stat>
-          <Stat label="Progress">{progressPercent(c.raisedAmount, c.targetAmount)}%</Stat>
+          <Stat label="Progress">{progress}%</Stat>
         </dl>
       )}
       <p
