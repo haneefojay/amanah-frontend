@@ -55,3 +55,6 @@ next-env.d.ts
 # serwist (generated)
 public/sw*
 public/swe-worker*
+
+# landing page screenshots (npm run screenshots)
+/screenshots/

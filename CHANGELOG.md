@@ -8,6 +8,24 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ## [Unreleased]
 
+### Added
+
+- Public landing page at `/` (F2.6), built from the approved design:
+  - sections: site header with a phone menu, hero with the example campaign ledger, the أمانة signature, why, how it works, the cap (with the over-remaining illustration), accountability (with a phone preview), audience, organisations call to action, and the footer;
+  - all amounts come from integer kobo example data (`src/features/landing/example-campaign.ts`);
+  - a skip link, labelled landmarks, and text alternatives for the illustrations.
+- Self-hosted fonts per ADR-007: Schibsted Grotesk (variable, Latin) and Reem Kufi (subset to أمانة, 2 KB), with `scripts/subset-arabic-font.py` and the OFL licences in `assets/fonts/`.
+- `NEXT_PUBLIC_CONTACT_EMAIL` (optional): powers "Talk to the team" and the organisation registration email. Those buttons are hidden or fall back to the section anchor when it is unset.
+- Tests: example-data invariants, landing page component tests, mobile menu tests, `ProgressBar` hidden-label case, and e2e tests (`tests/e2e/landing.spec.ts`) covering no sideways scroll at 360px and 1440px, fonts loaded, axe, wording guard and navigation on desktop and mobile. 45 unit and component tests and 18 e2e tests pass.
+- `npm run screenshots`: full-page landing screenshots for documents (written to `screenshots/`, gitignored).
+- Dev dependencies: `@axe-core/playwright`, `cross-env`.
+
+### Changed
+
+- Design tokens extended (`brand-200`, `gold-100/700/800`, `sand-200` to `sand-600`, `ink-700`). Smooth scrolling for in-page links.
+- `ProgressBar` accepts `showLabel`, `trackClassName` and `barClassName`.
+- Replaced the temporary F0 home page with the landing page. Updated the PWA e2e test accordingly.
+
 ### Decisions
 
 - ADR-007 Typography: self-hosted Schibsted Grotesk, plus Reem Kufi cut down to أمانة. Supersedes the fonts row of ADR-006.

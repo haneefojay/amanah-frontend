@@ -18,7 +18,8 @@
     "test:e2e": "playwright test",
     "check:terms": "node scripts/check-forbidden-terms.mjs",
     "icons": "node scripts/generate-icons.mjs",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run check:terms && npm run test && npm run build"
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run check:terms && npm run test && npm run build",
+    "screenshots": "cross-env SCREENSHOTS=1 playwright test tests/e2e/screenshots.spec.ts --project=desktop-chrome"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",
@@ -32,6 +33,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@serwist/turbopack": "^9.5.13",
     "@tailwindcss/turbopack": "^4",
@@ -45,6 +47,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "^5.0.5",
     "concurrently": "^10.0.6",
+    "cross-env": "^10.1.0",
     "esbuild": "^0.28.2",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",

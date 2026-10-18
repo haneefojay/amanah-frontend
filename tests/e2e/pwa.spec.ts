@@ -1,12 +1,10 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("PWA foundation (F0.3)", () => {
-  test("home page renders the brand and sample progress", async ({ page }) => {
+  test("home page renders and is served by the app shell", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Give with trust");
-    await expect(page.getByRole("progressbar", { name: "Raised so far" })).toHaveAttribute(
-      "aria-valuenow",
-      "60",
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Give with certainty. Follow every naira.",
     );
   });
 

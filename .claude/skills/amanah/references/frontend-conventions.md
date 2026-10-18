@@ -69,7 +69,7 @@ When the backend publishes OpenAPI (B0.3), reconcile schemas with it; the OpenAP
 
 - Tailwind utilities with tokens from `src/app/globals.css` `@theme`: `brand-*`, `gold-*`, `sand-*`, `ink-*`, `danger-600`, `warning-600`, `success-600`. **No raw hex in components.**
 - Merge classes with `cn()` from `src/lib/cn.ts`.
-- Fonts (ADR-007): `--font-sans` is Schibsted Grotesk, self-hosted via `next/font/google`. `--font-arabic-display` is a Reem Kufi subset containing **only** the glyphs of أمانة, so any other Arabic text needs a regenerated subset and the user's approval. No other web fonts.
+- Fonts (ADR-007): `--font-sans` is Schibsted Grotesk, self-hosted via `next/font/local` (`src/app/fonts.ts`). `--font-arabic-display` is a Reem Kufi subset containing **only** the glyphs of أمانة, so any other Arabic text needs a regenerated subset and the user's approval. No other web fonts.
 - Mobile first: design at 360px, then `sm:`/`md:` up. Respect safe areas (`env(safe-area-inset-*)`), use `min-h-dvh` not `100vh`.
 - Touch targets ≥ 44×44 px. Inputs ≥ 16px font (prevents iOS zoom).
 - `prefers-reduced-motion` is already respected globally; motion must still make sense without it.

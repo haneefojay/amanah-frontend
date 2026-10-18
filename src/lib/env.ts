@@ -7,9 +7,12 @@ import { z } from "zod";
 const publicEnvSchema = z.object({
   NEXT_PUBLIC_API_BASE_URL: z.url().default("http://localhost:4000"),
   NEXT_PUBLIC_APP_URL: z.url().default("http://localhost:3000"),
+  /** Public contact address for organisations. Contact buttons are hidden when unset. */
+  NEXT_PUBLIC_CONTACT_EMAIL: z.email().optional(),
 });
 
 export const publicEnv = publicEnvSchema.parse({
   NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || undefined,
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || undefined,
+  NEXT_PUBLIC_CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || undefined,
 });

@@ -33,6 +33,10 @@ The service worker is **disabled in development**. To try the PWA (install, offl
 npm run build && npm run start
 ```
 
+## Screenshots
+
+`npm run screenshots` saves full-page landing page screenshots (phone and desktop) to `screenshots/`. It builds and starts the app automatically.
+
 ## Testing
 
 | Command                 | Runs                                                                                            |

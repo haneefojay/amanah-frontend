@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { OfflineBanner } from "@/components/pwa/offline-banner";
+import { reemKufiAmanah, schibstedGrotesk } from "./fonts";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -21,7 +22,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-NG" dir="ltr">
+    <html
+      lang="en-NG"
+      dir="ltr"
+      className={`${schibstedGrotesk.variable} ${reemKufiAmanah.variable}`}
+    >
       <body className="min-h-dvh antialiased">
         <Providers>
           <OfflineBanner />
