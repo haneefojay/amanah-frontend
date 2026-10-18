@@ -19,6 +19,9 @@ export const campaignStatus = z.enum([
 ]);
 export type CampaignStatus = z.infer<typeof campaignStatus>;
 
+/** Absolute URL (backend storage) or a root-relative path served by the frontend. */
+export const imageUrl = z.union([z.url(), z.string().regex(/^\/[^/]/)]);
+
 export const campaignSummary = z.object({
   id: z.uuid(),
   slug: z.string().min(1),
@@ -27,8 +30,7 @@ export const campaignSummary = z.object({
   organisationName: z.string().min(1),
   city: z.string().min(1),
   state: z.string().min(1),
-  /** Absolute URL (backend storage) or a root-relative path served by the frontend. */
-  coverImageUrl: z.union([z.url(), z.string().regex(/^\/[^/]/)]).nullable(),
+  coverImageUrl: imageUrl.nullable(),
   status: campaignStatus,
   targetAmount: kobo,
   raisedAmount: kobo,
@@ -108,16 +110,49 @@ export const campaignItem = z
   });
 export type CampaignItem = z.infer<typeof campaignItem>;
 
-/** A public campaign with its story and items (GET /api/campaigns/:slug, B5.2). */
-export const campaignDetail = campaignSummary.extend({
-  purpose: z.string().min(1),
-  /** Paragraphs of plain text. */
-  description: z.array(z.string().min(1)).min(1),
-  publishedAt: z.iso.datetime(),
-  endsAt: z.iso.datetime().nullable(),
-  items: z.array(campaignItem),
-  organisation: organisationSummary,
+/** A photo of a receipt (Evidence of type RECEIPT, spec §6). The server upload time is authoritative. */
+export const receipt = z.object({
+  id: z.uuid(),
+  imageUrl,
+  /** A small version for lists, sized for slow connections. */
+  thumbnailUrl: imageUrl,
+  uploadedAtServer: z.iso.datetime(),
 });
+export type Receipt = z.infer<typeof receipt>;
+
+/** Money the organisation spent from the campaign (spec §6 Expense, B8.3). */
+export const expense = z.object({
+  id: z.uuid(),
+  description: z.string().min(1),
+  vendorName: z.string().min(1),
+  amount: kobo,
+  spentAt: z.iso.datetime(),
+  /** The item it paid for, or null for a general cost such as transport. */
+  itemId: z.uuid().nullable(),
+  receipt: receipt.nullable(),
+});
+export type Expense = z.infer<typeof expense>;
+
+/**
+ * A public campaign with its story, items and accountability data (GET /api/campaigns/:slug,
+ * B5.2). Spent is never sent: it is the sum of the expenses, which can't exceed the amount raised.
+ */
+export const campaignDetail = campaignSummary
+  .extend({
+    purpose: z.string().min(1),
+    /** Paragraphs of plain text. */
+    description: z.array(z.string().min(1)).min(1),
+    publishedAt: z.iso.datetime(),
+    endsAt: z.iso.datetime().nullable(),
+    items: z.array(campaignItem),
+    organisation: organisationSummary,
+    /** Newest first. */
+    expenses: z.array(expense),
+  })
+  .refine((c) => c.expenses.reduce((sum, e) => sum + e.amount, 0) <= c.raisedAmount, {
+    message: "Expenses can't exceed the amount raised",
+    path: ["expenses"],
+  });
 export type CampaignDetail = z.infer<typeof campaignDetail>;
 export const campaignDetailResponse = z.object({ data: campaignDetail });
 
@@ -128,7 +163,7 @@ export const campaignDetailResponse = z.object({ data: campaignDetail });
 export const organisationProfile = organisationSummary.extend({
   address: z.string().min(1),
   /** A photo of the organisation's building or work. Same rules as campaign covers. */
-  coverImageUrl: z.union([z.url(), z.string().regex(/^\/[^/]/)]).nullable(),
+  coverImageUrl: imageUrl.nullable(),
   /** Total raised across its public campaigns. */
   raisedAmount: kobo,
   campaigns: z.array(campaignSummary),

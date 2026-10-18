@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDate, formatMonth, formatShortDate } from "./date";
+import { formatDate, formatDateTime, formatMonth, formatShortDate, formatTime } from "./date";
 
 describe("date formatting", () => {
   it("writes the full date in Nigerian time", () => {
@@ -14,5 +14,15 @@ describe("date formatting", () => {
 
   it("writes the month and year", () => {
     expect(formatMonth("2026-09-04T10:00:00.000Z")).toBe("September 2026");
+  });
+
+  it("writes a date and time in Nigerian time, for evidence and receipts (F3.3, F3.4)", () => {
+    expect(formatDateTime("2026-10-14T15:42:00Z")).toBe("14 Oct 2026, 4:42 pm");
+    // 23:05 UTC is 12:05 am the next day in Lagos.
+    expect(formatDateTime("2026-10-14T23:05:00Z")).toBe("15 Oct 2026, 12:05 am");
+  });
+
+  it("writes a time in Nigerian time", () => {
+    expect(formatTime(Date.parse("2026-10-14T15:12:00Z"))).toBe("4:12 pm");
   });
 });

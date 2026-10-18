@@ -30,3 +30,29 @@ export function formatShortDate(iso: string): string {
 export function formatMonth(iso: string): string {
   return monthFormat.format(new Date(iso));
 }
+
+const dateTimeFormat = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+  timeZone: "Africa/Lagos",
+});
+const timeFormat = new Intl.DateTimeFormat("en-GB", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+  timeZone: "Africa/Lagos",
+});
+
+/** "14 Oct 2026, 4:42 pm", in Nigerian time (Africa/Lagos), for evidence and receipts. */
+export function formatDateTime(iso: string): string {
+  return dateTimeFormat.format(new Date(iso));
+}
+
+/** "4:42 pm", in Nigerian time. */
+export function formatTime(date: Date | number): string {
+  return timeFormat.format(date);
+}

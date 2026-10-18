@@ -47,6 +47,12 @@ describe("CampaignPage", () => {
     await expectNoA11yViolations(container);
   });
 
+  it("ends with where the money went (F3)", () => {
+    render(<CampaignPage campaign={base} />);
+    const section = screen.getByRole("region", { name: "Where the money went" });
+    expect(within(section).getByRole("heading", { name: "Expenses" })).toBeInTheDocument();
+  });
+
   it("has a give button for a live campaign that is not wired up yet", () => {
     render(<CampaignPage campaign={base} />);
     const give = screen.getByRole("button", { name: /Give to this campaign/ });
@@ -119,7 +125,9 @@ describe("CampaignPage", () => {
 
   it("copes with a very long title and no cover photo", async () => {
     const long = campaignDetails["mosque-roof-repair-oke-ode"]!;
-    const { container } = render(<CampaignPage campaign={{ ...long, coverImageUrl: null }} />);
+    const { container } = render(
+      <CampaignPage campaign={{ ...long, coverImageUrl: null, expenses: [] }} />,
+    );
     expect(screen.getByRole("heading", { level: 1, name: long.title })).toBeInTheDocument();
     expect(container.querySelector("img")).toBeNull();
     await expectNoA11yViolations(container);
@@ -127,7 +135,7 @@ describe("CampaignPage", () => {
 
   it("shows a message instead of an empty table when there are no items", () => {
     render(<CampaignPage campaign={make({ items: [] })} />);
-    expect(screen.queryByRole("table")).toBeNull();
+    expect(screen.queryByRole("table", { name: /Items this campaign will buy/ })).toBeNull();
     expect(screen.getByText("The organisation hasn’t listed any items yet.")).toBeInTheDocument();
   });
 });

@@ -275,7 +275,20 @@ type ItemSeed = [
 
 const confirmed = (witness: string, at: string): ConfirmationSeed => ["CONFIRMED", witness, at];
 
-const story: Record<string, { purpose: string; description: string[]; items: ItemSeed[] }> = {
+type ExpenseSeed = [
+  description: string,
+  vendor: string,
+  naira: number,
+  spentAt: string,
+  /** Index into the campaign's items, or null for a general cost. */
+  item: number | null,
+  receipt: boolean,
+];
+
+const story: Record<
+  string,
+  { purpose: string; description: string[]; items: ItemSeed[]; expenses?: ExpenseSeed[] }
+> = {
   "ramadan-food-drive-offa": {
     purpose: "Food packs for 120 families in Offa for the last ten nights of Ramadan.",
     description: [
@@ -292,6 +305,24 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       ],
       ["Cooking oil, 25 L kegs", 4, 30_000, "NEEDED"],
       ["Dates and sugar packs", 40, 2_500, "NEEDED"],
+    ],
+    expenses: [
+      [
+        "Rice, 5 bags of 50 kg",
+        "Musa & Sons Grains, Offa Main Market",
+        275_000,
+        "2026-10-12T10:30:00Z",
+        0,
+        true,
+      ],
+      [
+        "Transport of the rice to the mosque",
+        "Market loaders, Offa",
+        5_000,
+        "2026-10-12T12:00:00Z",
+        null,
+        false,
+      ],
     ],
   },
   "school-supplies-40-orphans": {
@@ -328,6 +359,25 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
         ],
       ],
     ],
+    expenses: [
+      [
+        "School bags, first 30",
+        "Oja-Oba bag sellers, Ilorin",
+        300_000,
+        "2026-10-11T09:00:00Z",
+        2,
+        true,
+      ],
+      [
+        "School uniforms for 40 children",
+        "Ilorin Uniform Makers",
+        480_000,
+        "2026-10-08T10:00:00Z",
+        0,
+        true,
+      ],
+      ["Exercise books, 400", "Kwara Stationers, Ilorin", 320_000, "2026-10-08T09:30:00Z", 1, true],
+    ],
   },
   "borehole-islamiyya-school": {
     purpose: "A borehole so the Islamiyya school and its neighbours have clean water on site.",
@@ -345,6 +395,17 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       ["Submersible pump", 1, 250_000, "PURCHASED"],
       ["Tank and stand", 1, 150_000, "PURCHASED"],
     ],
+    expenses: [
+      ["Submersible pump", "Ogbomoso Pumps and Tanks", 250_000, "2026-10-12T08:00:00Z", 1, true],
+      [
+        "Drilling and casing",
+        "Oyewole Drilling Services",
+        450_000,
+        "2026-10-06T08:00:00Z",
+        0,
+        true,
+      ],
+    ],
   },
   "eid-clothes-30-children": {
     purpose: "New outfits and shoes for 30 children from families the mosque supports.",
@@ -354,6 +415,16 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
     items: [
       ["Eid outfits", 30, 10_000, "PURCHASED"],
       ["Shoes", 20, 5_000, "NEEDED"],
+    ],
+    expenses: [
+      [
+        "Eid outfits for 30 children",
+        "Offa Tailors' Cooperative",
+        300_000,
+        "2026-10-13T11:00:00Z",
+        0,
+        true,
+      ],
     ],
   },
   "quran-learning-materials": {
@@ -376,6 +447,9 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       ["Roofing sheets", 60, 9_000, "DELIVERED"],
       ["Timber and labour", 1, 360_000, "NEEDED"],
     ],
+    expenses: [
+      ["Roofing sheets, 60", "Ogbomoso Roofing Supplies", 540_000, "2026-10-07T10:00:00Z", 0, true],
+    ],
   },
   "prayer-mats-womens-section": {
     purpose: "New prayer mats for the women’s section, which has outgrown its old ones.",
@@ -385,6 +459,10 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
     items: [
       ["Prayer mats", 45, 5_000, "DELIVERED", confirmed(witnesses.offa, "2026-10-09T14:00:00Z")],
       ["Underlay rolls", 3, 15_000, "DELIVERED", confirmed(witnesses.offa, "2026-10-09T14:05:00Z")],
+    ],
+    expenses: [
+      ["Underlay rolls, 3", "Offa Main Market", 45_000, "2026-10-08T12:00:00Z", 1, true],
+      ["Prayer mats, 45", "Mama Kudi's weaving, Offa", 225_000, "2026-10-08T11:00:00Z", 0, true],
     ],
   },
   "clinic-medicines-ilorin": {
@@ -408,6 +486,24 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
         confirmed(witnesses.ilorin, "2026-09-28T09:45:00Z"),
       ],
     ],
+    expenses: [
+      [
+        "ORS and zinc packs, 100",
+        "Unity Pharmacy, Ilorin",
+        100_000,
+        "2026-09-25T10:15:00Z",
+        1,
+        true,
+      ],
+      [
+        "Antimalarial courses, 100",
+        "Unity Pharmacy, Ilorin",
+        150_000,
+        "2026-09-25T10:00:00Z",
+        0,
+        true,
+      ],
+    ],
   },
   "winter-blankets-offa": {
     purpose: "Blankets for 60 families through the harmattan season.",
@@ -417,6 +513,7 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
     items: [
       ["Blankets", 60, 3_000, "DELIVERED", confirmed(witnesses.offa, "2026-09-20T13:15:00Z")],
     ],
+    expenses: [["Blankets, 60", "Offa Main Market", 180_000, "2026-09-18T10:00:00Z", 0, true]],
   },
 };
 
@@ -447,7 +544,29 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
           : null,
       })),
       organisation: organisations.find((o) => o.id === c.organisationId)!,
+      expenses: [],
     };
+    detail.expenses = (entry.expenses ?? []).map(
+      ([description, vendorName, naira, spentAt, itemIndex, hasReceipt], n) => {
+        const ref = String(index * 10 + n).padStart(2, "0");
+        return {
+          id: `6a5f4e3d-2c1b-4a09-8e7d-6c5b4a3e2d${ref}`,
+          description,
+          vendorName,
+          amount: naira * 100,
+          spentAt,
+          itemId: itemIndex === null ? null : detail.items[itemIndex]!.id,
+          receipt: hasReceipt
+            ? {
+                id: `5b4a3c2d-1e0f-4a98-9d7c-5b4a3c2d1e${ref}`,
+                imageUrl: `/images/receipts/${c.slug}-${n + 1}.svg`,
+                thumbnailUrl: `/images/receipts/${c.slug}-${n + 1}.svg`,
+                uploadedAtServer: new Date(Date.parse(spentAt) + 50 * 60_000).toISOString(),
+              }
+            : null,
+        };
+      },
+    );
     return [c.slug, detail];
   }),
 );

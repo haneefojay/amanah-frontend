@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" role="img" aria-label="Example receipt from Unity Pharmacy, Ilorin for ₦100,000">
+  <rect width="600" height="800" fill="#ece8dc"/>
+  <g transform="rotate(-1.2 300 400)">
+    <rect x="70" y="40" width="460" height="720" rx="6" fill="#fffdf7" stroke="#d9d3c3" stroke-width="2"/>
+    <text x="300" y="120" text-anchor="middle" font-family="Courier New, monospace" font-size="26" font-weight="700" fill="#2d333d">UNITY PHARMACY, ILORIN</text>
+    <text x="300" y="158" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#4b5260">CASH SALES RECEIPT</text>
+    <path d="M110 192h380" stroke="#b9b2a0" stroke-width="2" stroke-dasharray="8 8"/>
+    <text x="110" y="236" font-family="Courier New, monospace" font-size="20" fill="#2d333d">DATE: 25/09/2026</text>
+    <text x="110" y="300" font-family="Courier New, monospace" font-size="20" fill="#2d333d">ORS and zinc packs, 100</text>
+    <text x="490" y="340" text-anchor="end" font-family="Courier New, monospace" font-size="20" fill="#2d333d">100,000</text>
+    <path d="M110 380h380" stroke="#b9b2a0" stroke-width="2" stroke-dasharray="8 8"/>
+    <text x="110" y="426" font-family="Courier New, monospace" font-size="24" font-weight="700" fill="#161a20">TOTAL</text>
+    <text x="490" y="426" text-anchor="end" font-family="Courier New, monospace" font-size="24" font-weight="700" fill="#161a20">N100,000</text>
+    <path d="M110 470h380" stroke="#b9b2a0" stroke-width="2" stroke-dasharray="8 8"/>
+    <text x="110" y="520" font-family="Courier New, monospace" font-size="18" fill="#4b5260">RECEIVED WITH THANKS</text>
+    <path d="M330 610c30-30 60 10 90-20s40 20 70-10" fill="none" stroke="#2d4f9e" stroke-width="3"/>
+    <text x="300" y="712" text-anchor="middle" font-family="Courier New, monospace" font-size="16" fill="#8a8f98">EXAMPLE RECEIPT</text>
+  </g>
+</svg>
