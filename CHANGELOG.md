@@ -22,6 +22,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Changed
 
+- Landing page on phones: the أمانة signature and its meaning now open the hero, so the word is on the first screen. Wider screens keep it at the foot of the hero, as in the approved design. Hero spacing tightened on phones.
 - Design tokens extended (`brand-200`, `gold-100/700/800`, `sand-200` to `sand-600`, `ink-700`). Smooth scrolling for in-page links.
 - `ProgressBar` accepts `showLabel`, `trackClassName` and `barClassName`.
 - Replaced the temporary F0 home page with the landing page. Updated the PWA e2e test accordingly.
