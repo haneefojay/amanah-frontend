@@ -25,7 +25,9 @@ export const campaignSummary = z.object({
   title: z.string().min(1),
   organisationName: z.string().min(1),
   city: z.string().min(1),
-  coverImageUrl: z.url().nullable(),
+  state: z.string().min(1),
+  /** Absolute URL (backend storage) or a root-relative path served by the frontend. */
+  coverImageUrl: z.union([z.url(), z.string().regex(/^\/[^/]/)]).nullable(),
   status: campaignStatus,
   targetAmount: kobo,
   raisedAmount: kobo,

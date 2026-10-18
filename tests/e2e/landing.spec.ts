@@ -16,7 +16,7 @@ test.describe("Landing page (F2.6)", () => {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Give with certainty. Follow every naira.",
     );
-    const ledger = page.getByRole("article", { name: "Ramadan food drive" });
+    const ledger = page.getByRole("article", { name: "Ramadan food drive" }).first();
     await expect(ledger.getByText("Target reached. Donations closed.")).toBeVisible();
     await expect(page.getByText(/the trust placed in your care/)).toBeVisible();
     // أمانة sits at the crown of the hero arch on every screen size.
@@ -75,7 +75,7 @@ test.describe("Landing layout on phones", () => {
     await page.goto("/");
     const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
     const word = page.getByText("أمانة").first();
-    const card = page.getByRole("article", { name: "Ramadan food drive" });
+    const card = page.getByRole("article", { name: "Ramadan food drive" }).first();
     await expect(word).toBeVisible();
     await expect(card).toBeVisible();
     const wordBox = await word.boundingBox();
@@ -130,7 +130,10 @@ test.describe("Landing layout as a desktop site on a phone (980px)", () => {
     ).toBeHidden();
     // The arch window and its example campaign sit beside the headline, not under it.
     const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
-    const card = await page.getByRole("article", { name: "Ramadan food drive" }).boundingBox();
+    const card = await page
+      .getByRole("article", { name: "Ramadan food drive" })
+      .first()
+      .boundingBox();
     expect(heading && card && card.x > heading.x + heading.width).toBe(true);
     await expect(page.getByText("أمانة").first()).toBeVisible();
     // The five steps share one row.
@@ -171,5 +174,39 @@ test.describe("Landing navigation", () => {
       "aria-expanded",
       "false",
     );
+  });
+});
+
+test.describe("Raising now", () => {
+  test("shows the campaigns from the API with their cover photos", async ({ page }) => {
+    await page.goto("/");
+    const list = page.getByRole("list", { name: "Campaigns raising now" });
+    await expect(list.getByRole("article")).toHaveCount(3);
+    const photos = list.locator("img");
+    await expect(photos).toHaveCount(3);
+    for (const img of await photos.all()) {
+      await img.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() => img.evaluate((el) => (el as HTMLImageElement).naturalWidth))
+        .toBeGreaterThan(0);
+    }
+    await expect(page.getByText("Target reached. Donations closed.").last()).toBeVisible();
+  });
+
+  test("phones scroll the cards sideways inside the section, not the page", async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(!isMobile, "Phone layout only");
+    await page.goto("/");
+    const list = page.getByRole("list", { name: "Campaigns raising now" });
+    await expect(list.getByRole("article")).toHaveCount(3);
+    const tops = await list
+      .locator("li")
+      .evaluateAll((items) => items.map((i) => Math.round(i.getBoundingClientRect().top)));
+    expect(new Set(tops).size).toBe(1);
+    const scrolls = await list.evaluate((el) => el.scrollWidth > el.clientWidth);
+    expect(scrolls).toBe(true);
+    await expectNoHorizontalScroll(page);
   });
 });

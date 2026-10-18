@@ -15,8 +15,8 @@
 body{margin:0;background:#ffffff}
 a{color:inherit}
 .m-nav-links a:hover{color:#146c43}
-@container (max-width: 900px){.m-nav-links{display:none !important}.m-menu{display:flex !important}.m-hero{grid-template-columns:1fr !important}.m-arch-wrap{justify-self:center;width:100% !important;max-width:460px}.m-bento{grid-template-columns:1fr 1fr !important}.m-bento .b-fund{grid-column:span 2 !important;grid-row:auto !important}.m-steps{grid-template-columns:1fr 1fr !important}.m-cap{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr 1fr !important}.m-foot-top{grid-template-columns:1fr 1fr !important}.m-foot-brand{grid-column:span 2 !important}}
-@container (max-width: 600px){.m-nav-cta{display:none !important}.m-bento{grid-template-columns:1fr !important}.m-bento .b-fund{grid-column:auto !important}.m-steps{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr !important}.m-ledger{position:relative !important;left:auto !important;bottom:auto !important;margin:-120px 16px 0 !important;width:auto !important}.m-chip{display:none !important}.m-arch{height:420px !important}.m-orgs-pattern{display:none !important}.m-hero-ctas{flex-wrap:nowrap !important}.m-hero-ctas a{font-size:16px !important;padding-left:20px !important;padding-right:20px !important;white-space:nowrap}.m-hero-ctas a.m-link{padding-left:4px !important;padding-right:4px !important}.m-statement{font-size:30px !important}.m-sig{padding-bottom:20px !important}.m-sig span{margin-bottom:0 !important}}
+@container (max-width: 900px){.m-camps{flex-wrap:wrap !important}.m-camp{flex:1 1 300px !important}.m-nav-links{display:none !important}.m-menu{display:flex !important}.m-hero{grid-template-columns:1fr !important}.m-arch-wrap{justify-self:center;width:100% !important;max-width:460px}.m-bento{grid-template-columns:1fr 1fr !important}.m-bento .b-fund{grid-column:span 2 !important;grid-row:auto !important}.m-steps{grid-template-columns:1fr 1fr !important}.m-cap{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr 1fr !important}.m-foot-top{grid-template-columns:1fr 1fr !important}.m-foot-brand{grid-column:span 2 !important}}
+@container (max-width: 600px){.m-nav-cta{display:none !important}.m-bento{grid-template-columns:1fr !important}.m-bento .b-fund{grid-column:auto !important}.m-steps{grid-template-columns:1fr !important}.m-who{grid-template-columns:1fr !important}.m-ledger{position:relative !important;left:auto !important;bottom:auto !important;margin:-120px 16px 0 !important;width:auto !important}.m-chip{display:none !important}.m-arch{height:420px !important}.m-orgs-pattern{display:none !important}.m-hero-ctas{flex-wrap:nowrap !important}.m-hero-ctas a{font-size:16px !important;padding-left:20px !important;padding-right:20px !important;white-space:nowrap}.m-hero-ctas a.m-link{padding-left:4px !important;padding-right:4px !important}.m-statement{font-size:30px !important}.m-camps{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;margin:0 -20px !important;padding:0 20px 4px !important}.m-camp{flex:0 0 82% !important;scroll-snap-align:start}.m-sig{padding-bottom:20px !important}.m-sig span{margin-bottom:0 !important}}
 </style>
 </helmet>
 <div id="top" style="container-type: inline-size; font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #161a20; background: #ffffff; min-width: 0">
@@ -111,6 +111,75 @@ a{color:inherit}
         <span style="width: 30px; height: 30px; border-radius: 999px; background: #146c43; display: flex; align-items: center; justify-content: center; flex: none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
         Witness confirmed delivery
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAISING NOW ============ -->
+<section aria-labelledby="now-h" style="background: #ffffff">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4cqi, 40px) clamp(72px, 9cqi, 120px); display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 32px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h2 id="now-h" style="margin: 0; font-size: clamp(30px, 3.4cqi, 44px); line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; color: #0f2a1d">Raising now</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #4b5260">Verified organisations, each with a fixed target and a public record.</p>
+      </div>
+      <a href="#trail" style="text-decoration: none; font-weight: 700; font-size: 16px; color: #0f5132; padding: 12px 20px; border-radius: 999px; border: 1.5px solid #cfe6d8">See all campaigns</a>
+    </div>
+    <div class="m-camps" style="display: flex; gap: 16px">
+      <article style="flex: 1 1 0; min-width: 0; background: #ffffff; border: 1px solid #ecebe6; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column" class="m-camp">
+        <div style="position: relative; height: 188px; background: #eaf4ee; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+          <img src="/_blob/72c3f2fa3fb4207c49a0545f4b72eec8" alt="A person carrying a bag of food at a market" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+          <span style="position: absolute; z-index: 1; top: 14px; left: 14px; font-size: 13px; font-weight: 600; color: #161a20; background: rgba(255,255,255,0.92); padding: 5px 11px; border-radius: 999px">Offa, Kwara</span>
+        </div>
+        <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25">Ramadan food drive</h3>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #4b5260"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>Central Mosque, Offa</span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div role="progressbar" aria-label="Raised" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" style="height: 8px; border-radius: 999px; background: #eaf4ee; overflow: hidden"><div style="width: 60%; height: 100%; background: #146c43; border-radius: 999px"></div></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px"><span style="font-size: 17px; font-weight: 800">₦300,000 <span style="font-size: 14px; font-weight: 500; color: #6a707a">raised of ₦500,000</span></span></div>
+            <span style="font-size: 14px; color: #4b5260">₦200,000 to go</span>
+          </div>
+          <a href="#trail" style="text-decoration: none; text-align: center; background: #0f5132; color: #ffffff; font-weight: 700; font-size: 15px; padding: 13px 18px; border-radius: 999px">Give to this campaign</a>
+        </div>
+      </article>
+      <article style="flex: 1 1 0; min-width: 0; background: #ffffff; border: 1px solid #ecebe6; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column" class="m-camp">
+        <div style="position: relative; height: 188px; background: #f8ecc9; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+          <img src="/_blob/d0fb891cfe92ddadb0f5c381da231718" alt="A child writing in a notebook outdoors" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+          <span style="position: absolute; z-index: 1; top: 14px; left: 14px; font-size: 13px; font-weight: 600; color: #161a20; background: rgba(255,255,255,0.92); padding: 5px 11px; border-radius: 999px">Ilorin, Kwara</span>
+        </div>
+        <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25">School supplies for 40 orphans</h3>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #4b5260"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>Darul Aytam Orphan Home</span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div role="progressbar" aria-label="Raised" aria-valuemin="0" aria-valuemax="100" aria-valuenow="93" style="height: 8px; border-radius: 999px; background: #eaf4ee; overflow: hidden"><div style="width: 93%; height: 100%; background: #146c43; border-radius: 999px"></div></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px"><span style="font-size: 17px; font-weight: 800">₦1,120,000 <span style="font-size: 14px; font-weight: 500; color: #6a707a">raised of ₦1,200,000</span></span></div>
+            <span style="font-size: 14px; font-weight: 600; color: #6b4e00">Nearly there: ₦80,000 to go</span>
+          </div>
+          <a href="#trail" style="text-decoration: none; text-align: center; background: #0f5132; color: #ffffff; font-weight: 700; font-size: 15px; padding: 13px 18px; border-radius: 999px">Give to this campaign</a>
+        </div>
+      </article>
+      <article style="flex: 1 1 0; min-width: 0; background: #ffffff; border: 1px solid #ecebe6; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column" class="m-camp">
+        <div style="position: relative; height: 188px; background: #f3f2ed; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+          <img src="/_blob/76d18d8aa3de341bde12fa4eeeb08292" alt="Children by a hand water pump in a village" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+          <span style="position: absolute; z-index: 1; top: 14px; left: 14px; font-size: 13px; font-weight: 600; color: #161a20; background: rgba(255,255,255,0.92); padding: 5px 11px; border-radius: 999px">Ogbomoso, Oyo</span>
+        </div>
+        <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25">Borehole for the Islamiyya school</h3>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #4b5260"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>An-Nur Islamic Society</span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div role="progressbar" aria-label="Raised" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="height: 8px; border-radius: 999px; background: #eaf4ee; overflow: hidden"><div style="width: 100%; height: 100%; background: #146c43; border-radius: 999px"></div></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px"><span style="font-size: 17px; font-weight: 800">₦850,000 <span style="font-size: 14px; font-weight: 500; color: #6a707a">raised of ₦850,000</span></span></div>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #0f5132"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Target reached. Donations closed.</span>
+          </div>
+          <a href="#trail" style="text-decoration: none; text-align: center; background: #f3f2ed; color: #0f5132; font-weight: 700; font-size: 15px; padding: 13px 18px; border-radius: 999px">See where the money went</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -365,7 +434,7 @@ a{color:inherit}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e9c46a","options":["#e9c46a","#f1d58f","#d9b44a"]},"$preview":{"width":1440,"height":6200}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e9c46a","options":["#e9c46a","#f1d58f","#d9b44a"]},"$preview":{"width":1440,"height":6800}}'>
 class Component extends DCLogic {
   renderVals() {
     return { accent: this.props.accent ?? '#e9c46a' };

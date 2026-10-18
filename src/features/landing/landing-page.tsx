@@ -6,6 +6,7 @@ import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
 import { sectionIds } from "./nav-links";
 import { OrganisationsCta } from "./organisations-cta";
+import { RaisingNow } from "./raising-now";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { WhySection } from "./why-section";
@@ -36,6 +37,7 @@ export function LandingPage({
       <SiteHeader registerHref={`#${sectionIds.organisations}`} />
       <main id="main">
         <Hero />
+        <RaisingNow />
         <WhySection />
         <AccountabilitySection />
         <HowItWorks />

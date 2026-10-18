@@ -25,6 +25,8 @@ export default defineConfig({
       command: "npm run mock:api",
       url: "http://localhost:4000/api/campaigns",
       reuseExistingServer: !process.env.CI,
+      // The mock API allows requests from the app under test (CORS).
+      env: { NEXT_PUBLIC_APP_URL: baseURL },
     },
     {
       command: `npm run build && npm run start -- --port ${PORT}`,

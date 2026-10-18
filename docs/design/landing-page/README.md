@@ -31,13 +31,14 @@ A light, open page (white and soft off-white) with deep green as the anchor colo
 
 1. Header on white: logo, four section links, "Register your organisation" (outline) and "Give now".
 2. Hero: badge "Verified Islamic organisations in Nigeria", the headline, a one-sentence intro, "Browse campaigns" and "See how it works", three trust points. On the right, the arch window with أمانة, the example campaign card overlapping it, the "Witness confirmed delivery" tag and the meaning of Amānah underneath.
-3. Statement: "Most giving ends at the payment. On Amanah, it ends at the delivery."
-4. Accountability as a grid of cards: raised/spent/held, item by item, receipts, photos with time and place, the independent witness.
-5. How it works: five step cards with arch number tiles.
-6. The cap: the rule and a dark panel with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).
-7. Who it's for: donors, organisations, witnesses, the Amanah team.
-8. For organisations: an inset green panel with the lattice.
-9. Footer: brand and "Browse campaigns", link columns (Give, Organisations, Trust), the large wordmark beside أمانة, and the legal line.
+3. Raising now: up to three campaign cards (cover photo with city, title, verified organisation, progress, how much is left or the funded state, and one action), with "See all campaigns". Live campaigns first, then funded ones. Desktop shows a row; phones scroll the cards sideways. Data comes from the API; the section renders nothing while loading, on error or when there are no campaigns, so the live site never shows placeholder campaigns.
+4. Statement: "Most giving ends at the payment. On Amanah, it ends at the delivery."
+5. Accountability as a grid of cards: raised/spent/held, item by item, receipts, photos with time and place, the independent witness.
+6. How it works: five step cards with arch number tiles.
+7. The cap: the rule and a dark panel with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).
+8. Who it's for: donors, organisations, witnesses, the Amanah team.
+9. For organisations: an inset green panel with the lattice.
+10. Footer: brand and "Browse campaigns", link columns (Give, Organisations, Trust), the large wordmark beside أمانة, and the legal line.
 
 ## Responsive behaviour
 
@@ -52,3 +53,15 @@ A light, open page (white and soft off-white) with deep green as the anchor colo
 - The example campaign is static content until live campaigns exist (F2.1, F3). It stays labelled "Example campaign".
 - Evidence shows the **upload (server) time** as the official time, labelled for donors as "Uploaded …" (spec §7).
 - The design's footer "Privacy" link is left out until the privacy notice exists (F4.6).
+
+## Campaign cover photos (mock data)
+
+The mock campaigns use free photos from Unsplash (Unsplash License), stored in `public/images/campaigns/`. They stand in until organisations upload their own covers.
+
+| File                  | Source                                                                              |
+| --------------------- | ----------------------------------------------------------------------------------- |
+| `food-drive.jpg`      | https://unsplash.com/photos/a-person-carrying-a-bag-of-food-1RQ0iIh5L8A             |
+| `school-supplies.jpg` | https://unsplash.com/photos/boy-writing-on-notepad-bsk8f6BVSHc                      |
+| `borehole.jpg`        | https://unsplash.com/photos/children-stand-by-a-water-pump-in-a-village-e0N0tpl26EU |
+
+Photos were chosen so that no identifiable child is presented as a beneficiary of a named campaign (for example, an "orphans" card).

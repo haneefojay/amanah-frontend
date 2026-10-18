@@ -1,4 +1,5 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
+import { renderWithProviders as render } from "@/test/render";
 import { describe, expect, it } from "vitest";
 import { LandingPage } from "./landing-page";
 import { navLinks } from "./nav-links";
@@ -23,6 +24,14 @@ describe("LandingPage", () => {
       "Everyone in the chain of trust has a part",
       "Doing honest work? Let it show.",
     ]);
+  });
+
+  it("shows campaigns raising now, right after the hero, once they load", async () => {
+    render(<LandingPage />);
+    const heading = await screen.findByRole("heading", { level: 2, name: "Raising now" });
+    const names = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(names.indexOf("Raising now")).toBe(names.indexOf("Ramadan food drive") + 1);
+    expect(heading).toBeInTheDocument();
   });
 
   it("shows the hero's three trust points", () => {
