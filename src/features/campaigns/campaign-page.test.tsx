@@ -126,7 +126,7 @@ describe("CampaignPage", () => {
   it("copes with a very long title and no cover photo", async () => {
     const long = campaignDetails["mosque-roof-repair-oke-ode"]!;
     const { container } = render(
-      <CampaignPage campaign={{ ...long, coverImageUrl: null, expenses: [] }} />,
+      <CampaignPage campaign={{ ...long, coverImageUrl: null, expenses: [], evidence: [] }} />,
     );
     expect(screen.getByRole("heading", { level: 1, name: long.title })).toBeInTheDocument();
     expect(container.querySelector("img")).toBeNull();

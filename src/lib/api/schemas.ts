@@ -134,6 +134,29 @@ export const expense = z.object({
 export type Expense = z.infer<typeof expense>;
 
 /**
+ * A photo taken in the app as evidence (spec §6 Evidence of type PHOTO, §7, B8.2). The server
+ * upload time is authoritative; the phone's capture time and location are what the phone said.
+ */
+export const evidencePhoto = z
+  .object({
+    id: z.uuid(),
+    imageUrl,
+    /** A small version for the gallery, sized for slow connections. */
+    thumbnailUrl: imageUrl,
+    itemId: z.uuid().nullable(),
+    expenseId: z.uuid().nullable(),
+    latitude: z.number().min(-90).max(90).nullable(),
+    longitude: z.number().min(-180).max(180).nullable(),
+    capturedAtClient: z.iso.datetime().nullable(),
+    uploadedAtServer: z.iso.datetime(),
+  })
+  .refine((e) => (e.latitude === null) === (e.longitude === null), {
+    message: "Latitude and longitude come together",
+    path: ["longitude"],
+  });
+export type EvidencePhoto = z.infer<typeof evidencePhoto>;
+
+/**
  * A public campaign with its story, items and accountability data (GET /api/campaigns/:slug,
  * B5.2). Spent is never sent: it is the sum of the expenses, which can't exceed the amount raised.
  */
@@ -148,6 +171,8 @@ export const campaignDetail = campaignSummary
     organisation: organisationSummary,
     /** Newest first. */
     expenses: z.array(expense),
+    /** Newest first, by upload time. */
+    evidence: z.array(evidencePhoto),
   })
   .refine((c) => c.expenses.reduce((sum, e) => sum + e.amount, 0) <= c.raisedAmount, {
     message: "Expenses can't exceed the amount raised",

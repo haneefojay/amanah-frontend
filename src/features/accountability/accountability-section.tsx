@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Container } from "@/features/landing/container";
 import type { CampaignDetail } from "@/lib/api/schemas";
+import { EvidenceGallery } from "./evidence-gallery";
 import { ExpensesList } from "./expenses-list";
 
 /**
@@ -41,6 +42,7 @@ export function AccountabilitySection({
         </div>
 
         <ExpensesList expenses={c.expenses} items={c.items} />
+        <EvidenceGallery evidence={c.evidence} items={c.items} expenses={c.expenses} />
       </Container>
     </section>
   );

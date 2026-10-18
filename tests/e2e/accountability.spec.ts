@@ -47,3 +47,33 @@ test.describe("Expenses and receipts (F3.3)", () => {
     ).toBeVisible();
   });
 });
+
+test.describe("Evidence gallery (F3.4)", () => {
+  test("shows photos with the recorded upload time, the phone time and the location", async ({
+    page,
+  }) => {
+    await page.goto("/campaigns/ramadan-food-drive-offa");
+    const gallery = page.getByRole("region", { name: "Photos from the ground" });
+    const photo = gallery.getByRole("img", { name: "Photo for Rice, 50 kg bags" });
+    await photo.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => photo.evaluate((img: HTMLImageElement) => img.naturalWidth))
+      .toBeGreaterThan(0);
+    await expect(gallery).toContainText("14 Oct 2026, 4:42 pm");
+    await expect(gallery).toContainText("Recorded by Amanah");
+    await expect(gallery).toContainText("14 Oct 2026, 4:05 pm");
+    await expect(gallery.getByRole("link", { name: /8\.14921, 4\.72036/ })).toHaveAttribute(
+      "href",
+      /openstreetmap\.org/,
+    );
+  });
+
+  test("says when a photo has no location", async ({ page }) => {
+    await page.goto("/campaigns/eid-clothes-30-children");
+    await expect(
+      page
+        .getByRole("region", { name: "Photos from the ground" })
+        .getByText("Location unavailable"),
+    ).toBeVisible();
+  });
+});

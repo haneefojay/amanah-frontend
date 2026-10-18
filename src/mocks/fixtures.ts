@@ -285,9 +285,24 @@ type ExpenseSeed = [
   receipt: boolean,
 ];
 
+type EvidenceSeed = [
+  photo: string,
+  /** Index into the campaign's items or expenses; at most one is set. */
+  link: { item: number } | { expense: number } | null,
+  location: [latitude: number, longitude: number] | null,
+  capturedAtClient: string | null,
+  uploadedAtServer: string,
+];
+
 const story: Record<
   string,
-  { purpose: string; description: string[]; items: ItemSeed[]; expenses?: ExpenseSeed[] }
+  {
+    purpose: string;
+    description: string[];
+    items: ItemSeed[];
+    expenses?: ExpenseSeed[];
+    evidence?: EvidenceSeed[];
+  }
 > = {
   "ramadan-food-drive-offa": {
     purpose: "Food packs for 120 families in Offa for the last ten nights of Ramadan.",
@@ -322,6 +337,15 @@ const story: Record<
         "2026-10-12T12:00:00Z",
         null,
         false,
+      ],
+    ],
+    evidence: [
+      [
+        "food-drive.jpg",
+        { item: 0 },
+        [8.14921, 4.72036],
+        "2026-10-14T15:05:00Z",
+        "2026-10-14T15:42:00Z",
       ],
     ],
   },
@@ -378,6 +402,15 @@ const story: Record<
       ],
       ["Exercise books, 400", "Kwara Stationers, Ilorin", 320_000, "2026-10-08T09:30:00Z", 1, true],
     ],
+    evidence: [
+      [
+        "school-supplies.jpg",
+        { item: 0 },
+        [8.49664, 4.54214],
+        "2026-10-13T10:49:30Z",
+        "2026-10-13T10:49:50Z",
+      ],
+    ],
   },
   "borehole-islamiyya-school": {
     purpose: "A borehole so the Islamiyya school and its neighbours have clean water on site.",
@@ -406,6 +439,15 @@ const story: Record<
         true,
       ],
     ],
+    evidence: [
+      [
+        "borehole.jpg",
+        { item: 0 },
+        [8.13302, 4.24086],
+        "2026-10-12T11:40:00Z",
+        "2026-10-12T11:41:10Z",
+      ],
+    ],
   },
   "eid-clothes-30-children": {
     purpose: "New outfits and shoes for 30 children from families the mosque supports.",
@@ -425,6 +467,9 @@ const story: Record<
         0,
         true,
       ],
+    ],
+    evidence: [
+      ["eid-clothes.jpg", { expense: 0 }, null, "2026-10-13T12:00:00Z", "2026-10-13T12:30:00Z"],
     ],
   },
   "quran-learning-materials": {
@@ -450,6 +495,7 @@ const story: Record<
     expenses: [
       ["Roofing sheets, 60", "Ogbomoso Roofing Supplies", 540_000, "2026-10-07T10:00:00Z", 0, true],
     ],
+    evidence: [["roof-repair.jpg", { item: 0 }, [8.1247, 4.254], null, "2026-10-08T09:00:00Z"]],
   },
   "prayer-mats-womens-section": {
     purpose: "New prayer mats for the women’s section, which has outgrown its old ones.",
@@ -464,6 +510,7 @@ const story: Record<
       ["Underlay rolls, 3", "Offa Main Market", 45_000, "2026-10-08T12:00:00Z", 1, true],
       ["Prayer mats, 45", "Mama Kudi's weaving, Offa", 225_000, "2026-10-08T11:00:00Z", 0, true],
     ],
+    evidence: [["prayer-mats.jpg", { item: 0 }, [8.14735, 4.71912], null, "2026-10-09T13:30:00Z"]],
   },
   "clinic-medicines-ilorin": {
     purpose: "Basic medicines for the community clinic that serves the home’s neighbourhood.",
@@ -504,6 +551,15 @@ const story: Record<
         true,
       ],
     ],
+    evidence: [
+      [
+        "clinic-medicines.jpg",
+        { item: 0 },
+        [8.48124, 4.55301],
+        "2026-09-27T16:10:00Z",
+        "2026-09-28T08:05:00Z",
+      ],
+    ],
   },
   "winter-blankets-offa": {
     purpose: "Blankets for 60 families through the harmattan season.",
@@ -514,6 +570,7 @@ const story: Record<
       ["Blankets", 60, 3_000, "DELIVERED", confirmed(witnesses.offa, "2026-09-20T13:15:00Z")],
     ],
     expenses: [["Blankets, 60", "Offa Main Market", 180_000, "2026-09-18T10:00:00Z", 0, true]],
+    evidence: [["blankets.jpg", null, [8.14921, 4.72036], null, "2026-09-20T12:50:00Z"]],
   },
 };
 
@@ -545,6 +602,7 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
       })),
       organisation: organisations.find((o) => o.id === c.organisationId)!,
       expenses: [],
+      evidence: [],
     };
     detail.expenses = (entry.expenses ?? []).map(
       ([description, vendorName, naira, spentAt, itemIndex, hasReceipt], n) => {
@@ -566,6 +624,19 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
             : null,
         };
       },
+    );
+    detail.evidence = (entry.evidence ?? []).map(
+      ([photo, link, location, capturedAtClient, uploadedAtServer], n) => ({
+        id: `4c3b2a19-0f8e-4d7c-8b6a-4c3b2a190f${String(index * 10 + n).padStart(2, "0")}`,
+        imageUrl: `/images/campaigns/${photo}`,
+        thumbnailUrl: `/images/campaigns/${photo}`,
+        itemId: link && "item" in link ? detail.items[link.item]!.id : null,
+        expenseId: link && "expense" in link ? detail.expenses[link.expense]!.id : null,
+        latitude: location?.[0] ?? null,
+        longitude: location?.[1] ?? null,
+        capturedAtClient,
+        uploadedAtServer,
+      }),
     );
     return [c.slug, detail];
   }),
