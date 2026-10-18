@@ -108,7 +108,7 @@ A feature is done only when all of the following are true, in addition to its ow
 
 ### F0.6 Hosting and preview deployments (P0)
 
-- **Scope:** choose hosting (record an ADR), and set up preview deployments per pull request and a production URL over HTTPS (needed for PWA install and camera access).
+- **Scope:** hosting on Vercel (ADR-008), with preview deployments per pull request and a production URL over HTTPS (needed for PWA install and camera access).
 - **Backend dependency:** **B12.4** for the production API URL. Previews can point at the mock API.
 - **Tests:** the Playwright smoke test runs against the preview URL.
 - **Definition of Done:** every PR has a preview URL, and production is reachable over HTTPS on a phone.
@@ -222,7 +222,7 @@ A feature is done only when all of the following are true, in addition to its ow
   - responsive down to 360px, with a menu button replacing the nav links on narrow screens;
   - production copy only: no internal or hackathon wording on the public page.
 
-  The page uses static example content until F2.1 and F3 exist, then links into live campaigns. Fonts per the font ADR (pending: system stack, or self-hosted Schibsted Grotesk and Reem Kufi subsets).
+  The page uses static example content until F2.1 and F3 exist, then links into live campaigns. Fonts per ADR-007.
 
 - **Backend dependency:** None. It becomes live data later through F2.1 and F3.
 - **Tests:**

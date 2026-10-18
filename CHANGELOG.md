@@ -8,6 +8,11 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ## [Unreleased]
 
+### Decisions
+
+- ADR-007 Typography: self-hosted Schibsted Grotesk, plus Reem Kufi cut down to أمانة. Supersedes the fonts row of ADR-006.
+- ADR-008 Frontend hosting on Vercel.
+
 ### Docs
 
 - Landing page design approved; source and canvas link saved in `docs/design/landing-page/`. Added roadmap item F2.6 and raised F0.6 (hosting) to P0.

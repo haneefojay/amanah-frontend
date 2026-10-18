@@ -47,7 +47,7 @@
 
 - **Now:** F2.6 (public landing page; design approved 2026-10-18) and F0.6 (hosting, for a public link), then F1 (design system and app shell). B0.1 (backend stack decision, ADR-004) is waiting on the team.
 - **Next:** F2 and F3 (public pages and the accountability section) against mocks, so the core feature is demonstrable early.
-- **Decisions needed from the team:** landing page fonts (system stack or self-hosted Schibsted Grotesk and Reem Kufi), hosting provider (F0.6), ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
+- **Decisions needed from the team:** ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
 
 ---
 
@@ -70,75 +70,75 @@ These are suggested dates. Adjust them here if the team changes them, and record
 
 ### Frontend
 
-| ID    | Feature                                 | Pri | Status        | Owner  | Updated    | Notes                                                                              |
-| ----- | --------------------------------------- | --- | ------------- | ------ | ---------- | ---------------------------------------------------------------------------------- |
-| F0.1  | Project scaffold and tooling            | P0  | Done          | Claude | 2026-10-18 | Next.js 16.4, TS 5.9, Tailwind 4, ESLint, Prettier                                 |
-| F0.2  | Test harness                            | P0  | Done          | Claude | 2026-10-18 | Vitest 5, RTL, MSW 3, Playwright (mobile and desktop)                              |
-| F0.3  | PWA baseline                            | P0  | Done          | Claude | 2026-10-18 | Serwist (Turbopack), manifest, offline fallback, `useOffline`                      |
-| F0.4  | API client, contract layer, mock API    | P0  | Done (mocked) | Claude | 2026-10-18 | Contract reconciliation waits on B0.3                                              |
-| F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Remote set to haneefojay/amanah-frontend. Done after the first push shows green CI |
-| F0.6  | Hosting and preview deployments         | P0  | Not started   |        |            | Raised to P0: the landing page needs a public link. Needs a hosting ADR            |
-| F1.1  | Design tokens and typography            | P0  | In progress   | Claude | 2026-10-18 | Palette in `globals.css`. Docs page pending                                        |
-| F1.2  | Core UI components                      | P0  | Not started   |        |            | Decide on shadcn/ui via an ADR                                                     |
-| F1.3  | Money and status components             | P0  | In progress   | Claude | 2026-10-18 | `ProgressBar` done                                                                 |
-| F1.4  | App shell and navigation                | P0  | Not started   |        |            |                                                                                    |
-| F1.5  | Error, not-found and loading boundaries | P0  | Not started   |        |            |                                                                                    |
-| F1.6  | Accessibility test baseline             | P1  | Not started   |        |            |                                                                                    |
-| F2.1  | Campaign list / home                    | P0  | Not started   |        |            |                                                                                    |
-| F2.2  | Campaign card                           | P0  | Not started   |        |            |                                                                                    |
-| F2.3  | Campaign page shell                     | P0  | Not started   |        |            |                                                                                    |
-| F2.4  | Organisation profile                    | P1  | Not started   |        |            |                                                                                    |
-| F2.5  | Share metadata and SEO                  | P2  | Not started   |        |            |                                                                                    |
-| F2.6  | Public landing page                     | P0  | Not started   |        | 2026-10-18 | Design approved 2026-10-18 (docs/design/landing-page). Fonts ADR pending           |
-| F3.1  | Funding summary                         | P0  | Not started   |        |            |                                                                                    |
-| F3.2  | Items table with delivery status        | P0  | Not started   |        |            |                                                                                    |
-| F3.3  | Expenses list                           | P0  | Not started   |        |            |                                                                                    |
-| F3.4  | Evidence gallery                        | P0  | Not started   |        |            |                                                                                    |
-| F3.5  | Spent versus balance held               | P0  | Not started   |        |            |                                                                                    |
-| F3.6  | Updates timeline                        | P1  | Not started   |        |            |                                                                                    |
-| F3.7  | Live refresh                            | P0  | Not started   |        |            |                                                                                    |
-| F4.1  | Donate panel states                     | P0  | Not started   |        |            |                                                                                    |
-| F4.2  | Checkout form                           | P0  | Not started   |        |            | Anonymous toggle depends on D8                                                     |
-| F4.3  | Over-remaining handling (D1)            | P0  | Not started   |        |            |                                                                                    |
-| F4.4  | Payment redirect and return             | P0  | Not started   |        |            |                                                                                    |
-| F4.5  | Donation result page                    | P0  | Not started   |        |            |                                                                                    |
-| F4.6  | Privacy notice                          | P1  | Not started   |        |            |                                                                                    |
-| F5.1  | Sign in and sign out                    | P0  | Not started   |        |            |                                                                                    |
-| F5.2  | Route protection                        | P0  | Not started   |        |            |                                                                                    |
-| F5.3  | Role-based landing and forbidden states | P0  | Not started   |        |            |                                                                                    |
-| F5.4  | Password reset                          | P2  | Not started   |        |            |                                                                                    |
-| F6.1  | Organisation registration               | P0  | Not started   |        |            |                                                                                    |
-| F6.2  | Verification documents upload           | P0  | Not started   |        |            |                                                                                    |
-| F6.3  | Verification status                     | P0  | Not started   |        |            |                                                                                    |
-| F7.1  | Dashboard home                          | P0  | Not started   |        |            |                                                                                    |
-| F7.2  | Create and edit draft with items editor | P0  | Not started   |        |            |                                                                                    |
-| F7.3  | Submit for review                       | P0  | Not started   |        |            |                                                                                    |
-| F7.4  | Donations received                      | P0  | Not started   |        |            |                                                                                    |
-| F7.5  | Close early                             | P0  | Not started   |        |            |                                                                                    |
-| F7.6  | Locked fields after first donation      | P0  | Not started   |        |            |                                                                                    |
-| F8.1  | Camera capture and geolocation          | P0  | Not started   |        |            |                                                                                    |
-| F8.2  | Client-side image compression           | P0  | Not started   |        |            |                                                                                    |
-| F8.3  | Resilient upload with offline queue     | P1  | Not started   |        |            |                                                                                    |
-| F8.4  | Log expense form                        | P0  | Not started   |        |            |                                                                                    |
-| F8.5  | Mark item purchased                     | P1  | Not started   |        |            |                                                                                    |
-| F9.1  | Post update                             | P1  | Not started   |        |            |                                                                                    |
-| F9.2  | Assign witness                          | P0  | Not started   |        |            |                                                                                    |
-| F10.1 | Witness: assigned campaigns             | P0  | Not started   |        |            |                                                                                    |
-| F10.2 | Witness: confirm or dispute             | P0  | Not started   |        |            |                                                                                    |
-| F11.1 | Admin: organisation verification queue  | P0  | Not started   |        |            |                                                                                    |
-| F11.2 | Admin: campaign review queue            | P0  | Not started   |        |            | D8 checklist if approved                                                           |
-| F11.3 | Admin: excess records                   | P1  | Not started   |        |            |                                                                                    |
-| F11.4 | Admin: audit log viewer                 | P1  | Not started   |        |            |                                                                                    |
-| F12.1 | Install prompt                          | P1  | Not started   |        |            |                                                                                    |
-| F12.2 | Update available flow                   | P1  | Not started   |        |            |                                                                                    |
-| F12.3 | Caching strategy review                 | P0  | Not started   |        |            | `/api/*` is already NetworkOnly (F0.3)                                             |
-| F12.4 | Offline-aware actions                   | P1  | Not started   |        |            |                                                                                    |
-| F12.5 | Push notifications                      | P2  | Not started   |        |            | Post-MVP                                                                           |
-| F13.1 | Copy and terminology review             | P0  | Not started   |        |            | Guard already in CI                                                                |
-| F13.2 | Accessibility audit                     | P1  | Not started   |        |            |                                                                                    |
-| F13.3 | Performance on low-end devices          | P0  | Not started   |        |            |                                                                                    |
-| F13.4 | End-to-end demo script                  | P0  | Not started   |        |            |                                                                                    |
-| F13.5 | Production release and demo kit         | P0  | Not started   |        |            |                                                                                    |
+| ID    | Feature                                 | Pri | Status        | Owner  | Updated    | Notes                                                                                                 |
+| ----- | --------------------------------------- | --- | ------------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------- |
+| F0.1  | Project scaffold and tooling            | P0  | Done          | Claude | 2026-10-18 | Next.js 16.4, TS 5.9, Tailwind 4, ESLint, Prettier                                                    |
+| F0.2  | Test harness                            | P0  | Done          | Claude | 2026-10-18 | Vitest 5, RTL, MSW 3, Playwright (mobile and desktop)                                                 |
+| F0.3  | PWA baseline                            | P0  | Done          | Claude | 2026-10-18 | Serwist (Turbopack), manifest, offline fallback, `useOffline`                                         |
+| F0.4  | API client, contract layer, mock API    | P0  | Done (mocked) | Claude | 2026-10-18 | Contract reconciliation waits on B0.3                                                                 |
+| F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Remote set to haneefojay/amanah-frontend. Done after the first push shows green CI                    |
+| F0.6  | Hosting and preview deployments         | P0  | Not started   |        |            | Raised to P0: the landing page needs a public link. Vercel (ADR-008). Owner to connect the repository |
+| F1.1  | Design tokens and typography            | P0  | In progress   | Claude | 2026-10-18 | Palette in `globals.css`. Docs page pending                                                           |
+| F1.2  | Core UI components                      | P0  | Not started   |        |            | Decide on shadcn/ui via an ADR                                                                        |
+| F1.3  | Money and status components             | P0  | In progress   | Claude | 2026-10-18 | `ProgressBar` done                                                                                    |
+| F1.4  | App shell and navigation                | P0  | Not started   |        |            |                                                                                                       |
+| F1.5  | Error, not-found and loading boundaries | P0  | Not started   |        |            |                                                                                                       |
+| F1.6  | Accessibility test baseline             | P1  | Not started   |        |            |                                                                                                       |
+| F2.1  | Campaign list / home                    | P0  | Not started   |        |            |                                                                                                       |
+| F2.2  | Campaign card                           | P0  | Not started   |        |            |                                                                                                       |
+| F2.3  | Campaign page shell                     | P0  | Not started   |        |            |                                                                                                       |
+| F2.4  | Organisation profile                    | P1  | Not started   |        |            |                                                                                                       |
+| F2.5  | Share metadata and SEO                  | P2  | Not started   |        |            |                                                                                                       |
+| F2.6  | Public landing page                     | P0  | Not started   |        | 2026-10-18 | Design approved 2026-10-18 (docs/design/landing-page). Fonts: ADR-007                                 |
+| F3.1  | Funding summary                         | P0  | Not started   |        |            |                                                                                                       |
+| F3.2  | Items table with delivery status        | P0  | Not started   |        |            |                                                                                                       |
+| F3.3  | Expenses list                           | P0  | Not started   |        |            |                                                                                                       |
+| F3.4  | Evidence gallery                        | P0  | Not started   |        |            |                                                                                                       |
+| F3.5  | Spent versus balance held               | P0  | Not started   |        |            |                                                                                                       |
+| F3.6  | Updates timeline                        | P1  | Not started   |        |            |                                                                                                       |
+| F3.7  | Live refresh                            | P0  | Not started   |        |            |                                                                                                       |
+| F4.1  | Donate panel states                     | P0  | Not started   |        |            |                                                                                                       |
+| F4.2  | Checkout form                           | P0  | Not started   |        |            | Anonymous toggle depends on D8                                                                        |
+| F4.3  | Over-remaining handling (D1)            | P0  | Not started   |        |            |                                                                                                       |
+| F4.4  | Payment redirect and return             | P0  | Not started   |        |            |                                                                                                       |
+| F4.5  | Donation result page                    | P0  | Not started   |        |            |                                                                                                       |
+| F4.6  | Privacy notice                          | P1  | Not started   |        |            |                                                                                                       |
+| F5.1  | Sign in and sign out                    | P0  | Not started   |        |            |                                                                                                       |
+| F5.2  | Route protection                        | P0  | Not started   |        |            |                                                                                                       |
+| F5.3  | Role-based landing and forbidden states | P0  | Not started   |        |            |                                                                                                       |
+| F5.4  | Password reset                          | P2  | Not started   |        |            |                                                                                                       |
+| F6.1  | Organisation registration               | P0  | Not started   |        |            |                                                                                                       |
+| F6.2  | Verification documents upload           | P0  | Not started   |        |            |                                                                                                       |
+| F6.3  | Verification status                     | P0  | Not started   |        |            |                                                                                                       |
+| F7.1  | Dashboard home                          | P0  | Not started   |        |            |                                                                                                       |
+| F7.2  | Create and edit draft with items editor | P0  | Not started   |        |            |                                                                                                       |
+| F7.3  | Submit for review                       | P0  | Not started   |        |            |                                                                                                       |
+| F7.4  | Donations received                      | P0  | Not started   |        |            |                                                                                                       |
+| F7.5  | Close early                             | P0  | Not started   |        |            |                                                                                                       |
+| F7.6  | Locked fields after first donation      | P0  | Not started   |        |            |                                                                                                       |
+| F8.1  | Camera capture and geolocation          | P0  | Not started   |        |            |                                                                                                       |
+| F8.2  | Client-side image compression           | P0  | Not started   |        |            |                                                                                                       |
+| F8.3  | Resilient upload with offline queue     | P1  | Not started   |        |            |                                                                                                       |
+| F8.4  | Log expense form                        | P0  | Not started   |        |            |                                                                                                       |
+| F8.5  | Mark item purchased                     | P1  | Not started   |        |            |                                                                                                       |
+| F9.1  | Post update                             | P1  | Not started   |        |            |                                                                                                       |
+| F9.2  | Assign witness                          | P0  | Not started   |        |            |                                                                                                       |
+| F10.1 | Witness: assigned campaigns             | P0  | Not started   |        |            |                                                                                                       |
+| F10.2 | Witness: confirm or dispute             | P0  | Not started   |        |            |                                                                                                       |
+| F11.1 | Admin: organisation verification queue  | P0  | Not started   |        |            |                                                                                                       |
+| F11.2 | Admin: campaign review queue            | P0  | Not started   |        |            | D8 checklist if approved                                                                              |
+| F11.3 | Admin: excess records                   | P1  | Not started   |        |            |                                                                                                       |
+| F11.4 | Admin: audit log viewer                 | P1  | Not started   |        |            |                                                                                                       |
+| F12.1 | Install prompt                          | P1  | Not started   |        |            |                                                                                                       |
+| F12.2 | Update available flow                   | P1  | Not started   |        |            |                                                                                                       |
+| F12.3 | Caching strategy review                 | P0  | Not started   |        |            | `/api/*` is already NetworkOnly (F0.3)                                                                |
+| F12.4 | Offline-aware actions                   | P1  | Not started   |        |            |                                                                                                       |
+| F12.5 | Push notifications                      | P2  | Not started   |        |            | Post-MVP                                                                                              |
+| F13.1 | Copy and terminology review             | P0  | Not started   |        |            | Guard already in CI                                                                                   |
+| F13.2 | Accessibility audit                     | P1  | Not started   |        |            |                                                                                                       |
+| F13.3 | Performance on low-end devices          | P0  | Not started   |        |            |                                                                                                       |
+| F13.4 | End-to-end demo script                  | P0  | Not started   |        |            |                                                                                                       |
+| F13.5 | Production release and demo kit         | P0  | Not started   |        |            |                                                                                                       |
 
 ### Backend
 

@@ -21,6 +21,7 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 - **The backend is a separate service. Its stack is undecided** (ADR-004, Proposed). Don't build backend logic in Next.js route handlers or server actions. The owner explicitly rejected Next.js as the backend.
 - Until the backend exists, build against the **MSW mock API** (`src/mocks/handlers.ts`, served by `npm run mock:api` on port 4000). Contract schemas are in `src/lib/api/schemas.ts` (ADR-003).
 - `cacheComponents` is **off** because it's incompatible with Serwist (ADR-002).
+- **Fonts (ADR-007):** Schibsted Grotesk is self-hosted with `next/font`. Reem Kufi is subset to the word أمانة only, so any new Arabic text needs a new subset. **Hosting (ADR-008):** Vercel; `main` deploys to production and each PR gets a preview.
 
 ## Conventions to remember
 
@@ -51,5 +52,5 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 ## Open items awaiting the owner
 
 - ADR-004 backend stack; spec decisions D8, D9 and D11; the convention date; the pilot organisation.
-- Whether to adopt shadcn/ui (F1.2) and the hosting provider (F0.6).
+- Whether to adopt shadcn/ui (F1.2). Connect the GitHub repository to Vercel (owner, F0.6).
 - First push to `haneefojay/amanah-frontend` so CI (F0.5) runs.
