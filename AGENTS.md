@@ -38,7 +38,8 @@ Follow the workflow in ROADMAP_INDEX §1:
 3. Update the item in **ROADMAP_INDEX.md** (status, notes, date) and its "Current focus" section.
 4. Add a **CHANGELOG.md** entry under `[Unreleased]` (Added, Changed, Fixed, Removed, Decisions).
 5. If you made a decision with lasting impact, write an **ADR** (next number) in `docs/decisions/` and add it to the index there.
-6. Summarise for the user what changed, what was tested, and anything that needs their decision.
+6. Commit as the configured git user. Do **not** add AI attribution (no `Co-Authored-By` AI trailers, no "Generated with …" lines) to commits or PRs.
+7. Summarise for the user what changed, what was tested, and anything that needs their decision.
 
 ## 4. Project rules (non-negotiable)
 
