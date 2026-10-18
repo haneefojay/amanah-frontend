@@ -45,9 +45,9 @@
 
 ## 2. Current focus
 
-- **Now:** F1 (design system and app shell) on the frontend. B0.1 (backend stack decision, ADR-004) is waiting on the team.
+- **Now:** F2.6 (public landing page; design approved 2026-10-18) and F0.6 (hosting, for a public link), then F1 (design system and app shell). B0.1 (backend stack decision, ADR-004) is waiting on the team.
 - **Next:** F2 and F3 (public pages and the accountability section) against mocks, so the core feature is demonstrable early.
-- **Decisions needed from the team:** ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
+- **Decisions needed from the team:** landing page fonts (system stack or self-hosted Schibsted Grotesk and Reem Kufi), hosting provider (F0.6), ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
 
 ---
 
@@ -77,7 +77,7 @@ These are suggested dates. Adjust them here if the team changes them, and record
 | F0.3  | PWA baseline                            | P0  | Done          | Claude | 2026-10-18 | Serwist (Turbopack), manifest, offline fallback, `useOffline`                      |
 | F0.4  | API client, contract layer, mock API    | P0  | Done (mocked) | Claude | 2026-10-18 | Contract reconciliation waits on B0.3                                              |
 | F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Remote set to haneefojay/amanah-frontend. Done after the first push shows green CI |
-| F0.6  | Hosting and preview deployments         | P1  | Not started   |        |            | Needs a hosting ADR                                                                |
+| F0.6  | Hosting and preview deployments         | P0  | Not started   |        |            | Raised to P0: the landing page needs a public link. Needs a hosting ADR            |
 | F1.1  | Design tokens and typography            | P0  | In progress   | Claude | 2026-10-18 | Palette in `globals.css`. Docs page pending                                        |
 | F1.2  | Core UI components                      | P0  | Not started   |        |            | Decide on shadcn/ui via an ADR                                                     |
 | F1.3  | Money and status components             | P0  | In progress   | Claude | 2026-10-18 | `ProgressBar` done                                                                 |
@@ -89,6 +89,7 @@ These are suggested dates. Adjust them here if the team changes them, and record
 | F2.3  | Campaign page shell                     | P0  | Not started   |        |            |                                                                                    |
 | F2.4  | Organisation profile                    | P1  | Not started   |        |            |                                                                                    |
 | F2.5  | Share metadata and SEO                  | P2  | Not started   |        |            |                                                                                    |
+| F2.6  | Public landing page                     | P0  | Not started   |        | 2026-10-18 | Design approved 2026-10-18 (docs/design/landing-page). Fonts ADR pending           |
 | F3.1  | Funding summary                         | P0  | Not started   |        |            |                                                                                    |
 | F3.2  | Items table with delivery status        | P0  | Not started   |        |            |                                                                                    |
 | F3.3  | Expenses list                           | P0  | Not started   |        |            |                                                                                    |
@@ -228,4 +229,5 @@ Defaults from spec §11 are assumed until the team decides. When one is decided,
 
 | Date       | Change                                                                               | By     |
 | ---------- | ------------------------------------------------------------------------------------ | ------ |
+| 2026-10-18 | Added F2.6 public landing page (design approved). Raised F0.6 hosting to P0.         | Claude |
 | 2026-10-18 | Roadmaps created from the MVP spec. F0.1 to F0.4 completed during environment setup. | Claude |

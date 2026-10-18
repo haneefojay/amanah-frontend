@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Amanah: Transparent Giving</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&amp;family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#f7f4ec}
+@container (max-width: 760px){.nav-links{display:none !important}.menu-btn{display:flex !important}}
+</style>
+</helmet>
+<div id="top" style="container-type: inline-size; font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #161a20; background: #f7f4ec; min-width: 0">
+
+<!-- ============ HERO ============ -->
+<header style="background: #0f5132; color: #f7f4ec; overflow: hidden">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 20px clamp(20px, 5cqi, 32px); display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px; color: #f7f4ec; text-decoration: none">
+      <svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#f7f4ec"></rect><path d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144" fill="none" stroke="#0f5132" stroke-width="40" stroke-linecap="round"></path><circle cx="256" cy="300" r="36" fill="#e9c46a"></circle></svg>
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em">Amanah</span>
+    </a>
+    <nav class="nav-links" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 16px; font-weight: 500">
+      <a href="#how" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">How it works</a>
+      <a href="#cap" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">The cap</a>
+      <a href="#trail" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">Accountability</a>
+      <a href="#orgs" style="color: #f7f4ec; text-decoration: none; padding: 10px 0">For organisations</a>
+      <a href="#orgs" style="color: #0f5132; background: #f7f4ec; text-decoration: none; padding: 12px 20px; border-radius: 999px; font-weight: 600">Register your organisation</a>
+    </nav>
+    <button type="button" class="menu-btn" aria-label="Open menu" style="display: none; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; border: 1.5px solid rgba(247,244,236,0.45); background: transparent; color: #f7f4ec; cursor: pointer; flex: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(24px, 4cqi, 56px) clamp(20px, 5cqi, 32px) 40px; display: flex; flex-wrap: wrap; gap: clamp(40px, 5cqi, 56px); align-items: flex-start">
+    <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px; padding-top: clamp(0px, 2cqi, 24px)">
+      <p style="margin: 0; font-size: 17px; color: rgba(247,244,236,0.82)">Transparent giving to verified Islamic organisations in Nigeria</p>
+      <h1 style="margin: 0; font-size: clamp(46px, 6.4cqi, 88px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 800">Give with certainty. Follow every naira.</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.55; max-width: 36ch; color: rgba(247,244,236,0.88)">Mosques, orphanages and Islamic community groups publish exactly what they need. You give to those needs, then watch the money become rice, books and roofs, with receipts, photos and an independent witness to confirm it.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+        <a href="#trail" style="background: {{accent}}; color: #161a20; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 28px; border-radius: 999px">Browse campaigns</a>
+        <a href="#how" style="color: #f7f4ec; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 8px; border-bottom: 2px solid rgba(247,244,236,0.4)">See how it works</a>
+      </div>
+      <p style="margin: 0; font-size: 14px; color: rgba(247,244,236,0.7)">Verified organisations only. Every campaign is capped at its target.</p>
+    </div>
+
+    <!-- Sample campaign ledger -->
+    <div style="flex: 1 1 400px; min-width: 0; max-width: 480px; background: #fbf9f4; color: #161a20; border-radius: 24px; padding: 28px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45); display: flex; flex-direction: column; gap: 22px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #4b5260; background: #ebe8df; padding: 4px 10px; border-radius: 999px">Example campaign</span>
+          <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.01em">Ramadan food drive</span>
+          <span style="display: flex; align-items: center; gap: 6px; font-size: 15px; color: #4b5260">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+            Verified mosque in Offa
+          </span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap">
+          <span style="font-size: 34px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">₦500,000</span>
+          <span style="font-size: 15px; color: #4b5260">of ₦500,000 target</span>
+        </div>
+        <div role="progressbar" aria-label="Raised" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="height: 10px; border-radius: 999px; background: #d5ecdd; overflow: hidden">
+          <div style="width: 100%; height: 100%; background: #146c43"></div>
+        </div>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: #0f5132">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+          Target reached. Donations closed.
+        </span>
+      </div>
+
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; gap: 14px">
+          <div style="display: flex; flex-direction: column; align-items: center; width: 22px; flex: none">
+            <span style="width: 22px; height: 22px; border-radius: 999px; background: #146c43; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+            <span style="flex: 1; width: 2px; background: #146c43; min-height: 18px"></span>
+          </div>
+          <div style="flex: 1; min-width: 0; padding-bottom: 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 8px; font-weight: 600"><span>Rice, 5 bags of 50 kg</span><span style="font-variant-numeric: tabular-nums">₦280,000</span></div>
+            <span style="font-size: 14px; color: #4b5260">Receipt logged. Delivery confirmed by witness.</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px">
+          <div style="display: flex; flex-direction: column; align-items: center; width: 22px; flex: none">
+            <span style="width: 22px; height: 22px; border-radius: 999px; background: #fbf9f4; border: 2.5px solid #b07d00; box-sizing: border-box"></span>
+            <span style="flex: 1; width: 2px; background: #d8d3c4; min-height: 18px"></span>
+          </div>
+          <div style="flex: 1; min-width: 0; padding-bottom: 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 8px; font-weight: 600"><span>Cooking oil, 4 × 25 L</span><span style="font-variant-numeric: tabular-nums">₦140,000</span></div>
+            <span style="font-size: 14px; color: #4b5260">Purchased. Awaiting witness.</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px">
+          <div style="display: flex; flex-direction: column; align-items: center; width: 22px; flex: none">
+            <span style="width: 22px; height: 22px; border-radius: 999px; background: #fbf9f4; border: 2.5px dashed #8a8f98; box-sizing: border-box"></span>
+          </div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 8px; font-weight: 600"><span>Dates and sugar, 40 packs</span><span style="font-variant-numeric: tabular-nums">₦80,000</span></div>
+            <span style="font-size: 14px; color: #4b5260">Not yet purchased.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; background: #f1ede2; border-radius: 16px; padding: 16px 18px">
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; color: #4b5260">Spent</span><span style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">₦420,000</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; color: #4b5260">Balance held</span><span style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">₦80,000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signature: the word itself -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 24px clamp(20px, 5cqi, 32px) 0; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 40px">
+    <p style="margin: 0 0 40px; flex: 1 1 300px; max-width: 40ch; font-size: 17px; line-height: 1.55; color: rgba(247,244,236,0.85)"><strong style="color: #f7f4ec; font-weight: 700">Amānah</strong> is the trust placed in your care, and the duty to return it intact. Every campaign on this platform is held to it.</p>
+    <span lang="ar" dir="rtl" style="font-family: 'Reem Kufi', serif; font-weight: 700; font-size: clamp(120px, 19cqi, 280px); line-height: 0.95; color: {{accent}}; margin-bottom: -0.16em">أمانة</span>
+  </div>
+</header>
+
+<!-- ============ WHY ============ -->
+<section aria-labelledby="why-h" style="background: #f7f4ec">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10cqi, 120px) clamp(20px, 5cqi, 32px); display: flex; flex-wrap: wrap; gap: 40px 80px">
+    <h2 id="why-h" style="margin: 0; flex: 1 1 420px; font-size: clamp(34px, 4cqi, 52px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; color: #0f5132">Generosity runs on trust. Trust needs proof.</h2>
+    <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px; font-size: 19px; line-height: 1.6; color: #2d333d">
+      <p style="margin: 0">Most giving ends at the payment. Donors send money and hope it arrives. Organisations doing honest work have no simple way to show where it went.</p>
+      <p style="margin: 0">Amanah turns every campaign into an open record: what was needed, what was given, what was bought, and who saw it delivered. Nothing to take on faith.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="how" aria-labelledby="how-h" style="background: #fbf9f4; border-top: 1px solid #e6e1d3">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9cqi, 112px) clamp(20px, 5cqi, 32px); display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px">
+      <h2 id="how-h" style="margin: 0; font-size: clamp(34px, 4cqi, 52px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; max-width: 16ch">From need to delivery, in the open</h2>
+      <p style="margin: 0; max-width: 42ch; font-size: 18px; line-height: 1.55; color: #4b5260">Five steps, each one visible on the campaign page. If a step is missing, everyone can see it.</p>
+    </div>
+
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 28px">
+      <li style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #0f5132; color: #f7f4ec; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">1</span><span style="flex: 1; height: 2px; background: #0f5132"></span></div>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">Verified first</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">The Amanah team checks every organisation before it can publish a single campaign.</p>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #0f5132; color: #f7f4ec; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">2</span><span style="flex: 1; height: 2px; background: #0f5132"></span></div>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">Itemised needs</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Each campaign lists exactly what it needs, item by item, with a fixed target that adds up to the naira.</p>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #0f5132; color: #f7f4ec; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">3</span><span style="flex: 1; height: 2px; background: #0f5132"></span></div>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">You give</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Pay securely through Paystack. Your amount is held for you while you pay, so the target is never overshot.</p>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #0f5132; color: #f7f4ec; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">4</span><span style="flex: 1; height: 2px; background: #0f5132"></span></div>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">Spending, with proof</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Every purchase is logged with its receipt and photos taken in the app, stamped with time and place.</p>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: {{accent}}; color: #161a20; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">5</span><span style="flex: 1; height: 2px; background: transparent"></span></div>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em">A witness confirms</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">A respected community member, independent of the organisation, confirms each delivery, or disputes it in public.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ THE CAP ============ -->
+<section id="cap" aria-labelledby="cap-h" style="background: #161a20; color: #f7f4ec">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10cqi, 120px) clamp(20px, 5cqi, 32px); display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
+    <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <h2 id="cap-h" style="margin: 0; font-size: clamp(38px, 4.6cqi, 64px); line-height: 1.0; letter-spacing: -0.035em; font-weight: 800">Never a kobo beyond the target.</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: rgba(247,244,236,0.82); max-width: 44ch">When a campaign is fully funded, it closes itself. No organisation on Amanah can receive more than it asked for. The rule is enforced by the system, not left to good intentions.</p>
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.55">
+        <li style="display: flex; gap: 14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg><span>Targets are fixed before a campaign goes live, and locked after the first gift.</span></li>
+        <li style="display: flex; gap: 14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg><span>Two donors paying for the last ₦100,000 at the same moment cannot push it over. Amounts are reserved before payment.</span></li>
+        <li style="display: flex; gap: 14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg><span>If a late payment ever slips past, the excess is flagged and returned to the donor, or passed to Bayt al-Mal where return is not possible.</span></li>
+      </ul>
+    </div>
+
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; font-size: 15px; color: rgba(247,244,236,0.75)"><span>Raised ₦300,000</span><span>Target ₦500,000</span></div>
+        <div style="display: flex; height: 56px; border-radius: 14px; overflow: hidden; background: rgba(247,244,236,0.08)">
+          <div style="flex: 3; background: #146c43; display: flex; align-items: center; padding: 0 16px; font-weight: 700; font-size: 15px">Donor A, ₦300,000</div>
+          <div style="flex: 2; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; color: {{accent}}; border: 2px dashed {{accent}}; border-radius: 0 14px 14px 0; box-sizing: border-box">₦200,000 left</div>
+        </div>
+      </div>
+
+      <div role="group" aria-labelledby="dlg-h" style="background: #fbf9f4; color: #161a20; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.6)">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 999px; background: #f8ecc9; display: flex; align-items: center; justify-content: center; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a5a00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.5v.01"></path></svg></span>
+          <span id="dlg-h" style="font-size: 20px; font-weight: 700">Only ₦200,000 can be accepted</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Donor B entered ₦300,000, but this campaign needs only ₦200,000 more to reach its target.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <button type="button" style="font: inherit; font-weight: 700; font-size: 16px; background: #0f5132; color: #f7f4ec; border: 0; border-radius: 999px; padding: 14px 24px; cursor: pointer">Give ₦200,000 instead</button>
+          <button type="button" style="font: inherit; font-weight: 600; font-size: 16px; background: transparent; color: #161a20; border: 1.5px solid #c9c3b3; border-radius: 999px; padding: 14px 24px; cursor: pointer">Cancel</button>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-radius: 16px; background: rgba(247,244,236,0.08); font-size: 16px; font-weight: 600">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        Then: Target reached. Donations closed.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCOUNTABILITY TRAIL ============ -->
+<section id="trail" aria-labelledby="trail-h" style="background: #f7f4ec">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10cqi, 120px) clamp(20px, 5cqi, 32px); display: flex; flex-wrap: wrap-reverse; gap: 64px; align-items: center">
+
+    <!-- Phone: campaign accountability page -->
+    <div style="flex: 1 1 320px; max-width: 380px; min-width: 0; margin: 0 auto">
+      <div style="width: 100%; max-width: 360px; margin: 0 auto; background: #161a20; border-radius: 48px; padding: 12px; box-shadow: 0 40px 80px -30px rgba(15,81,50,0.55)">
+        <div style="background: #fbf9f4; border-radius: 38px; overflow: hidden; display: flex; flex-direction: column">
+          <div style="background: #0f5132; color: #f7f4ec; padding: 28px 22px 22px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 13px; color: rgba(247,244,236,0.75)">Verified mosque, Offa</span>
+            <span style="font-size: 20px; font-weight: 700">Ramadan food drive</span>
+            <div style="height: 8px; border-radius: 999px; background: rgba(247,244,236,0.2); overflow: hidden"><div style="width: 100%; height: 100%; background: #e9c46a"></div></div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px"><span>₦500,000 raised</span><span>Spent ₦420,000</span></div>
+          </div>
+
+          <div style="padding: 18px 18px 6px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 14px; font-weight: 700">Items</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px"><span>Rice, 5 × 50 kg</span><span style="font-size: 12px; font-weight: 700; color: #0f5132; background: #d5ecdd; padding: 4px 10px; border-radius: 999px">Delivered</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px"><span>Cooking oil, 4 × 25 L</span><span style="font-size: 12px; font-weight: 700; color: #6b4e00; background: #f8ecc9; padding: 4px 10px; border-radius: 999px">Purchased</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px"><span>Dates and sugar, 40</span><span style="font-size: 12px; font-weight: 700; color: #4b5260; background: #ebe8df; padding: 4px 10px; border-radius: 999px">Needed</span></div>
+          </div>
+
+          <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 14px; font-weight: 700">Latest expense</span>
+            <div style="display: flex; gap: 12px; align-items: center; background: #f1ede2; border-radius: 14px; padding: 10px">
+              <div role="img" aria-label="Receipt photo placeholder" style="width: 52px; height: 64px; border-radius: 8px; background: #fff; border: 1px solid #e0dbcc; display: flex; flex-direction: column; gap: 4px; padding: 8px 7px; box-sizing: border-box; flex: none">
+                <span style="height: 3px; background: #c9c3b3; border-radius: 2px"></span><span style="height: 3px; background: #c9c3b3; border-radius: 2px; width: 70%"></span><span style="height: 3px; background: #c9c3b3; border-radius: 2px"></span><span style="height: 3px; background: #c9c3b3; border-radius: 2px; width: 50%"></span><span style="height: 3px; background: #161a20; border-radius: 2px; width: 60%; margin-top: auto"></span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                <span style="font-size: 14px; font-weight: 600">Rice, local market</span>
+                <span style="font-size: 13px; color: #4b5260">₦280,000, receipt attached</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 14px; font-weight: 700">Evidence</span>
+            <div role="img" aria-label="Delivery photo placeholder" style="height: 120px; border-radius: 14px; background: repeating-linear-gradient(135deg, #d5ecdd 0 10px, #e3f2e8 10px 20px); display: flex; align-items: flex-end; padding: 10px; box-sizing: border-box">
+              <span style="font-size: 11px; font-weight: 600; background: rgba(22,26,32,0.78); color: #fff; padding: 5px 8px; border-radius: 8px">Uploaded 10:42 WAT in Offa, Kwara</span>
+            </div>
+          </div>
+
+          <div style="margin: 0 18px 22px; padding: 12px 14px; border-radius: 14px; border: 1.5px solid #146c43; display: flex; gap: 10px; align-items: flex-start">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#146c43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+            <span style="font-size: 13px; line-height: 1.45"><strong>Witness confirmed</strong> delivery of the rice to the mosque store.</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 14px 0 0; text-align: center; font-size: 14px; color: #4b5260">An example campaign page</p>
+    </div>
+
+    <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+      <h2 id="trail-h" style="margin: 0; font-size: clamp(36px, 4.4cqi, 60px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; color: #0f5132">Every campaign comes with its receipts.</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2d333d; max-width: 46ch">The accountability page is public and updates as money moves. Open any campaign and you see the whole trail, not a thank-you note.</p>
+      <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 32px">
+        <div style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid #0f5132; padding-top: 14px"><dt style="font-weight: 700; font-size: 18px">Raised, spent and held</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; color: #4b5260">Target, money raised, money spent and the balance still held, live.</dd></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid #0f5132; padding-top: 14px"><dt style="font-weight: 700; font-size: 18px">Item by item</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; color: #4b5260">Each need marked needed, purchased or delivered.</dd></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid #0f5132; padding-top: 14px"><dt style="font-weight: 700; font-size: 18px">Receipts and photos</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; color: #4b5260">Captured in the app, with the server's timestamp and the location.</dd></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid {{accent}}; padding-top: 14px"><dt style="font-weight: 700; font-size: 18px">An independent witness</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; color: #4b5260">Confirms or disputes delivery. A disputed item is never shown as delivered.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section aria-labelledby="who-h" style="background: #fbf9f4; border-top: 1px solid #e6e1d3">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9cqi, 112px) clamp(20px, 5cqi, 32px); display: flex; flex-direction: column; gap: 48px">
+    <h2 id="who-h" style="margin: 0; font-size: clamp(32px, 3.6cqi, 48px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; max-width: 20ch">Everyone in the chain of trust has a part</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px 48px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f5132" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"></path></svg>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 700">Donors</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Give as a guest in under a minute. Follow the campaign to the last receipt.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f5132" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"></path><path d="M9 21v-6h6v6"></path></svg>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 700">Organisations</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Publish itemised needs, log spending from your phone and post updates as work happens.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f5132" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 700">Witnesses</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Respected community members, never the organisation's own admins, who confirm each delivery.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f5132" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 700">The Amanah team</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4b5260">Verifies organisations, reviews every campaign before it goes live, and keeps a permanent audit log.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORGANISATIONS CTA ============ -->
+<section id="orgs" aria-labelledby="orgs-h" style="background: #0f5132; color: #f7f4ec">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10cqi, 120px) clamp(20px, 5cqi, 32px); display: flex; flex-wrap: wrap; gap: 48px 80px; align-items: flex-end; justify-content: space-between">
+    <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 24px">
+      <h2 id="orgs-h" style="margin: 0; font-size: clamp(40px, 5.2cqi, 72px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 800">Doing honest work? Let it show.</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: rgba(247,244,236,0.85); max-width: 46ch">Register your mosque, orphanage, Islamic society or community group. Once verified, publish your first campaign and give donors the proof they have been waiting for.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px">
+        <a href="#orgs" style="background: {{accent}}; color: #161a20; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 28px; border-radius: 999px">Register your organisation</a>
+        <a href="mailto:[CONTACT EMAIL]" style="color: #f7f4ec; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 999px; border: 1.5px solid rgba(247,244,236,0.45)">Talk to the team</a>
+      </div>
+    </div>
+    <div style="flex: 0 1 340px; display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: 20px; background: rgba(247,244,236,0.08)">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="6" y="2" width="12" height="20" rx="3"></rect><path d="M11 18h2"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-weight: 700; font-size: 17px">Works on any phone</span>
+        <span style="font-size: 15px; line-height: 1.5; color: rgba(247,244,236,0.8)">Add Amanah to your home screen like an app. No app store, light on data.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #161a20; color: rgba(247,244,236,0.8)">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 56px clamp(20px, 5cqi, 32px); display: flex; flex-wrap: wrap; gap: 32px 64px; justify-content: space-between; align-items: flex-start">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 420px">
+      <span style="display: flex; align-items: center; gap: 10px; color: #f7f4ec; font-weight: 800; font-size: 20px">
+        <svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#0f5132"></rect><path d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144" fill="none" stroke="#e9c46a" stroke-width="40" stroke-linecap="round"></path><circle cx="256" cy="300" r="36" fill="#f7f4ec"></circle></svg>
+        Amanah
+      </span>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6">Transparent giving to verified Islamic organisations. See what each campaign needed, what your gift bought, and who confirmed it arrived.</p>
+    </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 15px">
+      <a href="#how" style="color: #f7f4ec; text-decoration: none; padding: 8px 0">How it works</a>
+      <a href="#cap" style="color: #f7f4ec; text-decoration: none; padding: 8px 0">The cap</a>
+      <a href="#trail" style="color: #f7f4ec; text-decoration: none; padding: 8px 0">Accountability</a>
+      <a href="#orgs" style="color: #f7f4ec; text-decoration: none; padding: 8px 0">For organisations</a>
+      <a href="#top" style="color: #f7f4ec; text-decoration: none; padding: 8px 0">Privacy</a>
+    </nav>
+  </div>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 20px clamp(20px, 5cqi, 32px) 32px; border-top: 1px solid rgba(247,244,236,0.12); font-size: 14px; color: rgba(247,244,236,0.65)">© 2026 Amanah</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e9c46a","options":["#e9c46a","#f1d58f","#d9b44a"]},"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#e9c46a' };
+  }
+}
+</script>
+</body>
+</html>

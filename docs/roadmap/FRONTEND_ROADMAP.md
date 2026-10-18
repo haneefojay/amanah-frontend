@@ -106,7 +106,7 @@ A feature is done only when all of the following are true, in addition to its ow
 - **Tests:** the workflow itself. A deliberately failing PR must be blocked.
 - **Definition of Done:** the repository is on GitHub, CI is green on `main`, and branch protection requires CI.
 
-### F0.6 Hosting and preview deployments (P1)
+### F0.6 Hosting and preview deployments (P0)
 
 - **Scope:** choose hosting (record an ADR), and set up preview deployments per pull request and a production URL over HTTPS (needed for PWA install and camera access).
 - **Backend dependency:** **B12.4** for the production API URL. Previews can point at the mock API.
@@ -213,6 +213,23 @@ A feature is done only when all of the following are true, in addition to its ow
 - **Backend dependency:** **B5.2**.
 - **Tests:** a unit test for metadata output. An e2e test checks the og:image route returns an image.
 - **Definition of Done:** a shared link shows a rich preview on WhatsApp.
+
+### F2.6 Public landing page (P0)
+
+- **Scope:** build the approved landing page design ([design source](../design/landing-page/README.md)) at `/`:
+  - a hero with the example campaign ledger and the أمانة signature;
+  - sections: why, how it works (5 steps), the cap with the over-remaining demo, accountability with the phone preview, who it's for, the organisations call to action, and the footer;
+  - responsive down to 360px, with a menu button replacing the nav links on narrow screens;
+  - production copy only: no internal or hackathon wording on the public page.
+
+  The page uses static example content until F2.1 and F3 exist, then links into live campaigns. Fonts per the font ADR (pending: system stack, or self-hosted Schibsted Grotesk and Reem Kufi subsets).
+
+- **Backend dependency:** None. It becomes live data later through F2.1 and F3.
+- **Tests:**
+  - component tests: each section renders its heading, all money strings are formatted from kobo, and the nav switches to the menu button on narrow screens;
+  - e2e tests: renders at 360px and 1440px with no horizontal scroll, the anchor links scroll to their sections, axe reports no violations, and a terminology check;
+  - a Playwright screenshot of the full page at mobile and desktop widths, attached to the PR and used for the submission document.
+- **Definition of Done:** matches the approved design at both widths, Lighthouse mobile performance is 90 or higher and accessibility is 100, and the page is deployed at the public URL (F0.6) so the link always shows the latest version.
 
 **Phase F2 Definition of Done:** a donor on a phone can browse, filter and open any public campaign. Integrated with B5.1, B5.2 and B3.4.
 
