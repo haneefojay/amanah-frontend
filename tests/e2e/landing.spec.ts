@@ -18,13 +18,9 @@ test.describe("Landing page (F2.6)", () => {
     );
     const ledger = page.getByRole("article", { name: "Ramadan food drive" });
     await expect(ledger.getByText("Target reached. Donations closed.")).toBeVisible();
-    await expect(page.getByText("is the trust placed in your care")).toBeVisible();
-  });
-
-  test("desktop: the hero closes with أمانة", async ({ page, isMobile }) => {
-    test.skip(isMobile, "Desktop layout only");
-    await page.goto("/");
-    await expect(page.getByText("أمانة")).toBeVisible();
+    await expect(page.getByText(/the trust placed in your care/)).toBeVisible();
+    // أمانة sits at the crown of the hero arch on every screen size.
+    await expect(page.getByText("أمانة").first()).toBeVisible();
   });
 
   test("never scrolls sideways at 360px, 980px or 1440px", async ({ page }) => {
@@ -35,15 +31,14 @@ test.describe("Landing page (F2.6)", () => {
     }
   });
 
-  test("loads the self-hosted fonts", async ({ page, isMobile }) => {
+  test("loads the self-hosted fonts", async ({ page }) => {
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const loaded = await page.evaluate(() =>
       [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family),
     );
     expect(loaded.join(" ")).toMatch(/schibsted/i);
-    // The Arabic display face is only needed where أمانة shows (not on phones).
-    if (!isMobile) expect(loaded.join(" ")).toMatch(/reem/i);
+    expect(loaded.join(" ")).toMatch(/reem/i);
   });
 
   test("has no automatically detectable accessibility violations", async ({ page }) => {
@@ -61,44 +56,45 @@ test.describe("Landing page (F2.6)", () => {
 });
 
 test.describe("Landing layout on phones", () => {
-  test("the hero leaves out أمانة and closes with the meaning sentence", async ({
+  test("the arch window follows the hero text, with the example campaign over it", async ({
     page,
     isMobile,
   }) => {
     test.skip(!isMobile, "Phone layout only");
     await page.goto("/");
-    await expect(page.getByText("أمانة")).toBeHidden();
-    const meaning = page.getByText("is the trust placed in your care");
-    const ledger = page.getByRole("article", { name: "Ramadan food drive" });
-    await expect(meaning).toBeVisible();
-    await expect(ledger).toHaveCount(1); // only the phone copy is visible
-    const meaningBox = await meaning.boundingBox();
-    const ledgerBox = await ledger.boundingBox();
-    expect(meaningBox && ledgerBox && meaningBox.y < ledgerBox.y).toBe(true);
+    const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
+    const word = page.getByText("أمانة").first();
+    const card = page.getByRole("article", { name: "Ramadan food drive" });
+    await expect(word).toBeVisible();
+    await expect(card).toBeVisible();
+    const wordBox = await word.boundingBox();
+    const cardBox = await card.boundingBox();
+    expect(heading && wordBox && wordBox.y > heading.y + heading.height).toBe(true);
+    expect(wordBox && cardBox && cardBox.y > wordBox.y).toBe(true);
+    // The witness tag is a wide-screen detail only.
+    await expect(page.getByText("Witness confirmed delivery")).toBeHidden();
   });
 
-  test("the two hero buttons share one line, with the meaning close below", async ({
-    page,
-    isMobile,
-  }) => {
+  test("the two hero buttons share one line", async ({ page, isMobile }) => {
     test.skip(!isMobile, "Phone layout only");
-    for (const width of [360, 412]) {
+    for (const width of [390, 412]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/");
-      const browse = await page.getByRole("link", { name: "Browse campaigns" }).boundingBox();
+      const browse = await page
+        .getByRole("link", { name: "Browse campaigns" })
+        .first()
+        .boundingBox();
       const how = await page.getByRole("link", { name: "See how it works" }).boundingBox();
-      const meaning = await page.getByText("is the trust placed in your care").boundingBox();
       expect(browse && how).toBeTruthy();
-      if (!browse || !how || !meaning) return;
+      if (!browse || !how) return;
       expect(Math.abs(browse.y + browse.height / 2 - (how.y + how.height / 2))).toBeLessThan(4);
       expect(how.x + how.width).toBeLessThanOrEqual(width);
-      expect(meaning.y - (browse.y + browse.height)).toBeLessThan(48);
     }
   });
 
-  test("buttons keep the original pill and underlined link", async ({ page }) => {
+  test("buttons keep the pill and the soft secondary pill", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("link", { name: "Browse campaigns" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Browse campaigns" }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: "See how it works" })).toBeVisible();
   });
 });
@@ -110,22 +106,22 @@ test.describe("Landing layout as a desktop site on a phone (980px)", () => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Main" });
     await expect(nav).toBeVisible();
-    await expect(nav.getByRole("link", { name: "For organisations" })).toBeHidden();
-    // Section links and the register button sit on one line.
+    // Section links sit on one line; the separate register button waits for wider screens.
     const tops = await nav
       .getByRole("link")
       .evaluateAll((links) =>
-        links
-          .filter((l) => (l as HTMLElement).offsetParent !== null)
-          .map((l) => l.getBoundingClientRect().top + l.getBoundingClientRect().height / 2),
+        links.map((l) => l.getBoundingClientRect().top + l.getBoundingClientRect().height / 2),
       );
+    expect(tops).toHaveLength(4);
     expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(4);
-    // The example campaign sits beside the headline, not under it.
+    await expect(
+      page.getByRole("banner").getByRole("link", { name: "Register your organisation" }),
+    ).toBeHidden();
+    // The arch window and its example campaign sit beside the headline, not under it.
     const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
-    const ledger = await page.getByRole("article", { name: "Ramadan food drive" }).boundingBox();
-    expect(heading && ledger && ledger.x > heading.x + heading.width).toBe(true);
-    expect(heading && ledger && ledger.y < heading.y + heading.height).toBe(true);
-    await expect(page.getByText("أمانة")).toBeVisible();
+    const card = await page.getByRole("article", { name: "Ramadan food drive" }).boundingBox();
+    expect(heading && card && card.x > heading.x + heading.width).toBe(true);
+    await expect(page.getByText("أمانة").first()).toBeVisible();
     // The five steps share one row.
     const stepTops = await page
       .locator("#how ol > li")

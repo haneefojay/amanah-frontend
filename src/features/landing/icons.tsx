@@ -89,4 +89,19 @@ export const PhoneIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const CameraIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="6" width="18" height="14" rx="3" />
+    <circle cx="12" cy="13" r="3.5" />
+    <path d="M9 6l1.5-2h3L15 6" />
+  </Icon>
+);
+export const MosqueIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 21V11a7 7 0 0 1 14 0v10" />
+    <path d="M3 21h18" />
+    <path d="M10 21v-5a2 2 0 0 1 4 0v5" />
+  </Icon>
+);
+
 export { AmanahMark } from "@/components/brand/amanah-mark";

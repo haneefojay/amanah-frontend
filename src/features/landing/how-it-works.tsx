@@ -25,44 +25,39 @@ const steps = [
   },
 ] as const;
 
+/** Five steps as cards, each numbered on a small arch tile. */
 export function HowItWorks() {
   return (
-    <section
-      id={sectionIds.how}
-      aria-labelledby="how-title"
-      className="scroll-mt-4 border-t border-sand-400 bg-sand-50"
-    >
-      <Container className="flex flex-col gap-14 py-[clamp(72px,9vw,112px)]">
-        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+    <section id={sectionIds.how} aria-labelledby="how-title" className="scroll-mt-4 bg-mist-50">
+      <Container className="flex flex-col gap-12 py-[clamp(72px,9vw,128px)]">
+        <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
           <h2
             id="how-title"
-            className="max-w-[16ch] text-[clamp(34px,4vw,52px)] leading-[1.05] font-extrabold tracking-[-0.03em]"
+            className="max-w-[14ch] text-[clamp(34px,4vw,56px)] leading-[1.02] font-extrabold tracking-[-0.035em] text-brand-950"
           >
             From need to delivery, in the open
           </h2>
-          <p className="max-w-[42ch] text-lg leading-[1.55] text-ink-600">
+          <p className="max-w-[40ch] text-lg leading-[1.55] text-ink-600">
             Five steps, each one visible on the campaign page. If a step is missing, everyone can
             see it.
           </p>
         </div>
-        <ol className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-7 gap-y-10 min-[900px]:max-[1180px]:grid-cols-5 min-[900px]:max-[1180px]:gap-x-5">
+        <ol className="grid grid-cols-1 gap-4 min-[600px]:grid-cols-2 min-[900px]:grid-cols-5">
           {steps.map((step, i) => {
             const last = i === steps.length - 1;
             return (
-              <li key={step.title} className="flex flex-col gap-3.5">
-                <div className="flex items-center gap-3" aria-hidden="true">
-                  <span
-                    className={cn(
-                      "flex size-11 flex-none items-center justify-center rounded-full text-lg font-extrabold",
-                      last ? "bg-gold-500 text-ink-900" : "bg-brand-900 text-sand-100",
-                    )}
-                  >
-                    {i + 1}
-                  </span>
-                  <span className={cn("h-0.5 flex-1", last ? "bg-transparent" : "bg-brand-900")} />
-                </div>
-                <h3 className="text-[21px] font-bold tracking-[-0.01em]">{step.title}</h3>
-                <p className="text-base leading-[1.55] text-ink-600">{step.body}</p>
+              <li key={step.title} className="flex flex-col gap-3.5 rounded-3xl bg-white p-6">
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "flex h-[52px] w-11 items-end justify-center rounded-[999px_999px_10px_10px] pb-2.5 text-lg font-extrabold",
+                    last ? "bg-gold-500 text-ink-900" : "bg-brand-900 text-white",
+                  )}
+                >
+                  {i + 1}
+                </span>
+                <h3 className="text-[19px] font-bold">{step.title}</h3>
+                <p className="text-[15px] leading-[1.55] text-ink-600">{step.body}</p>
               </li>
             );
           })}

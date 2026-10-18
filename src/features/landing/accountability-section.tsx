@@ -1,161 +1,134 @@
-import { cn } from "@/lib/cn";
+import { ItemStatusBadge } from "@/components/ui/status-badges";
 import { formatNaira } from "@/lib/money";
 import { Container } from "./container";
-import {
-  exampleCampaign,
-  exampleSpent,
-  riceItem,
-  type ExampleItemStatus,
-} from "./example-campaign";
-import { VerifiedIcon } from "./icons";
+import { exampleBalanceHeld, exampleCampaign, exampleSpent, riceItem } from "./example-campaign";
+import { CameraIcon, EyeIcon } from "./icons";
 import { sectionIds } from "./nav-links";
 
-const statusChip: Record<ExampleItemStatus, { label: string; className: string }> = {
-  DELIVERED: { label: "Delivered", className: "bg-brand-100 text-brand-900" },
-  PURCHASED: { label: "Purchased", className: "bg-gold-100 text-gold-800" },
-  NEEDED: { label: "Needed", className: "bg-sand-300 text-ink-600" },
-};
+const cardTitle = "text-xl font-bold";
+const cardBody = "text-[15px] leading-normal text-ink-600";
 
-/** Short item names for the narrow phone illustration. */
-const phoneItemNames = ["Rice, 5 × 50 kg", "Cooking oil, 4 × 25 L", "Dates and sugar, 40"] as const;
-
-const features = [
-  {
-    title: "Raised, spent and held",
-    body: "Target, money raised, money spent and the balance still held, live.",
-  },
-  { title: "Item by item", body: "Each need marked needed, purchased or delivered." },
-  {
-    title: "Receipts and photos",
-    body: "Captured in the app, with the server's timestamp and the location.",
-  },
-  {
-    title: "An independent witness",
-    body: "Confirms or disputes delivery. A disputed item is never shown as delivered.",
-    accent: true,
-  },
-] as const;
-
-function PhonePreview() {
-  const c = exampleCampaign;
+/** Raised, spent and held: the large green card. */
+function FundingCard() {
   return (
-    <figure className="mx-auto w-full max-w-[380px] min-w-0 flex-[1_1_320px]">
-      <div
-        aria-hidden="true"
-        className="mx-auto w-full max-w-[360px] rounded-[48px] bg-ink-900 p-3 shadow-[0_40px_80px_-30px_rgba(15,81,50,0.55)]"
-      >
-        <div className="flex flex-col overflow-hidden rounded-[38px] bg-sand-50">
-          <div className="flex flex-col gap-2.5 bg-brand-900 px-[22px] pt-7 pb-[22px] text-sand-100">
-            <span className="text-[13px] text-sand-100/75">Verified mosque, Offa</span>
-            <span className="text-xl font-bold">{c.title}</span>
-            <div className="h-2 overflow-hidden rounded-full bg-sand-100/20">
-              <div className="h-full w-full bg-gold-500" />
-            </div>
-            <div className="flex justify-between text-[13px]">
-              <span>{formatNaira(c.raisedAmount)} raised</span>
-              <span>Spent {formatNaira(exampleSpent)}</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2.5 px-[18px] pt-[18px] pb-1.5">
-            <span className="text-sm font-bold">Items</span>
-            {c.items.map((item, i) => (
-              <div key={item.name} className="flex items-center justify-between gap-2 text-sm">
-                <span>{phoneItemNames[i] ?? item.name}</span>
-                <span
-                  className={cn(
-                    "rounded-full px-2.5 py-1 text-xs font-bold",
-                    statusChip[item.status].className,
-                  )}
-                >
-                  {statusChip[item.status].label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-2.5 px-[18px] py-3.5">
-            <span className="text-sm font-bold">Latest expense</span>
-            <div className="flex items-center gap-3 rounded-[14px] bg-sand-200 p-2.5">
-              <div className="flex h-16 w-[52px] flex-none flex-col gap-1 rounded-lg border border-sand-500 bg-white px-[7px] py-2">
-                <span className="h-[3px] rounded-sm bg-sand-600" />
-                <span className="h-[3px] w-[70%] rounded-sm bg-sand-600" />
-                <span className="h-[3px] rounded-sm bg-sand-600" />
-                <span className="h-[3px] w-1/2 rounded-sm bg-sand-600" />
-                <span className="mt-auto h-[3px] w-[60%] rounded-sm bg-ink-900" />
-              </div>
-              <div className="flex min-w-0 flex-col gap-0.5">
-                <span className="text-sm font-semibold">Rice, local market</span>
-                <span className="text-[13px] text-ink-600">
-                  {formatNaira(riceItem.total)}, receipt attached
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2.5 px-[18px] pb-3.5">
-            <span className="text-sm font-bold">Evidence</span>
-            <div className="flex h-[120px] items-end rounded-[14px] bg-[repeating-linear-gradient(135deg,var(--color-brand-100)_0_10px,var(--color-brand-200)_10px_20px)] p-2.5">
-              <span className="rounded-lg bg-ink-900/80 px-2 py-[5px] text-[11px] font-semibold text-white">
-                Uploaded 10:42 WAT in Offa, Kwara
-              </span>
-            </div>
-          </div>
-
-          <div className="mx-[18px] mb-[22px] flex items-start gap-2.5 rounded-[14px] border-[1.5px] border-brand-700 px-3.5 py-3">
-            <VerifiedIcon size={18} strokeWidth={2.4} className="mt-px flex-none text-brand-700" />
-            <span className="text-[13px] leading-[1.45]">
-              <strong>Witness confirmed</strong> delivery of the rice to the mosque store.
-            </span>
-          </div>
-        </div>
+    <div className="flex flex-col justify-between gap-8 rounded-[28px] bg-brand-900 p-8 text-sand-100 min-[600px]:col-span-2 min-[900px]:col-span-1 min-[900px]:row-span-2">
+      <div className="flex flex-col gap-2.5">
+        <h3 className="text-2xl font-bold tracking-[-0.01em]">Raised, spent and held</h3>
+        <p className="text-base leading-[1.55] text-sand-100/80">
+          The target, what came in, what was spent and the balance still held, always adding up.
+        </p>
       </div>
-      <figcaption className="mt-3.5 text-center text-sm text-ink-600">
-        An example campaign page
-        <span className="sr-only">
-          : {formatNaira(c.raisedAmount)} raised and {formatNaira(exampleSpent)} spent. Rice
-          delivered and confirmed by a witness, cooking oil purchased, dates and sugar still needed.
-          The rice receipt and a delivery photo uploaded at 10:42 WAT in Offa, Kwara are shown.
-        </span>
-      </figcaption>
-    </figure>
+      <div className="flex flex-col gap-[18px]">
+        <div className="flex flex-col gap-1">
+          <span className="text-sm text-sand-100/70">Raised</span>
+          <span className="text-[44px] leading-none font-extrabold tracking-[-0.03em]">
+            {formatNaira(exampleCampaign.raisedAmount)}
+          </span>
+        </div>
+        <div aria-hidden="true" className="flex h-3 overflow-hidden rounded-full bg-sand-100/15">
+          <div className="bg-gold-500" style={{ flexGrow: exampleSpent }} />
+          <div className="bg-sand-100/35" style={{ flexGrow: exampleBalanceHeld }} />
+        </div>
+        <dl className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-0.5">
+            <dt className="flex items-center gap-1.5 text-sm text-sand-100/70">
+              <span aria-hidden="true" className="size-2 rounded-full bg-gold-500" />
+              Spent
+            </dt>
+            <dd className="text-[22px] font-bold">{formatNaira(exampleSpent)}</dd>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <dt className="flex items-center gap-1.5 text-sm text-sand-100/70">
+              <span aria-hidden="true" className="size-2 rounded-full bg-sand-100/50" />
+              Balance held
+            </dt>
+            <dd className="text-[22px] font-bold">{formatNaira(exampleBalanceHeld)}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   );
 }
 
+/** "What every campaign shows" as a grid of cards of different weights (bento). */
 export function AccountabilitySection() {
+  const shownItems = exampleCampaign.items.filter((i) => i.status !== "NEEDED");
   return (
-    <section
-      id={sectionIds.trail}
-      aria-labelledby="trail-title"
-      className="scroll-mt-4 bg-sand-100"
-    >
-      <Container className="flex flex-wrap-reverse items-center gap-16 py-[clamp(72px,10vw,120px)]">
-        <PhonePreview />
-        <div className="flex min-w-0 flex-[1_1_460px] flex-col gap-7">
+    <section id={sectionIds.trail} aria-labelledby="trail-title" className="scroll-mt-4 bg-white">
+      <Container className="flex flex-col gap-12 py-[clamp(72px,9vw,128px)]">
+        <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
           <h2
             id="trail-title"
-            className="text-[clamp(36px,4.4vw,60px)] leading-[1.02] font-extrabold tracking-[-0.035em] text-balance text-brand-900"
+            className="max-w-[16ch] text-[clamp(34px,4vw,56px)] leading-[1.02] font-extrabold tracking-[-0.035em] text-brand-950"
           >
             Every campaign comes with its receipts.
           </h2>
-          <p className="max-w-[46ch] text-[19px] leading-[1.6] text-ink-700">
-            The accountability page is public and updates as money moves. Open any campaign and you
-            see the whole trail, not a thank-you note.
+          <p className="max-w-[40ch] text-lg leading-[1.55] text-ink-600">
+            The accountability page is public and updates as money moves. This is what you see on
+            every campaign.
           </p>
-          <dl className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-8 gap-y-6">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className={cn(
-                  "flex flex-col gap-1.5 border-t-[3px] pt-3.5",
-                  "accent" in f ? "border-gold-500" : "border-brand-900",
-                )}
-              >
-                <dt className="text-lg font-bold">{f.title}</dt>
-                <dd className="text-base leading-normal text-ink-600">{f.body}</dd>
-              </div>
-            ))}
-          </dl>
+        </div>
+
+        <div className="grid auto-rows-[minmax(220px,auto)] grid-cols-1 gap-4 min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+          <FundingCard />
+
+          <div className="flex flex-col gap-[18px] rounded-[28px] bg-mist-50 p-7">
+            <h3 className={cardTitle}>Item by item</h3>
+            <ul className="flex flex-col gap-2.5 text-[15px]">
+              {shownItems.map((item) => (
+                <li
+                  key={item.name}
+                  className="flex items-center justify-between gap-2 rounded-[14px] bg-white px-3.5 py-3"
+                >
+                  <span>{item.name}</span>
+                  <ItemStatusBadge status={item.status} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex items-center gap-5 rounded-[28px] bg-mist-50 p-7">
+            <div
+              aria-hidden="true"
+              className="flex h-[120px] w-[92px] flex-none -rotate-4 flex-col gap-[7px] rounded-[10px] border border-mist-300 bg-white px-3 py-3.5"
+            >
+              <span className="h-1 rounded-sm bg-sand-500" />
+              <span className="h-1 w-[70%] rounded-sm bg-sand-500" />
+              <span className="h-1 rounded-sm bg-sand-500" />
+              <span className="h-1 w-1/2 rounded-sm bg-sand-500" />
+              <span className="mt-auto h-[5px] w-[60%] rounded-sm bg-ink-900" />
+            </div>
+            <div className="flex min-w-0 flex-col gap-2">
+              <h3 className={cardTitle}>A receipt for every purchase</h3>
+              <p className={cardBody}>
+                Rice, local market. {formatNaira(riceItem.total)}, receipt attached.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4 rounded-[28px] bg-brand-150 p-7">
+            <h3 className={`${cardTitle} text-brand-950`}>Photos with time and place</h3>
+            <div className="flex min-h-[110px] flex-1 items-end justify-between gap-2 rounded-[18px] bg-brand-300 p-3">
+              <span className="rounded-full bg-brand-950/85 px-2.5 py-1.5 text-xs font-semibold text-white">
+                Uploaded 10:42 WAT in Offa, Kwara
+              </span>
+              <CameraIcon size={28} strokeWidth={1.8} className="flex-none text-brand-700" />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3.5 rounded-[28px] border-[1.5px] border-brand-700 bg-white p-7">
+            <span
+              aria-hidden="true"
+              className="flex size-12 items-center justify-center rounded-[999px_999px_12px_12px] bg-brand-900 text-gold-500"
+            >
+              <EyeIcon size={22} strokeWidth={2.2} />
+            </span>
+            <h3 className={cardTitle}>An independent witness</h3>
+            <p className={cardBody}>
+              A respected community member confirms each delivery, or disputes it in public. A
+              disputed item is never shown as delivered.
+            </p>
+          </div>
         </div>
       </Container>
     </section>

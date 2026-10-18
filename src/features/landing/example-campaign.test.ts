@@ -34,6 +34,6 @@ describe("example campaign data", () => {
   });
 
   it("counts nothing as spent when no item has been bought", () => {
-    expect(spentAmount([{ name: "x", total: 100, status: "NEEDED", note: "" }])).toBe(0);
+    expect(spentAmount([{ name: "x", total: 100, status: "NEEDED" }])).toBe(0);
   });
 });

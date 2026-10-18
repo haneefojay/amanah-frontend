@@ -1,51 +1,54 @@
 # Landing page design
 
-- **Status:** Approved by the project owner on 2026-10-18. Phone hero refinement approved the same day (shorter intro; on phones the example campaign follows the hero). Phone and narrow-desktop pass approved the same day (see Responsive behaviour).
-- **Canvas (live, editable):** https://claude.ai/artifact/FCJs8QR2Pp9VkjWsyBR3Nt. It's private: the owner shares it from the canvas's Share menu.
-- **Source snapshot:** [`landing-page.dc.html`](./landing-page.dc.html), the canvas markup at approval time. The canvas is the source of truth if the two differ.
+- **Status:** The modern redesign was approved by the project owner on 2026-10-18 and replaces the first approved design ("the open ledger", in git history before this change).
+- **Canvas (live, editable):** https://claude.ai/artifact/FCJs8QR2Pp9VkjWsyBR3Nt. Boards "Modern: desktop" and "Modern: mobile (390px)". It's private: the owner shares it from the canvas's Share menu.
+- **Source snapshot:** [`landing-page.dc.html`](./landing-page.dc.html), the "Modern: desktop" board at approval time. The canvas is the source of truth if the two differ.
 - **Roadmap:** F2.6, the public landing page.
 
-## Concept: "the open ledger"
+## Concept: "the open courtyard"
 
-The page shows a campaign's money trail as its main image, because proof is what makes Amanah different. One bold element only: the large Arabic word أمانة in gold at the foot of the hero. Everything else is restrained.
+A light, open page (white and soft off-white) with deep green as the anchor colour and gold used sparingly. No gradients, and no shadow under every card. The Islamic character comes from two motifs used with restraint:
+
+- **The mihrab arch**, the same shape as the logo: the hero's "window", the step-number tiles and the witness icon tile.
+- **The eight-point star (khatam) lattice**, in thin gold lines: inside the hero arch and on the organisations panel only.
+
+أمانة appears twice: at the crown of the hero arch and beside the large wordmark in the footer.
 
 ## Tokens used
 
-| Role                                 | Value                                                                                                                                      |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Ground (hero, organisations section) | `#0f5132` (brand-900)                                                                                                                      |
-| Dark band (the cap, footer)          | `#161a20` (ink-900)                                                                                                                        |
-| Paper                                | `#f7f4ec` (sand-100), `#fbf9f4` (sand-50)                                                                                                  |
-| Accent (one, on dark grounds)        | `#e9c46a` (gold-500)                                                                                                                       |
-| Success and progress                 | `#146c43` (brand-700), tint `#d5ecdd`                                                                                                      |
-| Secondary text                       | `#4b5260` (ink-600)                                                                                                                        |
-| Type                                 | Schibsted Grotesk 400–800 (text and display), Reem Kufi 700 (Arabic word). **Pending a fonts ADR** against the system-font rule in ADR-006 |
+| Role                           | Token                                                                            |
+| ------------------------------ | -------------------------------------------------------------------------------- |
+| Page                           | white; section bands `mist-50`                                                   |
+| Headings                       | `brand-950`                                                                      |
+| Anchor (arch, buttons, panels) | `brand-900`; progress and success `brand-700`                                    |
+| Mint surfaces                  | `brand-150` (badge, photo card), `brand-300` (photo tile, outline border)        |
+| Accent                         | `gold-500`, sparingly: أمانة, the lattice, step 5, the organisations button      |
+| Dark                           | `ink-900` cap panel; `brand-950` footer                                          |
+| Text                           | `ink-900`, `ink-650` (nav, trust points), `ink-600` (body), `ink-500` (captions) |
+| Type                           | Schibsted Grotesk 400–800; Reem Kufi 700 for أمانة only (ADR-007)                |
 
 ## Sections (top to bottom)
 
-1. Header and nav (collapses to a menu button under about 760px).
-2. Hero: "Give with certainty. Follow every naira.", a one-sentence intro and the two original buttons. On wide screens the example campaign ledger sits beside it (₦500,000 target, three items at different stages, spent and balance held). On phones the ledger comes right after the hero, on sand.
-3. The أمانة signature and the meaning of the word, closing the hero at the bottom right. On phones the word is left out and the meaning sentence closes the hero.
-4. Why: "Generosity runs on trust. Trust needs proof."
-5. How it works: five steps, from verification to witness confirmation.
-6. The cap: "Never a kobo beyond the target." with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).
-7. Accountability: phone preview of a campaign page (items, receipt, evidence with upload time and place, witness confirmation).
-8. Who it's for: donors, organisations, witnesses, the Amanah team.
-9. For organisations: call to action, plus a note that it installs on any phone.
-10. Footer: production copy only.
+1. Header on white: logo, four section links, "Register your organisation" (outline) and "Give now".
+2. Hero: badge "Verified Islamic organisations in Nigeria", the headline, a one-sentence intro, "Browse campaigns" and "See how it works", three trust points. On the right, the arch window with أمانة, the example campaign card overlapping it, the "Witness confirmed delivery" tag and the meaning of Amānah underneath.
+3. Statement: "Most giving ends at the payment. On Amanah, it ends at the delivery."
+4. Accountability as a grid of cards: raised/spent/held, item by item, receipts, photos with time and place, the independent witness.
+5. How it works: five step cards with arch number tiles.
+6. The cap: the rule and a dark panel with the over-remaining dialog (₦300,000 entered, ₦200,000 offered).
+7. Who it's for: donors, organisations, witnesses, the Amanah team.
+8. For organisations: an inset green panel with the lattice.
+9. Footer: brand and "Browse campaigns", link columns (Give, Organisations, Trust), the large wordmark beside أمانة, and the legal line.
+
+## Responsive behaviour
+
+- **Phones (below 600px):** everything stacks to one column. The arch window follows the hero text and is shorter (420px); the example card overlaps its lower part. The hero buttons share one line from 380px. The lattice on the organisations panel is left out.
+- **600px to 900px:** cards in two columns. The section links collapse into the menu button below 900px.
+- **900px to 1180px** (including "desktop site" on a phone, about 980px): the desktop layout. The separate "Register your organisation" button and the witness tag appear from 1180px, so the header and the arch stay uncluttered.
+- **Above 1180px:** the full desktop design.
 
 ## Implementation notes
 
 - Copy is production copy. Never add internal, pilot or hackathon wording to public pages.
 - The example campaign is static content until live campaigns exist (F2.1, F3). It stays labelled "Example campaign".
-- Evidence shows the **upload (server) time** as the official time, labelled for donors as "Uploaded …". The phone's capture time only appears in the details and admin views (spec §7).
-- `[CONTACT EMAIL]` is a placeholder until the team provides one.
-
-## Responsive behaviour
-
-The canvas has three boards: Desktop (1440px), Mobile (390px) and "Desktop site on a phone" (980px, what a phone browser shows when the reader asks for the desktop site).
-
-- **Phones (below 768px):** the two hero buttons share one line ("Browse campaigns" pill, "See how it works" link, 16px). أمانة is left out of the hero and the meaning sentence sits close under the buttons. The menu button replaces the section links.
-- **768px to 1180px:** the section links stay on one line (15px, tighter gaps). "For organisations" is left out because "Register your organisation" goes to the same place; below 900px "The cap" is left out too.
-- **900px to 1180px:** the example campaign stays beside the headline and the five "How it works" steps share one row, so a 980px "desktop site" looks like the desktop page.
-- **Above 1180px:** the original desktop design, unchanged.
+- Evidence shows the **upload (server) time** as the official time, labelled for donors as "Uploaded …" (spec §7).
+- The design's footer "Privacy" link is left out until the privacy notice exists (F4.6).

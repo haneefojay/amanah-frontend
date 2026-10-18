@@ -1,66 +1,150 @@
-import { CampaignLedger } from "./campaign-ledger";
+import { ItemStatusBadge } from "@/components/ui/status-badges";
+import { ProgressBar } from "@/components/ui/progress-bar";
+import { formatNaira } from "@/lib/money";
 import { Container } from "./container";
+import { exampleCampaign } from "./example-campaign";
+import { CheckIcon, LockIcon, VerifiedIcon } from "./icons";
+import { KhatamPattern } from "./khatam-pattern";
 import { sectionIds } from "./nav-links";
 
-/**
- * Hero and the أمانة signature on the deep green ground. Starts the page's <main>.
- * On phones the example campaign is not in the hero: it follows it (PhoneExampleCampaign),
- * the buttons share one line, and أمانة is left out so the meaning sentence closes the hero.
- * From 900px to 1180px (for example "desktop site" on a phone, about 980px) the example
- * campaign stays beside the headline, as on desktop.
- */
+const trustPoints = [
+  "Fixed targets, never exceeded",
+  "Receipts for every purchase",
+  "Delivery confirmed by a witness",
+] as const;
+
+/** The example campaign card that overlaps the arch. Always labelled "Example campaign". */
+function ExampleCampaignCard() {
+  const c = exampleCampaign;
+  return (
+    <article
+      aria-labelledby="example-title"
+      className="relative mx-4 -mt-[120px] flex flex-col gap-4 rounded-[22px] border border-mist-200 bg-white p-[22px] text-ink-900 shadow-[0_24px_48px_-28px_rgba(15,42,29,0.55)] min-[600px]:absolute min-[600px]:bottom-[76px] min-[600px]:-left-16 min-[600px]:mx-0 min-[600px]:mt-0 min-[600px]:w-[360px] min-[900px]:max-[1180px]:-left-6"
+    >
+      <div className="flex items-center justify-between gap-2">
+        <span className="rounded-full bg-mist-100 px-2.5 py-1 text-xs font-semibold text-ink-600">
+          Example campaign
+        </span>
+        <span className="text-[13px] text-ink-500">{c.location}</span>
+      </div>
+      <div className="flex flex-col gap-1">
+        <h2 id="example-title" className="text-[19px] font-bold tracking-[-0.01em]">
+          {c.title}
+        </h2>
+        <span className="flex items-center gap-1.5 text-sm text-ink-600">
+          <VerifiedIcon size={15} strokeWidth={2.4} className="text-brand-700" />
+          {c.organisation}
+        </span>
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="text-[26px] font-extrabold tracking-[-0.02em]">
+            {formatNaira(c.raisedAmount)}
+          </span>
+          <span className="text-[13px] text-ink-500">of {formatNaira(c.targetAmount)}</span>
+        </div>
+        <ProgressBar
+          value={c.raisedAmount}
+          max={c.targetAmount}
+          label="Raised"
+          showLabel={false}
+          trackClassName="h-2 bg-brand-150"
+        />
+        <p className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-900">
+          <LockIcon size={14} strokeWidth={2.4} />
+          Target reached. Donations closed.
+        </p>
+      </div>
+      <ul aria-label="Items and their status" className="flex flex-col gap-2.5 text-sm">
+        {c.items.map((item) => (
+          <li key={item.name} className="flex items-center justify-between gap-2">
+            <span>{item.name}</span>
+            <ItemStatusBadge status={item.status} />
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+/** The arch window: a mihrab arch with the khatam lattice, أمانة at its crown, and the example. */
+function ArchWindow() {
+  return (
+    <div className="relative w-full max-w-[460px] justify-self-center min-[900px]:max-w-[500px] min-[900px]:justify-self-end">
+      <div className="relative h-[420px] overflow-hidden rounded-[999px_999px_32px_32px] bg-brand-900 min-[600px]:h-[600px]">
+        <KhatamPattern id="khatam-hero" className="inset-0" />
+        <div className="absolute inset-x-0 top-[86px] flex justify-center">
+          <span
+            lang="ar"
+            dir="rtl"
+            className="font-arabic-display text-[clamp(72px,8vw,116px)] leading-none font-bold text-gold-500"
+          >
+            أمانة
+          </span>
+        </div>
+      </div>
+      <ExampleCampaignCard />
+      <p className="mx-1 mt-3.5 text-sm leading-normal text-ink-500">
+        <strong className="text-ink-900">Amānah</strong>: the trust placed in your care, and the
+        duty to return it intact.
+      </p>
+      <div
+        aria-hidden="true"
+        className="absolute top-[300px] -right-5 hidden items-center gap-2.5 rounded-full border border-mist-200 bg-white py-2.5 pr-4 pl-2.5 text-sm font-semibold shadow-[0_16px_32px_-20px_rgba(15,42,29,0.5)] min-[1180px]:flex"
+      >
+        <span className="flex size-[30px] flex-none items-center justify-center rounded-full bg-brand-700 text-white">
+          <CheckIcon size={15} strokeWidth={3} />
+        </span>
+        Witness confirmed delivery
+      </div>
+    </div>
+  );
+}
+
+/** Hero on white: the promise on the left, the arch window on the right (below it on phones). */
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="overflow-hidden bg-brand-900 text-sand-100">
-      <Container className="flex flex-wrap items-start gap-[clamp(40px,5vw,56px)] pt-[clamp(24px,4vw,56px)] min-[900px]:max-[1180px]:flex-nowrap min-[900px]:max-[1180px]:gap-10 md:pb-10">
-        <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-7 pt-[clamp(0px,2vw,24px)] min-[900px]:max-[1180px]:flex-[1_1_0]">
-          <p className="text-[17px] text-sand-100/80">
-            Transparent giving to verified Islamic organisations in Nigeria
-          </p>
+    <section aria-labelledby="hero-title" className="bg-white">
+      <Container className="grid grid-cols-1 items-center gap-12 pt-[clamp(40px,6vw,88px)] pb-[clamp(56px,7vw,104px)] min-[900px]:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] min-[900px]:gap-[clamp(48px,6vw,88px)]">
+        <div className="flex min-w-0 flex-col gap-7">
+          <span className="inline-flex items-center gap-2 self-start rounded-full bg-brand-150 py-2 pr-3.5 pl-2.5 text-sm font-semibold text-brand-900">
+            <VerifiedIcon size={18} strokeWidth={2.4} className="text-brand-700" />
+            Verified Islamic organisations in Nigeria
+          </span>
           <h1
             id="hero-title"
-            className="text-[clamp(46px,6.4vw,88px)] leading-[0.98] font-extrabold tracking-[-0.035em] text-balance"
+            className="text-[clamp(44px,6.2vw,92px)] leading-[0.96] font-extrabold tracking-[-0.045em] text-brand-950"
           >
             Give with certainty. Follow every naira.
           </h1>
-          <p className="max-w-[34ch] text-[clamp(18px,1.6vw,20px)] leading-[1.55] text-sand-100/90">
+          <p className="max-w-[38ch] text-[clamp(18px,1.5vw,21px)] leading-[1.55] text-ink-600">
             Mosques, orphanages and community groups list exactly what they need. You give, then
             follow every naira to delivery.
           </p>
-          <div className="flex flex-nowrap items-center gap-3 md:flex-wrap md:gap-3.5">
+          <div className="flex flex-wrap items-center gap-3 min-[380px]:flex-nowrap min-[600px]:flex-wrap">
             <a
               href={`#${sectionIds.trail}`}
-              className="rounded-full bg-gold-500 px-5 py-3.5 text-base font-bold whitespace-nowrap text-ink-900 hover:bg-gold-300 md:px-7 md:py-4 md:text-[17px]"
+              className="rounded-full bg-brand-900 px-5 py-4 text-base font-bold whitespace-nowrap text-white hover:bg-brand-700 min-[600px]:px-[30px] min-[600px]:py-[17px] min-[600px]:text-[17px]"
             >
               Browse campaigns
             </a>
             <a
               href={`#${sectionIds.how}`}
-              className="border-b-2 border-sand-100/40 px-0.5 py-3.5 text-base font-semibold whitespace-nowrap text-sand-100 hover:border-sand-100 md:px-2 md:py-4 md:text-[17px]"
+              className="rounded-full bg-mist-100 px-3.5 py-4 text-base font-bold whitespace-nowrap text-brand-900 hover:bg-mist-200 min-[600px]:px-[22px] min-[600px]:py-[17px] min-[600px]:text-[17px]"
             >
               See how it works
             </a>
           </div>
+          <ul className="mt-2 flex flex-wrap gap-x-7 gap-y-3.5 border-t border-mist-200 pt-[22px] text-[15px] font-medium text-ink-650">
+            {trustPoints.map((point) => (
+              <li key={point} className="flex items-center gap-2">
+                <CheckIcon size={18} strokeWidth={2.6} className="text-brand-700" />
+                {point}
+              </li>
+            ))}
+          </ul>
         </div>
-        {/* Wide screens: beside the headline. Phones: after the hero (see LandingPage). */}
-        <CampaignLedger
-          headingId="ledger-title"
-          className="hidden min-[900px]:max-[1180px]:flex-[0_1_420px] md:flex"
-        />
-      </Container>
-
-      <Container className="flex items-end justify-between gap-x-10 gap-y-5 pt-7 md:pt-6">
-        <p className="mb-8 max-w-[40ch] min-w-0 flex-auto text-[clamp(14px,1.3vw,17px)] leading-[1.55] text-sand-100/85 md:mb-[clamp(18px,3vw,40px)]">
-          <strong className="font-bold text-sand-100">Amānah</strong> is the trust placed in your
-          care, and the duty to return it intact. Every campaign on this platform is held to it.
-        </p>
-        <span
-          lang="ar"
-          dir="rtl"
-          className="-mb-[0.16em] hidden flex-none font-arabic-display text-[clamp(84px,19vw,280px)] leading-[0.95] font-bold text-gold-500 md:block"
-        >
-          أمانة
-        </span>
+        <ArchWindow />
       </Container>
     </section>
   );

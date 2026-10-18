@@ -1,52 +1,46 @@
-import { cn } from "@/lib/cn";
 import { Container } from "./container";
 import { AmanahMark } from "./icons";
 import { MobileMenu } from "./mobile-menu";
 import { navLinks, sectionIds } from "./nav-links";
 
 /**
- * Narrower desktop widths (768–1180px, including "desktop site" on a phone) keep the links on
- * one line by dropping the ones that repeat elsewhere: "For organisations" (same place as the
- * register button) and, below 900px, "The cap".
+ * Top bar on white. From 900px the section links show inline; below that the menu button opens
+ * them. "Register your organisation" shows as its own button from 1180px (below that it lives in
+ * the menu and the "For organisations" link), so the bar always fits on one line.
  */
-const hiddenAtNarrowDesktop: Record<string, string> = {
-  [`#${sectionIds.organisations}`]: "max-[1180px]:hidden",
-  [`#${sectionIds.cap}`]: "max-[899px]:hidden",
-};
-
-/** Top bar: logo, section links (desktop) and the menu button (phones). */
 export function SiteHeader({ registerHref }: { registerHref: string }) {
   return (
-    <header className="relative bg-brand-900 text-sand-100">
-      <Container className="flex items-center justify-between gap-8 py-5">
-        <a href="#top" className="flex items-center gap-3 text-sand-100" aria-label="Amanah home">
-          <AmanahMark size={40} tone="light" />
-          <span className="text-2xl font-extrabold tracking-[-0.02em]">Amanah</span>
+    <header className="relative border-b border-mist-200 bg-white">
+      <Container className="flex items-center justify-between gap-6 py-[18px]">
+        <a href="#top" className="flex items-center gap-2.5 text-brand-900">
+          <AmanahMark size={36} tone="brand" />
+          <span className="text-[22px] font-extrabold tracking-[-0.02em]">Amanah</span>
         </a>
         <nav
           aria-label="Main"
-          className="hidden items-center gap-7 text-base font-medium whitespace-nowrap md:flex md:max-[1180px]:gap-5 md:max-[1180px]:text-[15px]"
+          className="hidden items-center gap-8 text-[15px] font-medium whitespace-nowrap text-ink-650 min-[900px]:flex"
         >
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "py-2.5 text-sand-100 hover:text-gold-300",
-                hiddenAtNarrowDesktop[link.href],
-              )}
-            >
+            <a key={link.href} href={link.href} className="py-2.5 hover:text-brand-700">
               {link.label}
             </a>
           ))}
+        </nav>
+        <div className="flex items-center gap-2.5">
           <a
             href={registerHref}
-            className="rounded-full bg-sand-100 px-5 py-3 font-semibold text-brand-900 hover:bg-white"
+            className="hidden rounded-full border-[1.5px] border-brand-300 px-[18px] py-[11px] text-[15px] font-semibold whitespace-nowrap text-brand-900 hover:border-brand-700 min-[1180px]:inline-flex"
           >
             Register your organisation
           </a>
-        </nav>
-        <MobileMenu registerHref={registerHref} />
+          <a
+            href={`#${sectionIds.trail}`}
+            className="rounded-full bg-brand-900 px-5 py-3 text-[15px] font-bold whitespace-nowrap text-white hover:bg-brand-700"
+          >
+            Give now
+          </a>
+          <MobileMenu registerHref={registerHref} />
+        </div>
       </Container>
     </header>
   );

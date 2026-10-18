@@ -11,58 +11,65 @@ describe("LandingPage", () => {
     );
   });
 
-  it("renders every section of the approved design", () => {
+  it("renders every section of the approved design, in order", () => {
     render(<LandingPage />);
-    // The example campaign renders twice: beside the headline (wide) and after the hero (phones).
-    expect(screen.getAllByRole("heading", { level: 2, name: "Ramadan food drive" })).toHaveLength(
-      2,
-    );
-    for (const name of [
-      "Generosity runs on trust. Trust needs proof.",
+    const names = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(names).toEqual([
+      "Ramadan food drive",
+      "Most giving ends at the payment. On Amanah, it ends at the delivery.",
+      "Every campaign comes with its receipts.",
       "From need to delivery, in the open",
       "Never a kobo beyond the target.",
-      "Every campaign comes with its receipts.",
       "Everyone in the chain of trust has a part",
       "Doing honest work? Let it show.",
+    ]);
+  });
+
+  it("shows the hero's three trust points", () => {
+    render(<LandingPage />);
+    for (const point of [
+      "Fixed targets, never exceeded",
+      "Receipts for every purchase",
+      "Delivery confirmed by a witness",
     ]) {
-      expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
-    }
-    expect(screen.getAllByRole("listitem").length).toBeGreaterThan(5);
-  });
-
-  it("formats every amount from kobo with the exact spec copy for a funded campaign", () => {
-    render(<LandingPage />);
-    const ledgers = screen.getAllByRole("article", { name: "Ramadan food drive" });
-    expect(ledgers).toHaveLength(2);
-    for (const ledger of ledgers) {
-      expect(within(ledger).getByText("₦500,000")).toBeInTheDocument();
-      expect(within(ledger).getByText("of ₦500,000 target")).toBeInTheDocument();
-      expect(within(ledger).getByText("₦420,000")).toBeInTheDocument();
-      expect(within(ledger).getAllByText("₦80,000")).toHaveLength(2); // dates item and balance held
-      expect(within(ledger).getByText("Target reached. Donations closed.")).toBeInTheDocument();
-      expect(within(ledger).getByRole("progressbar", { name: "Raised" })).toHaveAttribute(
-        "aria-valuenow",
-        "100",
-      );
-      expect(within(ledger).getByText("Example campaign")).toBeInTheDocument();
+      expect(screen.getByText(point)).toBeInTheDocument();
     }
   });
 
-  it("keeps the hero short: one-sentence intro and no extra line under the buttons", () => {
+  it("formats the example campaign from kobo, with the exact spec copy for a funded campaign", () => {
     render(<LandingPage />);
-    expect(
-      screen.getByText(
-        "Mosques, orphanages and community groups list exactly what they need. You give, then follow every naira to delivery.",
-      ),
-    ).toBeInTheDocument();
-    expect(screen.queryByText(/Verified organisations only/)).not.toBeInTheDocument();
+    const card = screen.getByRole("article", { name: "Ramadan food drive" });
+    expect(within(card).getByText("Example campaign")).toBeInTheDocument();
+    expect(within(card).getByText("₦500,000")).toBeInTheDocument();
+    expect(within(card).getByText("of ₦500,000")).toBeInTheDocument();
+    expect(within(card).getByText("Target reached. Donations closed.")).toBeInTheDocument();
+    expect(within(card).getByRole("progressbar", { name: "Raised" })).toHaveAttribute(
+      "aria-valuenow",
+      "100",
+    );
+    const items = within(card).getByRole("list", { name: "Items and their status" });
+    expect(within(items).getAllByRole("listitem")).toHaveLength(3);
   });
 
-  it("shows each layout's copy of the example campaign only at its own screen size", () => {
+  it("shows raised, spent and balance held that add up", () => {
     render(<LandingPage />);
-    const [wide, phone] = screen.getAllByRole("article", { name: "Ramadan food drive" });
-    expect(wide).toHaveClass("hidden", "md:flex");
-    expect(phone?.closest("section")).toHaveClass("md:hidden");
+    const section = screen.getByRole("region", { name: "Every campaign comes with its receipts." });
+    expect(within(section).getByText("₦500,000")).toBeInTheDocument();
+    expect(within(section).getByText("Spent").nextSibling).toHaveTextContent("₦420,000");
+    expect(within(section).getByText("Balance held").nextSibling).toHaveTextContent("₦80,000");
+  });
+
+  it("numbers the five steps in order", () => {
+    render(<LandingPage />);
+    const section = screen.getByRole("region", { name: "From need to delivery, in the open" });
+    const steps = within(section).getAllByRole("heading", { level: 3 });
+    expect(steps.map((s) => s.textContent)).toEqual([
+      "Verified first",
+      "Itemised needs",
+      "You give",
+      "Spending, with proof",
+      "A witness confirms",
+    ]);
   });
 
   it("describes the cap illustration in text for screen readers", () => {
@@ -79,19 +86,18 @@ describe("LandingPage", () => {
     }
   });
 
-  it("marks the Arabic signature as Arabic, right to left", () => {
+  it("marks أمانة as Arabic, right to left, in the hero arch and the footer", () => {
     render(<LandingPage />);
-    const word = screen.getByText("أمانة");
-    expect(word).toHaveAttribute("lang", "ar");
-    expect(word).toHaveAttribute("dir", "rtl");
+    const words = screen.getAllByText("أمانة");
+    expect(words).toHaveLength(2);
+    for (const word of words) {
+      expect(word).toHaveAttribute("lang", "ar");
+      expect(word).toHaveAttribute("dir", "rtl");
+    }
+    expect(screen.getByText(/the trust placed in your care/)).toBeInTheDocument();
   });
 
-  it("leaves the Arabic signature out of the phone hero", () => {
-    render(<LandingPage />);
-    expect(screen.getByText("أمانة")).toHaveClass("hidden", "md:block");
-  });
-
-  it("hides the contact button when no contact email is configured", () => {
+  it("hides the contact links when no contact email is configured", () => {
     render(<LandingPage contactEmail={undefined} />);
     expect(screen.queryByRole("link", { name: "Talk to the team" })).not.toBeInTheDocument();
     const sectionCta = within(
@@ -102,14 +108,21 @@ describe("LandingPage", () => {
 
   it("uses the contact email for registration and contact when configured", () => {
     render(<LandingPage contactEmail="team@example.org" />);
-    expect(screen.getByRole("link", { name: "Talk to the team" })).toHaveAttribute(
-      "href",
-      "mailto:team@example.org",
-    );
+    const talk = screen.getAllByRole("link", { name: "Talk to the team" });
+    expect(talk).toHaveLength(2); // the organisations panel and the footer
+    for (const link of talk) expect(link).toHaveAttribute("href", "mailto:team@example.org");
     const sectionCta = within(
       screen.getByRole("region", { name: "Doing honest work? Let it show." }),
     ).getByRole("link", { name: "Register your organisation" });
     expect(sectionCta.getAttribute("href")).toMatch(/^mailto:team@example\.org\?subject=/);
+  });
+
+  it("groups the footer links under Give, Organisations and Trust", () => {
+    render(<LandingPage />);
+    const footer = screen.getByRole("contentinfo");
+    for (const name of ["Give", "Organisations", "Trust"]) {
+      expect(within(footer).getByRole("navigation", { name })).toBeInTheDocument();
+    }
   });
 
   it("never shows internal or pilot wording on the public page", () => {

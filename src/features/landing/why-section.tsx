@@ -1,25 +1,21 @@
 import { Container } from "./container";
 
+/** One bold statement on soft off-white: why proof matters. */
 export function WhySection() {
   return (
-    <section aria-labelledby="why-title" className="bg-sand-100">
-      <Container className="flex flex-wrap gap-x-20 gap-y-10 py-[clamp(72px,10vw,120px)]">
+    <section aria-labelledby="why-title" className="bg-mist-50">
+      <Container className="flex flex-col gap-8 py-[clamp(72px,9vw,128px)]">
         <h2
           id="why-title"
-          className="flex-[1_1_420px] text-[clamp(34px,4vw,52px)] leading-[1.05] font-extrabold tracking-[-0.03em] text-balance text-brand-900"
+          className="max-w-[24ch] text-[clamp(30px,4.2vw,60px)] leading-[1.06] font-bold tracking-[-0.035em] text-brand-950"
         >
-          Generosity runs on trust. Trust needs proof.
+          Most giving ends at the payment. On Amanah, it ends at the delivery.
         </h2>
-        <div className="flex flex-[1_1_420px] flex-col gap-5 text-[19px] leading-[1.6] text-ink-700">
-          <p>
-            Most giving ends at the payment. Donors send money and hope it arrives. Organisations
-            doing honest work have no simple way to show where it went.
-          </p>
-          <p>
-            Amanah turns every campaign into an open record: what was needed, what was given, what
-            was bought, and who saw it delivered. Nothing to take on faith.
-          </p>
-        </div>
+        <p className="max-w-[56ch] text-[19px] leading-[1.6] text-ink-600">
+          Every campaign is an open record: what was needed, what was given, what was bought, and
+          who saw it delivered. Organisations doing honest work finally have a simple way to show
+          it.
+        </p>
       </Container>
     </section>
   );

@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { CloseIcon, MenuIcon } from "./icons";
 import { navLinks } from "./nav-links";
 
-/** Menu button and panel for narrow screens (below `md`). Desktop shows the links inline. */
+/** Menu button and panel below 900px. Wider screens show the links inline. */
 export function MobileMenu({ registerHref }: { registerHref: string }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -25,7 +25,7 @@ export function MobileMenu({ registerHref }: { registerHref: string }) {
   const close = () => setOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="min-[900px]:hidden">
       <button
         ref={buttonRef}
         type="button"
@@ -33,15 +33,15 @@ export function MobileMenu({ registerHref }: { registerHref: string }) {
         aria-controls={panelId}
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((v) => !v)}
-        className="flex size-12 items-center justify-center rounded-full border-[1.5px] border-sand-100/45 text-sand-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+        className="flex size-[46px] items-center justify-center rounded-full border-[1.5px] border-mist-300 bg-white text-ink-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
       >
-        {open ? <CloseIcon size={22} /> : <MenuIcon size={22} />}
+        {open ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
       </button>
       <nav
         id={panelId}
         aria-label="Main"
         hidden={!open}
-        className="absolute inset-x-0 top-full z-40 border-t border-sand-100/15 bg-brand-900 px-5 pt-2 pb-6 shadow-xl"
+        className="absolute inset-x-0 top-full z-40 border-b border-mist-200 bg-white px-5 pt-2 pb-6 shadow-[0_24px_48px_-28px_rgba(15,42,29,0.45)]"
       >
         <ul className="flex flex-col">
           {navLinks.map((link) => (
@@ -49,7 +49,7 @@ export function MobileMenu({ registerHref }: { registerHref: string }) {
               <a
                 href={link.href}
                 onClick={close}
-                className="block border-b border-sand-100/10 py-4 text-lg font-medium text-sand-100"
+                className="block border-b border-mist-200 py-4 text-lg font-medium text-ink-900"
               >
                 {link.label}
               </a>
@@ -59,7 +59,7 @@ export function MobileMenu({ registerHref }: { registerHref: string }) {
         <a
           href={registerHref}
           onClick={close}
-          className="mt-5 flex min-h-12 items-center justify-center rounded-full bg-sand-100 px-5 font-semibold text-brand-900"
+          className="mt-5 flex min-h-12 items-center justify-center rounded-full border-[1.5px] border-brand-300 px-5 font-semibold text-brand-900"
         >
           Register your organisation
         </a>

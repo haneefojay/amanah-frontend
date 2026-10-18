@@ -4,6 +4,8 @@ const markTones = {
   light: { tile: "fill-sand-100", arch: "stroke-brand-900", dot: "fill-gold-500" },
   /** Green tile, gold arch, sand light: for the footer and light grounds. */
   dark: { tile: "fill-brand-900", arch: "stroke-gold-500", dot: "fill-sand-100" },
+  /** Green tile, sand arch, gold light: the header on white. */
+  brand: { tile: "fill-brand-900", arch: "stroke-sand-100", dot: "fill-gold-500" },
 } as const;
 
 export function AmanahMark({

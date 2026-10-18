@@ -11,37 +11,25 @@ export type ExampleItem = {
   name: string;
   total: Kobo;
   status: ExampleItemStatus;
-  /** One-line trail note shown in the hero ledger. */
-  note: string;
 };
 
 /** The delivered item, referenced by the expense and evidence illustrations. */
 export const riceItem: ExampleItem = {
-  name: "Rice, 5 bags of 50 kg",
+  name: "Rice, 5 × 50 kg",
   total: 28_000_000,
   status: "DELIVERED",
-  note: "Receipt logged. Delivery confirmed by witness.",
 };
 
 const exampleItems: readonly ExampleItem[] = [
   riceItem,
-  {
-    name: "Cooking oil, 4 × 25 L",
-    total: 14_000_000,
-    status: "PURCHASED",
-    note: "Purchased. Awaiting witness.",
-  },
-  {
-    name: "Dates and sugar, 40 packs",
-    total: 8_000_000,
-    status: "NEEDED",
-    note: "Not yet purchased.",
-  },
+  { name: "Cooking oil, 4 × 25 L", total: 14_000_000, status: "PURCHASED" },
+  { name: "Dates and sugar, 40 packs", total: 8_000_000, status: "NEEDED" },
 ];
 
 export const exampleCampaign = {
   title: "Ramadan food drive",
-  organisation: "Verified mosque in Offa",
+  organisation: "Verified mosque",
+  location: "Offa, Kwara",
   targetAmount: 50_000_000,
   raisedAmount: 50_000_000,
   items: exampleItems,

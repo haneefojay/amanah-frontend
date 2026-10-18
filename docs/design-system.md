@@ -4,16 +4,19 @@ The approved landing page (`docs/design/landing-page/`) sets the visual language
 
 ## Colour tokens
 
-| Token                                         | Hex                                           | Use                                                                        |
-| --------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------- |
-| `brand-900`                                   | `#0f5132`                                     | Primary: hero and organisation grounds, primary buttons, headings on sand  |
-| `brand-700`                                   | `#146c43`                                     | Progress, success marks, focus ring                                        |
-| `brand-100` / `brand-50`                      | `#d5ecdd` / `#eef7f1`                         | Success tints, active nav                                                  |
-| `gold-500`                                    | `#e9c46a`                                     | The single accent: gold call to action, أمانة, highlights on dark grounds  |
-| `gold-100` / `gold-700` / `gold-800`          | `#f8ecc9` / `#b07d00` / `#6b4e00`             | "Purchased" and warning tints and text                                     |
-| `sand-50` to `sand-600`                       | `#fbf9f4` to `#c9c3b3`                        | Paper, cards, dividers, input borders                                      |
-| `ink-900` / `ink-700` / `ink-600` / `ink-400` | `#161a20` / `#2d333d` / `#4b5260` / `#8a8f98` | Text, from strongest to decorative (`ink-400` is never used for body text) |
-| `danger-600` / `danger-100` / `danger-700`    | `#b42318` / `#fee4e2` / `#912018`             | Errors, "Disputed", destructive actions                                    |
+| Token                                         | Hex                                           | Use                                                                                            |
+| --------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `brand-900`                                   | `#0f5132`                                     | Primary: hero and organisation grounds, primary buttons, headings on sand                      |
+| `brand-700`                                   | `#146c43`                                     | Progress, success marks, focus ring                                                            |
+| `brand-100` / `brand-50`                      | `#d5ecdd` / `#eef7f1`                         | Success tints, active nav                                                                      |
+| `gold-500`                                    | `#e9c46a`                                     | The single accent: gold call to action, أمانة, highlights on dark grounds                      |
+| `gold-100` / `gold-700` / `gold-800`          | `#f8ecc9` / `#b07d00` / `#6b4e00`             | "Purchased" and warning tints and text                                                         |
+| `brand-950` / `brand-150` / `brand-300`       | `#0f2a1d` / `#eaf4ee` / `#cfe6d8`             | Landing: headings and footer ground; mint card and badge; photo tile and outline button border |
+| `mist-50` to `mist-300`                       | `#f6f5f0` to `#e2e0d9`                        | Landing: off-white section bands, soft buttons, hairlines (on white)                           |
+| `ink-650` / `ink-500`                         | `#3a404a` / `#6a707a`                         | Landing: nav links and trust points; captions                                                  |
+| `sand-50` to `sand-600`                       | `#fbf9f4` to `#c9c3b3`                        | Paper, cards, dividers, input borders                                                          |
+| `ink-900` / `ink-700` / `ink-600` / `ink-400` | `#161a20` / `#2d333d` / `#4b5260` / `#8a8f98` | Text, from strongest to decorative (`ink-400` is never used for body text)                     |
+| `danger-600` / `danger-100` / `danger-700`    | `#b42318` / `#fee4e2` / `#912018`             | Errors, "Disputed", destructive actions                                                        |
 
 Semantic names for the components map onto these: `primary` = brand-900, `muted` = sand-200, `border` = sand-400, `input` = sand-500, `ring` = brand-700, `destructive` = danger-600.
 
