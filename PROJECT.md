@@ -44,6 +44,13 @@ Entry for the **AMETTSA Inter-Varsity Innovation Challenge** (AMETTSA 5.0 Annual
           ▲ dev and tests: MSW mock API (npm run mock:api)
 ```
 
+## Repositories
+
+| Part | Repository |
+| --- | --- |
+| Frontend (this repo) | https://github.com/haneefojay/amanah-frontend |
+| Backend | To be created after ADR-004 |
+
 ## Where things live
 
 | Path                      | Purpose                                                             |

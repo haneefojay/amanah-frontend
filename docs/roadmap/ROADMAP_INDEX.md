@@ -76,7 +76,7 @@ These are suggested dates. Adjust them here if the team changes them, and record
 | F0.2  | Test harness                            | P0  | Done          | Claude | 2026-10-18 | Vitest 5, RTL, MSW 3, Playwright (mobile and desktop)               |
 | F0.3  | PWA baseline                            | P0  | Done          | Claude | 2026-10-18 | Serwist (Turbopack), manifest, offline fallback, `useOffline`       |
 | F0.4  | API client, contract layer, mock API    | P0  | Done (mocked) | Claude | 2026-10-18 | Contract reconciliation waits on B0.3                               |
-| F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Workflow written. Activates when the repository is pushed to GitHub |
+| F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Remote set to haneefojay/amanah-frontend. Done after the first push shows green CI |
 | F0.6  | Hosting and preview deployments         | P1  | Not started   |        |            | Needs a hosting ADR                                                 |
 | F1.1  | Design tokens and typography            | P0  | In progress   | Claude | 2026-10-18 | Palette in `globals.css`. Docs page pending                         |
 | F1.2  | Core UI components                      | P0  | Not started   |        |            | Decide on shadcn/ui via an ADR                                      |

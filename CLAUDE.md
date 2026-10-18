@@ -11,6 +11,10 @@ Project memory and standing instructions for Claude on **Amanah**. Read this fir
 
 Amanah is a transparent Islamic donation platform (general donations only, never zakat or waqf) built for the AMETTSA Inter-Varsity Innovation Challenge. **Deadline: 1 November 2026.** Verified organisations publish itemised campaigns with a fixed target. Donations are hard-capped at the target using database reservations. Spending is shown publicly with receipts, geotagged evidence and witness confirmations. Spec: `docs/amanah-mvp-spec.md`. Overview: `PROJECT.md`.
 
+## Repository
+
+- Frontend: **https://github.com/haneefojay/amanah-frontend** (default branch `main`).
+
 ## Current architecture (as of 2026-10-18)
 
 - **This repository is the frontend:** Next.js 16.4 App Router, TypeScript 5.9 strict, Tailwind CSS v4, **PWA via Serwist** (`@serwist/turbopack`), TanStack Query, react-hook-form with Zod. See ADR-001, ADR-002 and ADR-006.
@@ -47,4 +51,4 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 
 - ADR-004 backend stack; spec decisions D8, D9 and D11; the convention date; the pilot organisation.
 - Whether to adopt shadcn/ui (F1.2) and the hosting provider (F0.6).
-- Pushing the repository to GitHub so CI (F0.5) runs.
+- First push to `haneefojay/amanah-frontend` so CI (F0.5) runs.

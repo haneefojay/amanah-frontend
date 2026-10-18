@@ -8,6 +8,10 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ## [Unreleased]
 
+### Changed
+
+- Set the git remote `origin` to https://github.com/haneefojay/amanah-frontend and recorded it in `CLAUDE.md` and `PROJECT.md` (F0.5).
+
 ## [0.1.0] - 2026-10-18
 
 Initial development environment and project documentation.
