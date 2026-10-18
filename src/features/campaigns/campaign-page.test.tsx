@@ -41,8 +41,8 @@ describe("CampaignPage", () => {
     for (const paragraph of base.description) {
       expect(screen.getByText(paragraph)).toBeInTheDocument();
     }
-    const table = screen.getByRole("table", { name: "Items this campaign will buy" });
-    expect(within(table).getByRole("rowheader", { name: "Rice, 50 kg bags" })).toBeInTheDocument();
+    const table = screen.getByRole("table", { name: /Items this campaign will buy/ });
+    expect(within(table).getByRole("rowheader", { name: /^Rice, 50 kg bags/ })).toBeInTheDocument();
     expect(within(table).getByText("Total, equal to the target")).toBeInTheDocument();
     await expectNoA11yViolations(container);
   });

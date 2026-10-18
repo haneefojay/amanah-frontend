@@ -71,15 +71,41 @@ export type OrganisationSummary = z.infer<typeof organisationSummary>;
 
 export const itemDisplayStatus = z.enum(["NEEDED", "PURCHASED", "DELIVERED", "DISPUTED"]);
 
-/** One thing the campaign buys. Items add up to the campaign target (spec §4.1). */
-export const campaignItem = z.object({
-  id: z.uuid(),
-  name: z.string().min(1),
-  quantity: z.number().int().positive(),
-  unitCost: kobo,
-  totalCost: kobo,
-  status: itemDisplayStatus,
-});
+/**
+ * The independent witness's word on one item (spec §7, B9.2). Witnesses are named publicly.
+ * A dispute always carries the witness's comment.
+ */
+export const witnessConfirmation = z
+  .object({
+    status: z.enum(["CONFIRMED", "DISPUTED"]),
+    witnessName: z.string().min(1),
+    confirmedAt: z.iso.datetime(),
+    comment: z.string().min(1).nullable(),
+  })
+  .refine((c) => c.status === "CONFIRMED" || c.comment !== null, {
+    message: "A dispute needs the witness's comment",
+    path: ["comment"],
+  });
+export type WitnessConfirmation = z.infer<typeof witnessConfirmation>;
+
+/**
+ * One thing the campaign buys. Items add up to the campaign target (spec §4.1). A disputed item
+ * is never shown as delivered: its status and its confirmation must agree.
+ */
+export const campaignItem = z
+  .object({
+    id: z.uuid(),
+    name: z.string().min(1),
+    quantity: z.number().int().positive(),
+    unitCost: kobo,
+    totalCost: kobo,
+    status: itemDisplayStatus,
+    confirmation: witnessConfirmation.nullable(),
+  })
+  .refine((item) => (item.status === "DISPUTED") === (item.confirmation?.status === "DISPUTED"), {
+    message: "Disputed items and disputed confirmations must agree",
+    path: ["status"],
+  });
 export type CampaignItem = z.infer<typeof campaignItem>;
 
 /** A public campaign with its story and items (GET /api/campaigns/:slug, B5.2). */

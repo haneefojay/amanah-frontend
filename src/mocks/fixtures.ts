@@ -252,7 +252,28 @@ export const organisations: OrganisationSummary[] = organisationSeeds.map(
   },
 );
 
-type ItemSeed = [name: string, quantity: number, unitNaira: number, status: CampaignItem["status"]];
+/** Mock witnesses, named publicly as the design requires (spec §3: independent of the organisation). */
+const witnesses = {
+  offa: "Ustadh Ibrahim Yusuf",
+  ilorin: "Alhaja Rukayat Adebayo",
+  ogbomoso: "Mallam Sulaiman Oyewole",
+} as const;
+
+type ConfirmationSeed = [
+  status: "CONFIRMED" | "DISPUTED",
+  witness: string,
+  at: string,
+  comment?: string,
+];
+type ItemSeed = [
+  name: string,
+  quantity: number,
+  unitNaira: number,
+  status: CampaignItem["status"],
+  confirmation?: ConfirmationSeed,
+];
+
+const confirmed = (witness: string, at: string): ConfirmationSeed => ["CONFIRMED", witness, at];
 
 const story: Record<string, { purpose: string; description: string[]; items: ItemSeed[] }> = {
   "ramadan-food-drive-offa": {
@@ -262,7 +283,13 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "Each pack holds rice, cooking oil, dates and sugar for a family of six. Packs are handed out after Jumu’ah on the last two Fridays of the month, and a witness from the community confirms each delivery.",
     ],
     items: [
-      ["Rice, 50 kg bags", 5, 56_000, "PURCHASED"],
+      [
+        "Rice, 50 kg bags",
+        5,
+        56_000,
+        "DELIVERED",
+        confirmed(witnesses.offa, "2026-10-14T15:30:00Z"),
+      ],
       ["Cooking oil, 25 L kegs", 4, 30_000, "NEEDED"],
       ["Dates and sugar packs", 40, 2_500, "NEEDED"],
     ],
@@ -274,9 +301,32 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "Supplies are bought in one order from a local supplier and handed out at the home, with a witness present.",
     ],
     items: [
-      ["School uniforms", 40, 12_000, "PURCHASED"],
-      ["Exercise books", 400, 800, "PURCHASED"],
-      ["School bags", 40, 10_000, "NEEDED"],
+      [
+        "School uniforms",
+        40,
+        12_000,
+        "DELIVERED",
+        confirmed(witnesses.ilorin, "2026-10-13T11:00:00Z"),
+      ],
+      [
+        "Exercise books",
+        400,
+        800,
+        "DELIVERED",
+        confirmed(witnesses.ilorin, "2026-10-13T11:05:00Z"),
+      ],
+      [
+        "School bags",
+        40,
+        10_000,
+        "DISPUTED",
+        [
+          "DISPUTED",
+          witnesses.ilorin,
+          "2026-10-15T10:20:00Z",
+          "Only 24 of the 30 bags bought so far reached the home. I have asked the organisation to show where the other 6 are.",
+        ],
+      ],
     ],
   },
   "borehole-islamiyya-school": {
@@ -285,7 +335,13 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "Pupils and teachers walk to a shared well that runs low in the dry season. A borehole on the school grounds would serve about 300 pupils and the families nearby.",
     ],
     items: [
-      ["Drilling and casing", 1, 450_000, "PURCHASED"],
+      [
+        "Drilling and casing",
+        1,
+        450_000,
+        "DELIVERED",
+        confirmed(witnesses.ogbomoso, "2026-10-12T12:00:00Z"),
+      ],
       ["Submersible pump", 1, 250_000, "PURCHASED"],
       ["Tank and stand", 1, 150_000, "PURCHASED"],
     ],
@@ -317,7 +373,7 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "A storm tore sheets off the roof of the community mosque and its Qur’an school. The campaign closed below its target; the funds raised are used for the repairs listed below.",
     ],
     items: [
-      ["Roofing sheets", 60, 9_000, "PURCHASED"],
+      ["Roofing sheets", 60, 9_000, "DELIVERED"],
       ["Timber and labour", 1, 360_000, "NEEDED"],
     ],
   },
@@ -327,8 +383,8 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "The women’s section fills up every Jumu’ah and the old mats are worn through. The new mats are bought from a weaver in Offa.",
     ],
     items: [
-      ["Prayer mats", 45, 5_000, "PURCHASED"],
-      ["Underlay rolls", 3, 15_000, "PURCHASED"],
+      ["Prayer mats", 45, 5_000, "DELIVERED", confirmed(witnesses.offa, "2026-10-09T14:00:00Z")],
+      ["Underlay rolls", 3, 15_000, "DELIVERED", confirmed(witnesses.offa, "2026-10-09T14:05:00Z")],
     ],
   },
   "clinic-medicines-ilorin": {
@@ -337,8 +393,20 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
       "The clinic ran short of basic medicines. Everything below was bought, delivered and confirmed by a witness.",
     ],
     items: [
-      ["Antimalarial courses", 100, 1_500, "DELIVERED"],
-      ["ORS and zinc packs", 100, 1_000, "DELIVERED"],
+      [
+        "Antimalarial courses",
+        100,
+        1_500,
+        "DELIVERED",
+        confirmed(witnesses.ilorin, "2026-09-28T09:40:00Z"),
+      ],
+      [
+        "ORS and zinc packs",
+        100,
+        1_000,
+        "DELIVERED",
+        confirmed(witnesses.ilorin, "2026-09-28T09:45:00Z"),
+      ],
     ],
   },
   "winter-blankets-offa": {
@@ -346,7 +414,9 @@ const story: Record<string, { purpose: string; description: string[]; items: Ite
     description: [
       "Nights get cold in Offa during the harmattan. Blankets were handed out after Jumu’ah and confirmed by a witness.",
     ],
-    items: [["Blankets", 60, 3_000, "DELIVERED"]],
+    items: [
+      ["Blankets", 60, 3_000, "DELIVERED", confirmed(witnesses.offa, "2026-09-20T13:15:00Z")],
+    ],
   },
 };
 
@@ -360,13 +430,21 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
       description: entry.description,
       publishedAt: new Date(Date.UTC(2026, 9, 10 - index, 9)).toISOString(),
       endsAt: null,
-      items: entry.items.map(([name, quantity, unitNaira, status], n) => ({
+      items: entry.items.map(([name, quantity, unitNaira, status, confirmation], n) => ({
         id: `9c4d1e7a-2b3f-4a50-8d61-0e1f2a3b4c${String(index * 10 + n).padStart(2, "0")}`,
         name,
         quantity,
         unitCost: unitNaira * 100,
         totalCost: quantity * unitNaira * 100,
         status,
+        confirmation: confirmation
+          ? {
+              status: confirmation[0],
+              witnessName: confirmation[1],
+              confirmedAt: confirmation[2],
+              comment: confirmation[3] ?? null,
+            }
+          : null,
       })),
       organisation: organisations.find((o) => o.id === c.organisationId)!,
     };
