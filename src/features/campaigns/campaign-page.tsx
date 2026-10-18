@@ -2,8 +2,14 @@ import { ChevronLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { CampaignStatusBadge, VerifiedBadge } from "@/components/ui/status-badges";
-import { AccountabilitySection } from "@/features/accountability/accountability-section";
+import { VerifiedBadge } from "@/components/ui/status-badges";
+import {
+  LiveAccountability,
+  LiveCampaign,
+  LiveCampaignItems,
+  LiveFundingPanel,
+  LiveStatusBadge,
+} from "@/features/accountability/live-campaign";
 import { Container } from "@/features/landing/container";
 import { VerifiedIcon } from "@/features/landing/icons";
 import { sectionIds } from "@/features/landing/nav-links";
@@ -11,8 +17,6 @@ import type { CampaignDetail } from "@/lib/api/schemas";
 import { formatDate, formatMonth } from "@/lib/date";
 import { formatNaira } from "@/lib/money";
 import { CoverFallback } from "./campaign-card";
-import { CampaignItems } from "./campaign-items";
-import { FundingPanel } from "./funding-panel";
 
 function H2({ id, children }: { id: string; children: ReactNode }) {
   return (
@@ -47,7 +51,7 @@ const card = "flex flex-col gap-4 rounded-3xl border border-mist-200 bg-white p-
 export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
   const org = c.organisation;
   return (
-    <>
+    <LiveCampaign initial={c}>
       <Container className="flex flex-col gap-6 pt-6 pb-[clamp(64px,8vw,112px)]">
         <Link
           href="/campaigns"
@@ -77,7 +81,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
           <div className="flex min-w-0 flex-col gap-5">
             <div className="flex flex-col gap-3.5">
               <div className="flex flex-wrap items-center gap-2">
-                <CampaignStatusBadge status={c.status} />
+                <LiveStatusBadge />
                 <span className="rounded-full bg-mist-100 px-[11px] py-[5px] text-[13px] font-semibold text-ink-700">
                   {c.city}, {c.state}
                 </span>
@@ -96,7 +100,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
                 </span>
               </Link>
             </div>
-            <FundingPanel campaign={c} />
+            <LiveFundingPanel />
           </div>
         </div>
 
@@ -133,7 +137,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
                   Each item has a fixed cost. Together they make the target.
                 </p>
               </div>
-              <CampaignItems items={c.items} target={c.targetAmount} />
+              <LiveCampaignItems />
             </section>
           </article>
 
@@ -195,7 +199,7 @@ export function CampaignPage({ campaign: c }: { campaign: CampaignDetail }) {
           </aside>
         </div>
       </Container>
-      <AccountabilitySection campaign={c} />
-    </>
+      <LiveAccountability />
+    </LiveCampaign>
   );
 }

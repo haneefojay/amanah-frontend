@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { toast } from "sonner";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import type { CampaignDetail } from "@/lib/api/schemas";
 import { campaignDetails } from "@/mocks/fixtures";
 import { expectNoA11yViolations } from "@/test/axe";
+import { renderWithProviders } from "@/test/render";
 import { CampaignPage } from "./campaign-page";
 
 const base = campaignDetails["ramadan-food-drive-offa"]!;
@@ -23,7 +24,7 @@ describe("fixtures", () => {
 
 describe("CampaignPage", () => {
   it("shows the story, the funding numbers and the items of a live campaign", async () => {
-    const { container } = render(<CampaignPage campaign={base} />);
+    const { container } = renderWithProviders(<CampaignPage campaign={base} />);
     expect(screen.getByRole("heading", { level: 1, name: "Ramadan food drive" })).toBeVisible();
     expect(screen.getByText("Live")).toBeInTheDocument();
     expect(screen.getAllByText("Offa, Kwara").length).toBeGreaterThan(0);
@@ -48,20 +49,20 @@ describe("CampaignPage", () => {
   });
 
   it("ends with where the money went (F3)", () => {
-    render(<CampaignPage campaign={base} />);
+    renderWithProviders(<CampaignPage campaign={base} />);
     const section = screen.getByRole("region", { name: "Where the money went" });
     expect(within(section).getByRole("heading", { name: "Expenses" })).toBeInTheDocument();
   });
 
   it("has a give button for a live campaign that is not wired up yet", () => {
-    render(<CampaignPage campaign={base} />);
+    renderWithProviders(<CampaignPage campaign={base} />);
     const give = screen.getByRole("button", { name: /Give to this campaign/ });
     expect(give).toHaveAttribute("type", "button");
     expect(give).not.toBeDisabled();
   });
 
   it("describes the organisation and links to its profile", () => {
-    render(<CampaignPage campaign={base} />);
+    renderWithProviders(<CampaignPage campaign={base} />);
     const aside = screen.getByRole("complementary", { name: "Organisation and campaign details" });
     expect(
       within(aside).getByRole("heading", { name: "Central Mosque, Offa" }),
@@ -82,7 +83,7 @@ describe("CampaignPage", () => {
   });
 
   it("closes the funding panel when the target is reached", () => {
-    render(
+    renderWithProviders(
       <CampaignPage
         campaign={make({ status: "FUNDED", raisedAmount: 50_000_000, availableAmount: 0 })}
       />,
@@ -94,7 +95,9 @@ describe("CampaignPage", () => {
   });
 
   it("says pending payments hold the rest when nothing is left to give", () => {
-    render(<CampaignPage campaign={make({ raisedAmount: 38_000_000, availableAmount: 0 })} />);
+    renderWithProviders(
+      <CampaignPage campaign={make({ raisedAmount: 38_000_000, availableAmount: 0 })} />,
+    );
     expect(
       screen.getByText("Target nearly reached. Pending payments are being processed."),
     ).toBeInTheDocument();
@@ -102,7 +105,7 @@ describe("CampaignPage", () => {
   });
 
   it("explains a closed campaign with the spec wording", () => {
-    render(<CampaignPage campaign={make({ status: "CLOSED", availableAmount: 0 })} />);
+    renderWithProviders(<CampaignPage campaign={make({ status: "CLOSED", availableAmount: 0 })} />);
     expect(screen.getAllByText("Closed").length).toBeGreaterThan(0);
     expect(
       screen.getByText(
@@ -113,7 +116,7 @@ describe("CampaignPage", () => {
   });
 
   it("explains a completed campaign with the spec wording", () => {
-    render(
+    renderWithProviders(
       <CampaignPage
         campaign={make({ status: "COMPLETED", raisedAmount: 50_000_000, availableAmount: 0 })}
       />,
@@ -125,7 +128,7 @@ describe("CampaignPage", () => {
 
   it("copes with a very long title and no cover photo", async () => {
     const long = campaignDetails["mosque-roof-repair-oke-ode"]!;
-    const { container } = render(
+    const { container } = renderWithProviders(
       <CampaignPage campaign={{ ...long, coverImageUrl: null, expenses: [], evidence: [] }} />,
     );
     expect(screen.getByRole("heading", { level: 1, name: long.title })).toBeInTheDocument();
@@ -134,7 +137,7 @@ describe("CampaignPage", () => {
   });
 
   it("shows a message instead of an empty table when there are no items", () => {
-    render(<CampaignPage campaign={make({ items: [] })} />);
+    renderWithProviders(<CampaignPage campaign={make({ items: [] })} />);
     expect(screen.queryByRole("table", { name: /Items this campaign will buy/ })).toBeNull();
     expect(screen.getByText("The organisation hasn’t listed any items yet.")).toBeInTheDocument();
   });
@@ -150,7 +153,7 @@ describe("ShareButton", () => {
   it("opens the phone share sheet when there is one", async () => {
     const share = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, "share", { value: share, configurable: true });
-    render(<CampaignPage campaign={base} />);
+    renderWithProviders(<CampaignPage campaign={base} />);
     await userEvent.click(screen.getByRole("button", { name: "Share this campaign" }));
     expect(share).toHaveBeenCalledWith(
       expect.objectContaining({ title: "Ramadan food drive", url: expect.stringMatching(/^http/) }),
@@ -159,7 +162,7 @@ describe("ShareButton", () => {
 
   it("copies the link and says so where there is no share sheet", async () => {
     const user = userEvent.setup();
-    render(
+    renderWithProviders(
       <>
         <CampaignPage campaign={base} />
         <Toaster />
@@ -179,7 +182,7 @@ describe("ShareButton", () => {
       configurable: true,
     });
     const user = userEvent.setup();
-    render(
+    renderWithProviders(
       <>
         <CampaignPage campaign={base} />
         <Toaster />

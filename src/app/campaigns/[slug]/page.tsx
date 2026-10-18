@@ -3,7 +3,10 @@ import { CampaignPage } from "@/features/campaigns/campaign-page";
 import { PublicShell } from "@/features/public/public-shell";
 import { api, ApiError } from "@/lib/api/client";
 
-/** Public campaign page (F2.3). Always loads fresh data, because the amounts change as people give. */
+/**
+ * Public campaign page (F2.3). Always loads fresh data, because the amounts change as people give;
+ * the page then keeps itself up to date in the browser (F3.7).
+ */
 export default async function CampaignRoute({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const campaign = await api

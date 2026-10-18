@@ -101,3 +101,30 @@ test.describe("Spent and held (F3.5)", () => {
     }
   });
 });
+
+test.describe("Live refresh (F3.7)", () => {
+  // Requests that go through the service worker can't be intercepted, so this test blocks it.
+  // The worker passes /api/* straight to the network anyway (NetworkOnly, ADR-002).
+  test.use({ serviceWorkers: "block" });
+
+  test("the page shows a new gift without a reload", async ({ page }) => {
+    // The server renders the page; afterwards the browser polls the API. Simulate a donation
+    // confirmed elsewhere by changing what the poll returns.
+    await page.route("**/api/campaigns/ramadan-food-drive-offa", async (route) => {
+      const response = await route.fetch();
+      const body = await response.json();
+      body.data.raisedAmount = 35_000_000;
+      body.data.availableAmount = 15_000_000;
+      await route.fulfill({ response, json: body });
+    });
+    await page.goto("/campaigns/ramadan-food-drive-offa");
+    const funding = page.getByRole("region", { name: "Funding" });
+    await expect(funding).toContainText("₦300,000");
+    await expect(page.getByRole("status").filter({ hasText: "Updated just now" })).toBeVisible();
+    await expect(funding).toContainText("₦350,000", { timeout: 25_000 });
+    await expect(funding).toContainText("Up to ₦150,000 can be given");
+    await expect(page.getByRole("region", { name: "Spent and held" })).toContainText(
+      "Of ₦350,000 raised so far",
+    );
+  });
+});
