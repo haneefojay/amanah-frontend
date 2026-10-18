@@ -10,6 +10,7 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Added
 
+- `/phase` command (`.claude/commands/phase.md`): `/phase F2` or `/phase F2.3` makes a new session read the project rules, roadmap entries, spec sections and ADRs, then present a plan and questions, and wait for approval before building, claiming and closing items per the workflow.
 - **F1.2 Core UI components** on shadcn/ui (ADR-009): Button (pills, 44px, `gold` variant, `loading`), Input, Textarea, Select, Checkbox, Switch, Label, Field set, Card, Badge (status tones), Dialog, Sheet, Tabs, Skeleton, Separator, Alert, Spinner, Empty, and the Sonner Toaster (mounted in Providers). Added EmptyState and ErrorState. `components.json` is set up for the shadcn CLI. There's a development-only showcase at `/dev/ui`.
 - **F1.3 Money and status components:** MoneyAmount (`<data value={kobo}>`), NairaInput with `useNairaInput` and `validateNairaText`, CampaignStatusBadge, ItemStatusBadge and VerifiedBadge. Wording and the exact spec sentences live in `src/lib/status.ts`.
 - **F1.1:** `docs/design-system.md`, new semantic tokens mapped to the palette, danger tints, `src/lib/brand.ts`, and a test that fails on raw hex colours in components and pages.

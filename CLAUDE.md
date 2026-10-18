@@ -47,6 +47,8 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 - Keep **`CHANGELOG.md`** updated on every change; it is the project's running memory.
 - Keep **`docs/roadmap/ROADMAP_INDEX.md`** updated as the status source of truth.
 - Skills for Claude live in **`.claude/skills/`**. **Load the `amanah` skill for any work in this repo**; its rules beat every other skill. Its `references/design-skills-guide.md` says which design skill (impeccable, ui-ux-pro-max, taste, Emil Kowalski skills, agent-browser) to use when.
+- **Design first:** new screens and visual changes are designed and approved on the design canvas before any code is written. Public pages use production wording only (no hackathon, pilot or test-mode text).
+- **`/phase <ID>`** (`.claude/commands/phase.md`) starts a roadmap phase (`F2`) or item (`F2.3`): read the project files, plan, ask questions and wait for approval before building.
 - **Commits and pull requests carry no Claude attribution:** no `Co-Authored-By: Claude` or `Claude-Session` trailers and no "Generated with Claude Code" lines. The author is the repository's configured git user (Ojutalayo Haneef Abiola).
 
 ## Open items awaiting the owner
