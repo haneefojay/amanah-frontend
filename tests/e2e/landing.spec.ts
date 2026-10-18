@@ -1,5 +1,5 @@
-import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
+import { expectNoA11yViolations } from "./helpers/a11y";
 
 /** F2.6: public landing page. Runs on the mobile (Pixel 7) and desktop projects. */
 
@@ -41,8 +41,7 @@ test.describe("Landing page (F2.6)", () => {
 
   test("has no automatically detectable accessibility violations", async ({ page }) => {
     await page.goto("/");
-    const results = await new AxeBuilder({ page }).analyze();
-    expect(results.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    await expectNoA11yViolations(page);
   });
 
   test("never shows out-of-scope or internal wording", async ({ page }) => {

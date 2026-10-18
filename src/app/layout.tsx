@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { OfflineBanner } from "@/components/pwa/offline-banner";
+import { brandColors } from "@/lib/brand";
 import { reemKufiAmanah, schibstedGrotesk } from "./fonts";
 import { Providers } from "./providers";
 import "./globals.css";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f5132",
+  themeColor: brandColors.brand900,
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

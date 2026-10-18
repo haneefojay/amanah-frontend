@@ -40,3 +40,18 @@ export type CampaignListResponse = z.infer<typeof campaignListResponse>;
 export const apiErrorBody = z.object({
   error: z.object({ code: z.string(), message: z.string() }),
 });
+
+export const userRole = z.enum(["ORG_ADMIN", "WITNESS", "PLATFORM_ADMIN"]);
+export type UserRole = z.infer<typeof userRole>;
+
+/** The signed-in staff member (GET /api/me, BACKEND_ROADMAP B2.3). Donors are guests. */
+export const currentUser = z.object({
+  id: z.uuid(),
+  name: z.string().min(1),
+  email: z.email(),
+  role: userRole,
+  organisations: z.array(z.object({ id: z.uuid(), name: z.string().min(1) })),
+});
+export type CurrentUser = z.infer<typeof currentUser>;
+
+export const currentUserResponse = z.object({ data: currentUser });

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { brandColors } from "@/lib/brand";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -11,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#f7f4ec",
-    theme_color: "#0f5132",
+    background_color: brandColors.sand100,
+    theme_color: brandColors.brand900,
     lang: "en-NG",
     categories: ["finance", "lifestyle", "social"],
     icons: [

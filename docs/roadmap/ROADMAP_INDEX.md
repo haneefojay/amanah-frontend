@@ -45,7 +45,7 @@
 
 ## 2. Current focus
 
-- **Now:** F0.6 (connect the repository to Vercel) to publish F2.6, which is built and tested. Then F1 (design system and app shell). B0.1 (backend stack decision, ADR-004) is waiting on the team.
+- **Now:** F1 is done. Next: F2.1 to F2.3 and F3 (public campaign pages and the accountability section) against mocks. F0.6 (Vercel) is still needed to publish F2.6. B0.1 (backend stack decision, ADR-004) is waiting on the team.
 - **Next:** F2 and F3 (public pages and the accountability section) against mocks, so the core feature is demonstrable early.
 - **Decisions needed from the team:** ADR-004 (backend stack), spec open decisions D8, D9 and D11, the convention date, and the pilot organisation.
 
@@ -78,12 +78,12 @@ These are suggested dates. Adjust them here if the team changes them, and record
 | F0.4  | API client, contract layer, mock API    | P0  | Done (mocked) | Claude | 2026-10-18 | Contract reconciliation waits on B0.3                                                                                                      |
 | F0.5  | Continuous integration                  | P0  | In progress   | Claude | 2026-10-18 | Remote set to haneefojay/amanah-frontend. Done after the first push shows green CI                                                         |
 | F0.6  | Hosting and preview deployments         | P0  | Not started   |        |            | Raised to P0: the landing page needs a public link. Vercel (ADR-008). Owner to connect the repository                                      |
-| F1.1  | Design tokens and typography            | P0  | In progress   | Claude | 2026-10-18 | Palette extended for the landing page. Fonts per ADR-007 are live. Docs page pending                                                       |
-| F1.2  | Core UI components                      | P0  | Not started   |        |            | Decide on shadcn/ui via an ADR                                                                                                             |
-| F1.3  | Money and status components             | P0  | In progress   | Claude | 2026-10-18 | `ProgressBar` done                                                                                                                         |
-| F1.4  | App shell and navigation                | P0  | Not started   |        |            |                                                                                                                                            |
-| F1.5  | Error, not-found and loading boundaries | P0  | Not started   |        |            |                                                                                                                                            |
-| F1.6  | Accessibility test baseline             | P1  | Not started   |        |            |                                                                                                                                            |
+| F1.1  | Design tokens and typography            | P0  | Done          | Claude | 2026-10-18 | docs/design-system.md; raw-hex guard test; fonts per ADR-007                                                                               |
+| F1.2  | Core UI components                      | P0  | Done          | Claude | 2026-10-18 | shadcn/ui (ADR-009), adapted to tokens; showcase at /dev/ui (dev only)                                                                     |
+| F1.3  | Money and status components             | P0  | Done          | Claude | 2026-10-18 | MoneyAmount, NairaInput + useNairaInput, status badges, exact spec copy in src/lib/status.ts                                               |
+| F1.4  | App shell and navigation                | P0  | Done (mocked) | Claude | 2026-10-18 | DashboardShell, role nav, /api/me mocked; role from route until F5.2 / B2.3                                                                |
+| F1.5  | Error, not-found and loading boundaries | P0  | Done          | Claude | 2026-10-18 | not-found, error, global-error, staff loading; unknown staff paths 404                                                                     |
+| F1.6  | Accessibility test baseline             | P1  | Done          | Claude | 2026-10-18 | src/test/axe.ts (components) and tests/e2e/helpers/a11y.ts (pages)                                                                         |
 | F2.1  | Campaign list / home                    | P0  | Not started   |        |            |                                                                                                                                            |
 | F2.2  | Campaign card                           | P0  | Not started   |        |            |                                                                                                                                            |
 | F2.3  | Campaign page shell                     | P0  | Not started   |        |            |                                                                                                                                            |
@@ -229,6 +229,7 @@ Defaults from spec §11 are assumed until the team decides. When one is decided,
 
 | Date       | Change                                                                               | By     |
 | ---------- | ------------------------------------------------------------------------------------ | ------ |
+| 2026-10-18 | F1.1 to F1.6 complete (F1.4 mocked until auth). ADR-009 shadcn/ui.                   | Claude |
 | 2026-10-18 | F2.6 landing page built and tested; waiting on deployment.                           | Claude |
 | 2026-10-18 | Added F2.6 public landing page (design approved). Raised F0.6 hosting to P0.         | Claude |
 | 2026-10-18 | Roadmaps created from the MVP spec. F0.1 to F0.4 completed during environment setup. | Claude |

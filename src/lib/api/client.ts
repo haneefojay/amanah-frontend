@@ -1,6 +1,6 @@
 import type { z } from "zod";
 import { publicEnv } from "@/lib/env";
-import { apiErrorBody, campaignListResponse } from "./schemas";
+import { apiErrorBody, campaignListResponse, currentUserResponse } from "./schemas";
 
 export class ApiError extends Error {
   constructor(
@@ -53,4 +53,5 @@ export async function apiFetch<T extends z.ZodType>(
 
 export const api = {
   listCampaigns: () => apiFetch("/api/campaigns", campaignListResponse),
+  getMe: () => apiFetch("/api/me", currentUserResponse),
 };

@@ -17,7 +17,7 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 
 ## Current architecture (as of 2026-10-18)
 
-- **This repository is the frontend:** Next.js 16.4 App Router, TypeScript 5.9 strict, Tailwind CSS v4, **PWA via Serwist** (`@serwist/turbopack`), TanStack Query, react-hook-form with Zod. See ADR-001, ADR-002 and ADR-006.
+- **This repository is the frontend:** Next.js 16.4 App Router, TypeScript 5.9 strict, Tailwind CSS v4, **PWA via Serwist** (`@serwist/turbopack`), TanStack Query, react-hook-form with Zod, **shadcn/ui components** in `src/components/ui` (ADR-009). See ADR-001, ADR-002, ADR-006 and ADR-009. Design reference: `docs/design-system.md`; component showcase at `/dev/ui` (development only).
 - **The backend is a separate service. Its stack is undecided** (ADR-004, Proposed). Don't build backend logic in Next.js route handlers or server actions. The owner explicitly rejected Next.js as the backend.
 - Until the backend exists, build against the **MSW mock API** (`src/mocks/handlers.ts`, served by `npm run mock:api` on port 4000). Contract schemas are in `src/lib/api/schemas.ts` (ADR-003).
 - `cacheComponents` is **off** because it's incompatible with Serwist (ADR-002).
@@ -52,5 +52,5 @@ Amanah is a transparent Islamic donation platform (general donations only, never
 ## Open items awaiting the owner
 
 - ADR-004 backend stack; spec decisions D8, D9 and D11; the convention date; the pilot organisation.
-- Whether to adopt shadcn/ui (F1.2). Connect the GitHub repository to Vercel (owner, F0.6).
+- Connect the GitHub repository to Vercel (owner, F0.6).
 - First push to `haneefojay/amanah-frontend` so CI (F0.5) runs.

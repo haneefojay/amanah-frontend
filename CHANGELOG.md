@@ -10,6 +10,24 @@ Sections per release: **Added**, **Changed**, **Fixed**, **Removed**, **Security
 
 ### Added
 
+- **F1.2 Core UI components** on shadcn/ui (ADR-009): Button (pills, 44px, `gold` variant, `loading`), Input, Textarea, Select, Checkbox, Switch, Label, Field set, Card, Badge (status tones), Dialog, Sheet, Tabs, Skeleton, Separator, Alert, Spinner, Empty, and the Sonner Toaster (mounted in Providers). Added EmptyState and ErrorState. `components.json` is set up for the shadcn CLI. There's a development-only showcase at `/dev/ui`.
+- **F1.3 Money and status components:** MoneyAmount (`<data value={kobo}>`), NairaInput with `useNairaInput` and `validateNairaText`, CampaignStatusBadge, ItemStatusBadge and VerifiedBadge. Wording and the exact spec sentences live in `src/lib/status.ts`.
+- **F1.1:** `docs/design-system.md`, new semantic tokens mapped to the palette, danger tints, `src/lib/brand.ts`, and a test that fails on raw hex colours in components and pages.
+- **F1.4 App shell:** DashboardShell for `/org`, `/witness` and `/admin`. It has a top bar and role-based navigation that is a sidebar on wide screens and a bottom bar on phones, and shows the current user from `/api/me` (mocked; set `MOCK_ROLE` to switch roles). Sections are prerendered and unknown sections are 404s. Placeholder pages say "Coming soon", and the staff areas are `noindex`.
+- **F1.5 Boundaries:** a branded not-found page, a route error page (never shows error details) with retry, a global error page, and staff loading skeletons.
+- **F1.6 Accessibility baseline:** `src/test/axe.ts` for component tests and `tests/e2e/helpers/a11y.ts` for pages. Radix test shims are in the Vitest setup.
+- Dependencies: `radix-ui`, `class-variance-authority`, `lucide-react`, `sonner`. Dev dependencies: `tw-animate-css`, `axe-core`.
+
+### Changed
+
+- AmanahMark moved to `src/components/brand/`. Mock fixture organisations renamed to clearly fictional examples.
+
+### Decisions
+
+- ADR-009 UI components on shadcn/ui. It resolves the open "UI primitives" row of ADR-006.
+
+### Added
+
 - Public landing page at `/` (F2.6), built from the approved design:
   - sections: site header with a phone menu, hero with the example campaign ledger, the أمانة signature, why, how it works, the cap (with the over-remaining illustration), accountability (with a phone preview), audience, organisations call to action, and the footer;
   - all amounts come from integer kobo example data (`src/features/landing/example-campaign.ts`);

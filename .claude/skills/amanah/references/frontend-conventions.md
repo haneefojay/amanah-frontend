@@ -22,7 +22,8 @@ Stack (ADR-001, 002, 006): Next.js 16 App Router · TypeScript 5.9 strict (`noUn
 ```
 src/app/                      routes; group by area: (public), org/, witness/, admin/
 src/app/sw.ts                 service worker source (Serwist)
-src/components/ui/            design-system primitives (F1) — no business logic
+src/components/ui/            design-system primitives (F1, shadcn/ui) — no business logic
+src/components/shell/         staff-area layout: DashboardShell, role nav config
 src/components/pwa/           offline banner, install prompt, update toast
 src/features/<area>/          feature modules: components, hooks, schemas, tests
                               areas: campaigns, accountability, checkout, auth, org, evidence, witness, admin
@@ -73,7 +74,7 @@ When the backend publishes OpenAPI (B0.3), reconcile schemas with it; the OpenAP
 - Mobile first: design at 360px, then `sm:`/`md:` up. Respect safe areas (`env(safe-area-inset-*)`), use `min-h-dvh` not `100vh`.
 - Touch targets ≥ 44×44 px. Inputs ≥ 16px font (prevents iOS zoom).
 - `prefers-reduced-motion` is already respected globally; motion must still make sense without it.
-- Use `src/components/ui` primitives; add new primitives there (F1.2), not inside features. UI-primitive library choice (shadcn/ui or not) is pending an ADR — ask before adding one.
+- Use `src/components/ui` primitives (shadcn/ui, ADR-009), listed in `docs/design-system.md` and shown on `/dev/ui`. Add new ones from the shadcn new-york-v4 registry with the same adaptations (tokens, 44px targets, 16px inputs), never inside features. Money UI: `MoneyAmount`, `NairaInput` with `useNairaInput`. Status wording: `src/lib/status.ts`.
 
 ## 6. PWA rules (ADR-002)
 

@@ -33,6 +33,10 @@ The service worker is **disabled in development**. To try the PWA (install, offl
 npm run build && npm run start
 ```
 
+## Component showcase
+
+In development, open http://localhost:3000/dev/ui to see every UI component (not available in production). Design rules are in `docs/design-system.md`.
+
 ## Screenshots
 
 `npm run screenshots` saves full-page landing page screenshots (phone and desktop) to `screenshots/`. It builds and starts the app automatically.

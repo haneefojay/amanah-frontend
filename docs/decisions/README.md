@@ -14,6 +14,7 @@ Every significant decision about Amanah (technology, architecture, process, or h
 | [ADR-006](./ADR-006-frontend-supporting-libraries.md) | Frontend supporting libraries                                                  | Accepted | 2026-10-18 |
 | [ADR-007](./ADR-007-typography-and-fonts.md)          | Typography: self-hosted Schibsted Grotesk, plus Reem Kufi cut down to one word | Accepted | 2026-10-18 |
 | [ADR-008](./ADR-008-hosting-vercel.md)                | Frontend hosting on Vercel                                                     | Accepted | 2026-10-18 |
+| [ADR-009](./ADR-009-ui-components-shadcn.md)          | UI components on shadcn/ui                                                     | Accepted | 2026-10-18 |
 
 ## How to add an ADR
 

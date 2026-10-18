@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /*
  * Amanah design tokens. Use these utilities (bg-brand-700, text-ink-600, ...) rather than
@@ -27,9 +28,43 @@
   --color-ink-600: #4b5260;
   --color-ink-700: #2d333d;
   --color-ink-900: #161a20;
+  --color-danger-100: #fee4e2;
   --color-danger-600: #b42318;
+  --color-danger-700: #912018;
   --color-warning-600: #b54708;
   --color-success-600: #067647;
+}
+
+/*
+ * Semantic tokens for the shadcn/ui components (ADR-009), mapped onto the Amanah palette.
+ * Components use these names (bg-primary, border-input, ring-ring...); the palette stays the
+ * single source of truth.
+ */
+@theme inline {
+  --color-background: var(--color-sand-100);
+  --color-foreground: var(--color-ink-900);
+  --color-card: var(--color-sand-50);
+  --color-card-foreground: var(--color-ink-900);
+  --color-popover: var(--color-sand-50);
+  --color-popover-foreground: var(--color-ink-900);
+  --color-primary: var(--color-brand-900);
+  --color-primary-foreground: var(--color-sand-100);
+  --color-secondary: var(--color-sand-300);
+  --color-secondary-foreground: var(--color-ink-900);
+  --color-muted: var(--color-sand-200);
+  --color-muted-foreground: var(--color-ink-600);
+  --color-accent: var(--color-brand-50);
+  --color-accent-foreground: var(--color-brand-900);
+  --color-destructive: var(--color-danger-600);
+  --color-border: var(--color-sand-400);
+  --color-input: var(--color-sand-500);
+  --color-ring: var(--color-brand-700);
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
 }
 
 /*
@@ -45,6 +80,16 @@
 
 :root {
   color-scheme: light;
+  --radius: 14px; /* used by Sonner toasts */
+  --popover: var(--color-popover);
+  --popover-foreground: var(--color-popover-foreground);
+  --border: var(--color-border);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
 }
 
 html {
