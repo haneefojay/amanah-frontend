@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Campaigns</title>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@700&amp;family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #ffffff;
+          }
+          a {
+            color: inherit;
+          }
+          a:hover {
+            color: #146c43;
+          }
+          @container (max-width: 980px) {
+            .p-nav {
+              display: none !important;
+            }
+            .p-menu {
+              display: flex !important;
+            }
+            .p-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            .p-foot {
+              grid-template-columns: 1fr 1fr !important;
+            }
+            .p-foot-brand {
+              grid-column: span 2 !important;
+            }
+            .p-reg {
+              display: none !important;
+            }
+          }
+          @container (max-width: 640px) {
+            .p-grid {
+              grid-template-columns: minmax(0, 1fr) !important;
+            }
+            .p-filters {
+              flex-direction: column !important;
+              align-items: stretch !important;
+            }
+            .p-count {
+              margin-left: 0 !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          container-type: inline-size;
+          font-family: &quot;Schibsted Grotesk&quot;, system-ui, sans-serif;
+          color: #161a20;
+          background: #ffffff;
+          min-width: 0;
+        "
+      >
+        <!-- Header: same as the landing page; section links go back to the landing page -->
+        <header style="border-bottom: 1px solid #ecebe6; background: #ffffff">
+          <div
+            style="
+              max-width: 1240px;
+              margin: 0 auto;
+              padding: 18px clamp(20px, 4cqi, 40px);
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 24px;
+            "
+          >
+            <a
+              href="/"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                color: #0f5132;
+              "
+            >
+              <svg width="36" height="36" viewBox="0 0 512 512" aria-hidden="true">
+                <rect width="512" height="512" rx="112" fill="#0f5132"></rect>
+                <path
+                  d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144"
+                  fill="none"
+                  stroke="#f7f4ec"
+                  stroke-width="40"
+                  stroke-linecap="round"
+                ></path>
+                <circle cx="256" cy="300" r="36" fill="#e9c46a"></circle>
+              </svg>
+              <span style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em">Amanah</span>
+            </a>
+            <nav
+              class="p-nav"
+              aria-label="Main"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 32px;
+                font-size: 15px;
+                font-weight: 500;
+                color: #3a404a;
+              "
+            >
+              <a href="/#how" style="text-decoration: none; padding: 10px 0">How it works</a>
+              <a href="/#trail" style="text-decoration: none; padding: 10px 0">Accountability</a>
+              <a href="/#cap" style="text-decoration: none; padding: 10px 0">The cap</a>
+              <a href="/#organisations" style="text-decoration: none; padding: 10px 0"
+                >For organisations</a
+              >
+            </nav>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <a
+                class="p-reg"
+                href="/#organisations"
+                style="
+                  text-decoration: none;
+                  font-weight: 600;
+                  font-size: 15px;
+                  color: #0f5132;
+                  padding: 11px 18px;
+                  border-radius: 999px;
+                  border: 1.5px solid #cfe6d8;
+                "
+                >Register your organisation</a
+              >
+              <a
+                href="Main.dc.html"
+                aria-current="page"
+                style="
+                  text-decoration: none;
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #ffffff;
+                  background: #0f5132;
+                  padding: 12px 20px;
+                  border-radius: 999px;
+                "
+                >Give now</a
+              >
+              <button
+                type="button"
+                class="p-menu"
+                aria-label="Open menu"
+                style="
+                  display: none;
+                  align-items: center;
+                  justify-content: center;
+                  width: 46px;
+                  height: 46px;
+                  border-radius: 999px;
+                  border: 1.5px solid #e2e0d9;
+                  background: #ffffff;
+                  color: #161a20;
+                  cursor: pointer;
+                  flex: none;
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 7h16"></path>
+                  <path d="M4 12h16"></path>
+                  <path d="M4 17h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <!-- Page heading -->
+          <section aria-labelledby="list-h" style="background: #ffffff">
+            <div
+              style="
+                max-width: 1240px;
+                margin: 0 auto;
+                padding: clamp(40px, 5cqi, 72px) clamp(20px, 4cqi, 40px) 28px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+              "
+            >
+              <span
+                style="
+                  align-self: flex-start;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  color: #0f5132;
+                  background: #eaf4ee;
+                  padding: 8px 14px 8px 10px;
+                  border-radius: 999px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#146c43"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path>
+                  <path d="M8.5 12l2.5 2.5 4.5-5"></path>
+                </svg>
+                Every organisation is verified
+              </span>
+              <h1
+                id="list-h"
+                style="
+                  margin: 0;
+                  font-size: clamp(44px, 5cqi, 72px);
+                  line-height: 1;
+                  letter-spacing: -0.045em;
+                  font-weight: 800;
+                  color: #0f2a1d;
+                "
+              >
+                Campaigns
+              </h1>
+              <p
+                style="
+                  margin: 0;
+                  max-width: 52ch;
+                  font-size: 19px;
+                  line-height: 1.55;
+                  color: #4b5260;
+                "
+              >
+                Verified organisations, each with a fixed target and a public record. Choose a need,
+                give, then follow every naira to delivery.
+              </p>
+            </div>
+          </section>
+
+          <!-- Filters -->
+          <section aria-label="Filter campaigns" style="background: #ffffff">
+            <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4cqi, 40px)">
+              <form
+                class="p-filters"
+                action="Main.dc.html"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: flex-end;
+                  gap: 12px 16px;
+                  padding: 18px 20px;
+                  background: #f6f5f0;
+                  border-radius: 24px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    flex: 0 1 260px;
+                    min-width: 0;
+                  "
+                >
+                  <label for="f-city" style="font-size: 14px; font-weight: 600; color: #3a404a"
+                    >City</label
+                  >
+                  <div style="position: relative">
+                    <select
+                      id="f-city"
+                      name="city"
+                      style="
+                        width: 100%;
+                        height: 48px;
+                        appearance: none;
+                        -webkit-appearance: none;
+                        box-sizing: border-box;
+                        padding: 0 44px 0 16px;
+                        font: inherit;
+                        font-size: 16px;
+                        color: #161a20;
+                        background: #ffffff;
+                        border: 1.5px solid #e2e0d9;
+                        border-radius: 14px;
+                      "
+                    >
+                      <option>All cities</option>
+                      <option>Ilorin</option>
+                      <option>Offa</option>
+                      <option>Ogbomoso</option>
+                    </select>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#4b5260"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      style="position: absolute; right: 16px; top: 15px; pointer-events: none"
+                    >
+                      <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    flex: 0 1 340px;
+                    min-width: 0;
+                  "
+                >
+                  <label for="f-org" style="font-size: 14px; font-weight: 600; color: #3a404a"
+                    >Organisation</label
+                  >
+                  <div style="position: relative">
+                    <select
+                      id="f-org"
+                      name="organisation"
+                      style="
+                        width: 100%;
+                        height: 48px;
+                        appearance: none;
+                        -webkit-appearance: none;
+                        box-sizing: border-box;
+                        padding: 0 44px 0 16px;
+                        font: inherit;
+                        font-size: 16px;
+                        color: #161a20;
+                        background: #ffffff;
+                        border: 1.5px solid #e2e0d9;
+                        border-radius: 14px;
+                      "
+                    >
+                      <option>All organisations</option>
+                      <option>Example Islamic Society, Ogbomoso</option>
+                      <option>Example Mosque, Offa</option>
+                      <option>Example Orphanage, Ilorin</option>
+                    </select>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#4b5260"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      style="position: absolute; right: 16px; top: 15px; pointer-events: none"
+                    >
+                      <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p
+                  class="p-count"
+                  role="status"
+                  style="margin: 0 0 0 auto; padding-bottom: 13px; font-size: 15px; color: #4b5260"
+                >
+                  <strong style="color: #161a20">8 campaigns</strong> live or recently completed
+                </p>
+              </form>
+            </div>
+          </section>
+
+          <!-- Results -->
+          <section aria-label="Campaigns" style="background: #ffffff">
+            <div
+              style="
+                max-width: 1240px;
+                margin: 0 auto;
+                padding: 28px clamp(20px, 4cqi, 40px) clamp(64px, 8cqi, 112px);
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+              "
+            >
+              <ul
+                class="p-grid"
+                style="
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+                  display: grid;
+                  grid-template-columns: repeat(3, minmax(0, 1fr));
+                  gap: 20px;
+                "
+              >
+                <sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+                  <li style="display: flex; min-width: 0">
+                    <article
+                      style="
+                        flex: 1;
+                        min-width: 0;
+                        background: #ffffff;
+                        border: 1px solid #ecebe6;
+                        border-radius: 24px;
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: column;
+                      "
+                    >
+                      <div
+                        style="
+                          position: relative;
+                          height: 188px;
+                          background: #eaf4ee;
+                          overflow: hidden;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        <sc-if value="{{c.hasImage}}" hint-placeholder-val="{{true}}"
+                          ><img
+                            src="{{c.image}}"
+                            alt="{{c.alt}}"
+                            style="
+                              position: absolute;
+                              inset: 0;
+                              width: 100%;
+                              height: 100%;
+                              object-fit: cover;
+                            "
+                        /></sc-if>
+                        <sc-if value="{{c.noImage}}" hint-placeholder-val="{{false}}"
+                          ><svg width="72" height="86" viewBox="0 0 72 86" aria-hidden="true">
+                            <path
+                              d="M8 82V40C8 22 20 6 36 6s28 16 28 34v42"
+                              fill="none"
+                              stroke="#cfe6d8"
+                              stroke-width="5"
+                              stroke-linecap="round"
+                            ></path>
+                            <circle cx="36" cy="52" r="7" fill="#cfe6d8"></circle></svg
+                        ></sc-if>
+                        <span
+                          style="
+                            position: absolute;
+                            z-index: 1;
+                            top: 14px;
+                            left: 14px;
+                            font-size: 13px;
+                            font-weight: 600;
+                            color: #161a20;
+                            background: rgba(255, 255, 255, 0.94);
+                            padding: 5px 11px;
+                            border-radius: 999px;
+                          "
+                          >{{c.city}}</span
+                        >
+                        <span style="{{c.badgeStyle}}">{{c.badge}}</span>
+                      </div>
+                      <div
+                        style="
+                          padding: 20px 22px 22px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 14px;
+                          flex: 1;
+                        "
+                      >
+                        <div style="display: flex; flex-direction: column; gap: 6px">
+                          <h3
+                            style="
+                              margin: 0;
+                              font-size: 19px;
+                              font-weight: 700;
+                              letter-spacing: -0.01em;
+                              line-height: 1.25;
+                              display: -webkit-box;
+                              -webkit-line-clamp: 2;
+                              -webkit-box-orient: vertical;
+                              overflow: hidden;
+                            "
+                          >
+                            <a href="Campaign.dc.html" style="text-decoration: none">{{c.title}}</a>
+                          </h3>
+                          <span
+                            style="
+                              display: flex;
+                              align-items: center;
+                              gap: 6px;
+                              font-size: 14px;
+                              color: #4b5260;
+                              min-width: 0;
+                            "
+                            ><svg
+                              width="15"
+                              height="15"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="#146c43"
+                              stroke-width="2.4"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-label="Verified"
+                              role="img"
+                              style="flex: none"
+                            >
+                              <path
+                                d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"
+                              ></path>
+                              <path d="M8.5 12l2.5 2.5 4.5-5"></path></svg
+                            ><span
+                              style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+                              >{{c.org}}</span
+                            ></span
+                          >
+                        </div>
+                        <div
+                          style="margin-top: auto; display: flex; flex-direction: column; gap: 8px"
+                        >
+                          <div
+                            role="progressbar"
+                            aria-label="Raised"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="{{c.pct}}"
+                            style="
+                              height: 8px;
+                              border-radius: 999px;
+                              background: #eaf4ee;
+                              overflow: hidden;
+                            "
+                          >
+                            <div style="{{c.barStyle}}"></div>
+                          </div>
+                          <span style="font-size: 17px; font-weight: 800"
+                            >{{c.raised}}
+                            <span style="font-size: 14px; font-weight: 500; color: #6a707a"
+                              >raised of {{c.target}}</span
+                            ></span
+                          >
+                          <span style="{{c.lineStyle}}"
+                            ><sc-if value="{{c.lock}}" hint-placeholder-val="{{false}}"
+                              ><svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.4"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                                style="flex: none"
+                              >
+                                <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                                <path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if
+                            ><sc-if value="{{c.check}}" hint-placeholder-val="{{false}}"
+                              ><svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                                style="flex: none"
+                              >
+                                <path d="M5 12l5 5 9-10"></path></svg></sc-if
+                            >{{c.line}}</span
+                          >
+                        </div>
+                        <a href="Campaign.dc.html" style="{{c.ctaStyle}}"
+                          >{{c.cta}}<span
+                            style="
+                              position: absolute;
+                              width: 1px;
+                              height: 1px;
+                              overflow: hidden;
+                              clip: rect(0 0 0 0);
+                            "
+                            >: {{c.title}}</span
+                          ></a
+                        >
+                      </div>
+                    </article>
+                  </li>
+                </sc-for>
+              </ul>
+
+              <!-- Pagination -->
+              <nav
+                aria-label="Pages"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 12px;
+                  font-size: 15px;
+                "
+              >
+                <span
+                  aria-disabled="true"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 12px 18px;
+                    border-radius: 999px;
+                    background: #f6f5f0;
+                    color: #8a8f98;
+                    font-weight: 600;
+                  "
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 18l-6-6 6-6"></path></svg
+                  >Previous</span
+                >
+                <span style="color: #4b5260; padding: 0 6px">Page 1 of 2</span>
+                <a
+                  href="Main.dc.html"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 12px 18px;
+                    border-radius: 999px;
+                    border: 1.5px solid #cfe6d8;
+                    color: #0f5132;
+                    font-weight: 700;
+                    text-decoration: none;
+                  "
+                  >Next<svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 18l6-6-6-6"></path></svg
+                ></a>
+              </nav>
+            </div>
+          </section>
+        </main>
+
+        <!-- Footer: same as the landing page -->
+        <footer style="background: #0f2a1d; color: rgba(247, 244, 236, 0.75); overflow: hidden">
+          <div
+            class="p-foot"
+            style="
+              max-width: 1240px;
+              margin: 0 auto;
+              padding: clamp(56px, 6cqi, 88px) clamp(20px, 4cqi, 40px) 48px;
+              display: grid;
+              grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+              gap: 40px 32px;
+            "
+          >
+            <div
+              class="p-foot-brand"
+              style="display: flex; flex-direction: column; gap: 18px; max-width: 360px"
+            >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  color: #f7f4ec;
+                  font-weight: 800;
+                  font-size: 22px;
+                  letter-spacing: -0.02em;
+                "
+                ><svg width="34" height="34" viewBox="0 0 512 512" aria-hidden="true">
+                  <rect width="512" height="512" rx="112" fill="#f7f4ec"></rect>
+                  <path
+                    d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144"
+                    fill="none"
+                    stroke="#0f5132"
+                    stroke-width="40"
+                    stroke-linecap="round"
+                  ></path>
+                  <circle cx="256" cy="300" r="36" fill="#e9c46a"></circle></svg
+                >Amanah</span
+              >
+              <p style="margin: 0; font-size: 15px; line-height: 1.6">
+                Transparent giving to verified Islamic organisations in Nigeria. See what each
+                campaign needed, what your gift bought, and who confirmed it arrived.
+              </p>
+            </div>
+            <nav
+              aria-label="Give"
+              style="display: flex; flex-direction: column; gap: 4px; font-size: 15px"
+            >
+              <span style="color: #f7f4ec; font-weight: 700; padding-bottom: 8px">Give</span
+              ><a href="Main.dc.html" style="text-decoration: none; padding: 7px 0"
+                >Browse campaigns</a
+              ><a href="/#how" style="text-decoration: none; padding: 7px 0">How it works</a
+              ><a href="/#cap" style="text-decoration: none; padding: 7px 0">The cap</a>
+            </nav>
+            <nav
+              aria-label="Organisations"
+              style="display: flex; flex-direction: column; gap: 4px; font-size: 15px"
+            >
+              <span style="color: #f7f4ec; font-weight: 700; padding-bottom: 8px"
+                >Organisations</span
+              ><a href="/#organisations" style="text-decoration: none; padding: 7px 0"
+                >Register your organisation</a
+              ><a href="/#organisations" style="text-decoration: none; padding: 7px 0"
+                >Talk to the team</a
+              >
+            </nav>
+            <nav
+              aria-label="Trust"
+              style="display: flex; flex-direction: column; gap: 4px; font-size: 15px"
+            >
+              <span style="color: #f7f4ec; font-weight: 700; padding-bottom: 8px">Trust</span
+              ><a href="/#trail" style="text-decoration: none; padding: 7px 0">Accountability</a
+              ><a href="/#how" style="text-decoration: none; padding: 7px 0">Witnesses</a>
+            </nav>
+          </div>
+          <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4cqi, 40px)">
+            <div
+              style="
+                border-top: 1px solid rgba(247, 244, 236, 0.14);
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 24px;
+                padding-top: 32px;
+                overflow: hidden;
+              "
+            >
+              <span
+                style="
+                  font-size: clamp(48px, 14cqi, 216px);
+                  font-weight: 800;
+                  letter-spacing: -0.06em;
+                  line-height: 0.78;
+                  color: #f7f4ec;
+                  margin-bottom: -0.04em;
+                "
+                >Amanah</span
+              >
+              <span
+                lang="ar"
+                dir="rtl"
+                style="
+                  font-family: &quot;Reem Kufi&quot;, serif;
+                  font-weight: 700;
+                  font-size: clamp(56px, 10cqi, 150px);
+                  line-height: 0.9;
+                  color: #e9c46a;
+                  margin-bottom: -0.1em;
+                "
+                >أمانة</span
+              >
+            </div>
+          </div>
+          <div
+            style="
+              max-width: 1240px;
+              margin: 0 auto;
+              padding: 24px clamp(20px, 4cqi, 40px) 28px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              gap: 8px 24px;
+              font-size: 14px;
+              color: rgba(247, 244, 236, 0.6);
+              border-top: 1px solid rgba(247, 244, 236, 0.14);
+            "
+          >
+            <span>© 2026 Amanah</span><span>General donations only.</span>
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2240}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          var badgeBase = 'position: absolute; z-index: 1; top: 14px; right: 14px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; ';
+          var badges = {
+            LIVE: badgeBase + 'color: #0f5132; background: #d5ecdd',
+            FUNDED: badgeBase + 'color: #ffffff; background: #0f5132',
+            CLOSED: badgeBase + 'color: #3a404a; background: #ecebe6',
+            COMPLETED: badgeBase + 'color: #0f2a1d; background: #e9c46a'
+          };
+          var lineBase = 'display: flex; align-items: center; gap: 6px; font-size: 14px; ';
+          var tones = {
+            plain: lineBase + 'color: #4b5260',
+            gold: lineBase + 'font-weight: 600; color: #6b4e00',
+            green: lineBase + 'font-weight: 600; color: #0f5132'
+          };
+          var ctaBase = 'position: relative; text-decoration: none; text-align: center; font-weight: 700; font-size: 15px; padding: 13px 18px; border-radius: 999px; ';
+          var ctaGive = ctaBase + 'background: #0f5132; color: #ffffff';
+          var ctaTrail = ctaBase + 'background: #f3f2ed; color: #0f5132';
+          var labels = { LIVE: 'Live', FUNDED: 'Target reached', CLOSED: 'Closed', COMPLETED: 'Completed' };
+          var raw = [
+            { title: 'Ramadan food drive', org: 'Example Mosque, Offa', city: 'Offa, Kwara', status: 'LIVE', pct: 60, raised: '₦300,000', target: '₦500,000', line: '₦200,000 to go', tone: 'plain', image: '/_blob/323abdc69cea789a56a26185169ce8e2', alt: 'A person carrying a bag of food at a market' },
+            { title: 'Borehole for the Islamiyya school', org: 'Example Islamic Society, Ogbomoso', city: 'Ogbomoso, Oyo', status: 'LIVE', pct: 92, raised: '₦790,000', target: '₦850,000', line: 'Nearly there: ₦60,000 to go', tone: 'gold', image: '/_blob/8c39b5e8b6cb90d5fe7857b1bd6eec24', alt: 'Children by a hand water pump in a village' },
+            { title: 'Eid clothes for 30 children', org: 'Example Mosque, Offa', city: 'Offa, Kwara', status: 'LIVE', pct: 95, raised: '₦380,000', target: '₦400,000', line: 'Target nearly reached. Pending payments are being processed.', tone: 'gold' },
+            { title: 'School supplies for 40 orphans', org: 'Example Orphanage, Ilorin', city: 'Ilorin, Kwara', status: 'FUNDED', pct: 100, raised: '₦120,000', target: '₦120,000', line: 'Target reached. Donations closed.', tone: 'green', lock: true, image: '/_blob/7a4e80049c55f91940247566d0554ebc', alt: 'A child writing in a notebook outdoors' },
+            { title: 'Repairing the storm-damaged roof of the Oke-Ode community mosque and its Qur’an school', org: 'Example Islamic Society, Ogbomoso', city: 'Ogbomoso, Oyo', status: 'CLOSED', pct: 67, raised: '₦610,000', target: '₦900,000', line: 'Ended below target. Funds go to its stated purpose.', tone: 'plain' },
+            { title: 'Medicines for the community clinic', org: 'Example Orphanage, Ilorin', city: 'Ilorin, Kwara', status: 'COMPLETED', pct: 100, raised: '₦250,000', target: '₦250,000', line: 'All items delivered and confirmed', tone: 'green', check: true }
+          ];
+          var cards = raw.map(function (c) {
+            return {
+              title: c.title, org: c.org, city: c.city, raised: c.raised, target: c.target, line: c.line, pct: c.pct,
+              image: c.image || '', alt: c.alt || '', hasImage: !!c.image, noImage: !c.image,
+              lock: !!c.lock, check: !!c.check,
+              badge: labels[c.status], badgeStyle: badges[c.status],
+              barStyle: 'width: ' + c.pct + '%; height: 100%; border-radius: 999px; background: #146c43',
+              lineStyle: tones[c.tone],
+              cta: c.status === 'LIVE' ? 'Give to this campaign' : 'See where the money went',
+              ctaStyle: c.status === 'LIVE' ? ctaGive : ctaTrail
+            };
+          });
+          return { cards: cards };
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -51,10 +51,14 @@ function CoverFallback() {
 export function CampaignCard({
   campaign: c,
   className,
+  headingLevel = 3,
 }: {
   campaign: CampaignSummary;
   className?: string;
+  /** Heading level of the title: 3 under a section heading, 2 directly under the page title. */
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = `h${headingLevel}` as const;
   const note = fundingNote(c);
   const href = `/campaigns/${c.slug}`;
   const isLive = c.status === "LIVE" && note.tone !== "closed";
@@ -93,12 +97,12 @@ export function CampaignCard({
       </div>
       <div className="flex flex-1 flex-col gap-3.5 px-[22px] pt-5 pb-[22px]">
         <div className="flex flex-col gap-1.5">
-          <h3
+          <Heading
             id={`campaign-${c.id}`}
             className="line-clamp-2 text-[19px] leading-tight font-bold tracking-[-0.01em]"
           >
             {c.title}
-          </h3>
+          </Heading>
           <span className="flex items-center gap-1.5 text-sm text-ink-600">
             <VerifiedIcon size={15} strokeWidth={2.4} className="flex-none text-brand-700" />
             <span className="min-w-0 truncate">

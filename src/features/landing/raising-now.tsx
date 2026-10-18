@@ -23,7 +23,7 @@ export function pickCampaigns(all: readonly CampaignSummary[]): CampaignSummary[
 export function RaisingNow() {
   const { data } = useQuery({
     queryKey: ["campaigns"],
-    queryFn: api.listCampaigns,
+    queryFn: () => api.listCampaigns(),
     retry: false,
   });
   const shown = data ? pickCampaigns(data.data) : [];

@@ -182,15 +182,18 @@ test.describe("Raising now", () => {
     await page.goto("/");
     const list = page.getByRole("list", { name: "Campaigns raising now" });
     await expect(list.getByRole("article")).toHaveCount(3);
+    // The third live campaign has no cover yet, so it shows the arch outline instead.
     const photos = list.locator("img");
-    await expect(photos).toHaveCount(3);
+    await expect(photos).toHaveCount(2);
     for (const img of await photos.all()) {
       await img.scrollIntoViewIfNeeded();
       await expect
         .poll(() => img.evaluate((el) => (el as HTMLImageElement).naturalWidth))
         .toBeGreaterThan(0);
     }
-    await expect(page.getByText("Target reached. Donations closed.").last()).toBeVisible();
+    await expect(
+      list.getByText("Target nearly reached. Pending payments are being processed."),
+    ).toBeVisible();
   });
 
   test("phones scroll the cards sideways inside the section, not the page", async ({

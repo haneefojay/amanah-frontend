@@ -2,7 +2,7 @@ import { screen, within } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import type { CampaignSummary } from "@/lib/api/schemas";
-import { campaigns } from "@/mocks/fixtures";
+import { campaignListBody, campaigns } from "@/mocks/fixtures";
 import { server } from "@/mocks/node";
 import { expectNoA11yViolations } from "@/test/axe";
 import { renderWithProviders } from "@/test/render";
@@ -39,12 +39,25 @@ describe("RaisingNow", () => {
       "href",
       "/campaigns/ramadan-food-drive-offa",
     );
-    const borehole = screen.getByRole("article", { name: "Borehole for the Islamiyya school" });
+    // Live campaigns come first, so the funded borehole only shows when fewer than three are live.
+    expect(screen.queryByRole("article", { name: "Borehole for the Islamiyya school" })).toBeNull();
+    await expectNoA11yViolations(container);
+  });
+
+  it("shows a funded campaign after the live ones, as closed to donations", async () => {
+    const live = campaigns.filter((c) => c.status === "LIVE").slice(0, 2);
+    const funded = campaigns.find((c) => c.status === "FUNDED")!;
+    server.use(
+      http.get("*/api/campaigns", () => HttpResponse.json(campaignListBody([...live, funded]))),
+    );
+    renderWithProviders(<RaisingNow />);
+    const borehole = await screen.findByRole("article", {
+      name: "Borehole for the Islamiyya school",
+    });
     expect(within(borehole).getByText("Target reached. Donations closed.")).toBeInTheDocument();
     expect(
       within(borehole).getByRole("link", { name: /See where the money went/ }),
     ).toBeInTheDocument();
-    await expectNoA11yViolations(container);
   });
 
   it("shows nothing when the API fails, so no placeholder campaigns appear", async () => {
@@ -57,7 +70,7 @@ describe("RaisingNow", () => {
   it("shows nothing when there are no live or funded campaigns", async () => {
     server.use(
       http.get("*/api/campaigns", () =>
-        HttpResponse.json({ data: [fixture({ status: "CLOSED" })] }),
+        HttpResponse.json(campaignListBody([fixture({ status: "CLOSED" })])),
       ),
     );
     const { container } = renderWithProviders(<RaisingNow />);
@@ -68,7 +81,7 @@ describe("RaisingNow", () => {
   it("falls back to an arch outline when a campaign has no cover photo", async () => {
     server.use(
       http.get("*/api/campaigns", () =>
-        HttpResponse.json({ data: [fixture({ coverImageUrl: null })] }),
+        HttpResponse.json(campaignListBody([fixture({ coverImageUrl: null })])),
       ),
     );
     renderWithProviders(<RaisingNow />);

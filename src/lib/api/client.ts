@@ -51,7 +51,16 @@ export async function apiFetch<T extends z.ZodType>(
   return result.data;
 }
 
+export type CampaignListParams = { city?: string; organisationId?: string; page?: number };
+
 export const api = {
-  listCampaigns: () => apiFetch("/api/campaigns", campaignListResponse),
+  listCampaigns: (params: CampaignListParams = {}, init?: RequestInit) => {
+    const query = new URLSearchParams();
+    if (params.city) query.set("city", params.city);
+    if (params.organisationId) query.set("organisationId", params.organisationId);
+    if (params.page && params.page > 1) query.set("page", String(params.page));
+    const qs = query.toString();
+    return apiFetch(`/api/campaigns${qs ? `?${qs}` : ""}`, campaignListResponse, init);
+  },
   getMe: () => apiFetch("/api/me", currentUserResponse),
 };

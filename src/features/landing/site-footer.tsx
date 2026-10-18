@@ -1,21 +1,35 @@
 import { Container } from "./container";
 import { AmanahMark } from "./icons";
-import { sectionIds } from "./nav-links";
+import { CAMPAIGNS_HREF, sectionIds } from "./nav-links";
 
 type Props = {
   registerHref: string;
   /** mailto link for "Talk to the team"; left out when there is no contact email. */
   contactHref?: string;
+  /** "" on the landing page; "/" on other pages so section links go back to it. */
+  basePath?: "" | "/";
 };
 
 type FooterLink = { label: string; href: string };
 
-function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
+function FooterColumn({
+  title,
+  links,
+  basePath,
+}: {
+  title: string;
+  links: FooterLink[];
+  basePath: "" | "/";
+}) {
   return (
     <nav aria-label={title} className="flex flex-col gap-1 text-[15px]">
       <span className="pb-2 font-bold text-sand-100">{title}</span>
       {links.map((link) => (
-        <a key={link.label} href={link.href} className="py-[7px] hover:text-gold-300">
+        <a
+          key={link.label}
+          href={link.href.startsWith("#") ? `${basePath}${link.href}` : link.href}
+          className="py-[7px] hover:text-gold-300"
+        >
           {link.label}
         </a>
       ))}
@@ -24,12 +38,12 @@ function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) 
 }
 
 /** Footer: brand and link columns, then the large wordmark beside أمانة. */
-export function SiteFooter({ registerHref, contactHref }: Props) {
+export function SiteFooter({ registerHref, contactHref, basePath = "" }: Props) {
   const columns: { title: string; links: FooterLink[] }[] = [
     {
       title: "Give",
       links: [
-        { label: "Browse campaigns", href: `#${sectionIds.trail}` },
+        { label: "Browse campaigns", href: CAMPAIGNS_HREF },
         { label: "How it works", href: `#${sectionIds.how}` },
         { label: "The cap", href: `#${sectionIds.cap}` },
       ],
@@ -63,14 +77,14 @@ export function SiteFooter({ registerHref, contactHref }: Props) {
             needed, what your gift bought, and who confirmed it arrived.
           </p>
           <a
-            href={`#${sectionIds.trail}`}
+            href={CAMPAIGNS_HREF}
             className="self-start rounded-full bg-gold-500 px-[22px] py-[13px] text-[15px] font-bold text-ink-900 hover:bg-gold-300"
           >
             Browse campaigns
           </a>
         </div>
         {columns.map((column) => (
-          <FooterColumn key={column.title} {...column} />
+          <FooterColumn key={column.title} {...column} basePath={basePath} />
         ))}
       </Container>
 

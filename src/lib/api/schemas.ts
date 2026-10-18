@@ -23,6 +23,7 @@ export const campaignSummary = z.object({
   id: z.uuid(),
   slug: z.string().min(1),
   title: z.string().min(1),
+  organisationId: z.uuid(),
   organisationName: z.string().min(1),
   city: z.string().min(1),
   state: z.string().min(1),
@@ -36,7 +37,20 @@ export const campaignSummary = z.object({
 });
 export type CampaignSummary = z.infer<typeof campaignSummary>;
 
-export const campaignListResponse = z.object({ data: z.array(campaignSummary) });
+/** Page of public campaigns plus the values the filters can offer (GET /api/campaigns, B5.1). */
+export const campaignListResponse = z.object({
+  data: z.array(campaignSummary),
+  meta: z.object({
+    page: z.number().int().min(1),
+    pageSize: z.number().int().min(1),
+    total: z.number().int().nonnegative(),
+    totalPages: z.number().int().min(1),
+  }),
+  filters: z.object({
+    cities: z.array(z.string().min(1)),
+    organisations: z.array(z.object({ id: z.uuid(), name: z.string().min(1) })),
+  }),
+});
 export type CampaignListResponse = z.infer<typeof campaignListResponse>;
 
 export const apiErrorBody = z.object({

@@ -5,7 +5,13 @@ import { CloseIcon, MenuIcon } from "./icons";
 import { navLinks } from "./nav-links";
 
 /** Menu button and panel below 900px. Wider screens show the links inline. */
-export function MobileMenu({ registerHref }: { registerHref: string }) {
+export function MobileMenu({
+  registerHref,
+  basePath = "",
+}: {
+  registerHref: string;
+  basePath?: "" | "/";
+}) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -47,7 +53,7 @@ export function MobileMenu({ registerHref }: { registerHref: string }) {
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
-                href={link.href}
+                href={`${basePath}${link.href}`}
                 onClick={close}
                 className="block border-b border-mist-200 py-4 text-lg font-medium text-ink-900"
               >

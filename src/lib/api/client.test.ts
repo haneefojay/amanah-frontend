@@ -10,6 +10,30 @@ describe("api client", () => {
     expect(Number.isInteger(data[0]!.targetAmount)).toBe(true);
   });
 
+  it("filters by city and organisation and pages the results", async () => {
+    const ilorin = await api.listCampaigns({ city: "Ilorin" });
+    expect(ilorin.data.length).toBeGreaterThan(0);
+    expect(ilorin.data.every((c) => c.city === "Ilorin")).toBe(true);
+    expect(ilorin.meta.total).toBe(ilorin.data.length);
+
+    const org = ilorin.data[0]!.organisationId;
+    const byOrg = await api.listCampaigns({ organisationId: org });
+    expect(byOrg.data.every((c) => c.organisationId === org)).toBe(true);
+
+    const all = await api.listCampaigns();
+    expect(all.meta.totalPages).toBe(2);
+    const second = await api.listCampaigns({ page: 2 });
+    expect(second.meta.page).toBe(2);
+    expect(second.data.length).toBe(all.meta.total - all.meta.pageSize);
+  });
+
+  it("never lists campaigns that are not public", async () => {
+    const pages = [await api.listCampaigns(), await api.listCampaigns({ page: 2 })];
+    const statuses = pages.flatMap((p) => p.data.map((c) => c.status));
+    expect(statuses).not.toContain("DRAFT");
+    expect(statuses).not.toContain("PENDING_REVIEW");
+  });
+
   it("turns error bodies into ApiError", async () => {
     server.use(
       http.get("*/api/campaigns", () =>

@@ -5,6 +5,9 @@ export const sectionIds = {
   organisations: "organisations",
 } as const;
 
+export const CAMPAIGNS_HREF = "/campaigns";
+
+/** Section links as anchors on the landing page; other pages prefix them with "/". */
 export const navLinks = [
   { href: `#${sectionIds.how}`, label: "How it works" },
   { href: `#${sectionIds.trail}`, label: "Accountability" },

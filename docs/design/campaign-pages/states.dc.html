@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Campaign states</title>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #ffffff;
+          }
+          a {
+            color: inherit;
+          }
+          a:hover {
+            color: #146c43;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          width: 1440px;
+          box-sizing: border-box;
+          padding: 64px;
+          font-family: &quot;Schibsted Grotesk&quot;, system-ui, sans-serif;
+          color: #161a20;
+          background: #ffffff;
+          display: flex;
+          flex-direction: column;
+          gap: 56px;
+        "
+      >
+        <!-- Row 1: list states -->
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+          <section
+            aria-labelledby="s-load"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-load" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Loading
+            </h2>
+            <div
+              aria-hidden="true"
+              style="
+                border: 1px solid #ecebe6;
+                border-radius: 24px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+              "
+            >
+              <div style="height: 188px; background: #f3f2ed"></div>
+              <div
+                style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px"
+              >
+                <span
+                  style="height: 18px; width: 80%; border-radius: 8px; background: #ecebe6"
+                ></span>
+                <span
+                  style="height: 14px; width: 55%; border-radius: 8px; background: #f3f2ed"
+                ></span>
+                <span
+                  style="margin-top: 18px; height: 8px; border-radius: 999px; background: #f3f2ed"
+                ></span>
+                <span
+                  style="height: 16px; width: 65%; border-radius: 8px; background: #ecebe6"
+                ></span>
+                <span
+                  style="margin-top: 6px; height: 46px; border-radius: 999px; background: #f3f2ed"
+                ></span>
+              </div>
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="s-empty"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-empty" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              No campaigns at all
+            </h2>
+            <div
+              style="
+                flex: 1;
+                background: #f6f5f0;
+                border-radius: 24px;
+                padding: 40px 32px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                gap: 14px;
+              "
+            >
+              <svg width="56" height="66" viewBox="0 0 72 86" aria-hidden="true">
+                <path
+                  d="M8 82V40C8 22 20 6 36 6s28 16 28 34v42"
+                  fill="none"
+                  stroke="#cfe6d8"
+                  stroke-width="5"
+                  stroke-linecap="round"
+                ></path>
+                <circle cx="36" cy="52" r="7" fill="#cfe6d8"></circle>
+              </svg>
+              <h3 style="margin: 0; font-size: 22px; font-weight: 700; color: #0f2a1d">
+                No campaigns yet
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  max-width: 32ch;
+                  font-size: 16px;
+                  line-height: 1.55;
+                  color: #4b5260;
+                "
+              >
+                When verified organisations publish campaigns, they appear here.
+              </p>
+              <a
+                href="/#how"
+                style="
+                  margin-top: 4px;
+                  text-decoration: none;
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #0f5132;
+                  padding: 13px 22px;
+                  border-radius: 999px;
+                  border: 1.5px solid #cfe6d8;
+                "
+                >See how Amanah works</a
+              >
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="s-error"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-error" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Could not load
+            </h2>
+            <div
+              role="alert"
+              style="
+                flex: 1;
+                background: #ffffff;
+                border: 1.5px solid #fee4e2;
+                border-radius: 24px;
+                padding: 40px 32px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                gap: 14px;
+              "
+            >
+              <span
+                style="
+                  width: 52px;
+                  height: 52px;
+                  border-radius: 999px;
+                  background: #fee4e2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#b42318"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 8v5"></path>
+                  <path d="M12 16.5v.01"></path>
+                  <circle cx="12" cy="12" r="9"></circle></svg
+              ></span>
+              <h3 style="margin: 0; font-size: 22px; font-weight: 700; color: #0f2a1d">
+                We couldn't load campaigns
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  max-width: 34ch;
+                  font-size: 16px;
+                  line-height: 1.55;
+                  color: #4b5260;
+                "
+              >
+                Check your connection and try again. Amounts are always loaded fresh, so nothing you
+                see is out of date.
+              </p>
+              <button
+                type="button"
+                style="
+                  margin-top: 4px;
+                  font: inherit;
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #ffffff;
+                  background: #0f5132;
+                  border: 0;
+                  padding: 13px 24px;
+                  border-radius: 999px;
+                  cursor: pointer;
+                "
+              >
+                Try again
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Row 2: card status lines and funding panel states -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+          "
+        >
+          <section
+            aria-labelledby="s-lines"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-lines" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Card status, by state
+            </h2>
+            <ul
+              style="
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                border: 1px solid #ecebe6;
+                border-radius: 24px;
+                overflow: hidden;
+              "
+            >
+              <li style="display: flex; align-items: center; gap: 14px; padding: 16px 20px">
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #0f5132;
+                      background: #d5ecdd;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Live</span
+                  ></span
+                ><span style="font-size: 14px; color: #4b5260">₦200,000 to go</span>
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  padding: 16px 20px;
+                  border-top: 1px solid #ecebe6;
+                "
+              >
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #0f5132;
+                      background: #d5ecdd;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Live, 90%+</span
+                  ></span
+                ><span style="font-size: 14px; font-weight: 600; color: #6b4e00"
+                  >Nearly there: ₦60,000 to go</span
+                >
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  padding: 16px 20px;
+                  border-top: 1px solid #ecebe6;
+                "
+              >
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #0f5132;
+                      background: #d5ecdd;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Live, held</span
+                  ></span
+                ><span style="font-size: 14px; font-weight: 600; color: #6b4e00"
+                  >Target nearly reached. Pending payments are being processed.</span
+                >
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  padding: 16px 20px;
+                  border-top: 1px solid #ecebe6;
+                "
+              >
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #ffffff;
+                      background: #0f5132;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Target reached</span
+                  ></span
+                ><span
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #0f5132;
+                  "
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg
+                  >Target reached. Donations closed.</span
+                >
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  padding: 16px 20px;
+                  border-top: 1px solid #ecebe6;
+                "
+              >
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #3a404a;
+                      background: #ecebe6;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Closed</span
+                  ></span
+                ><span style="font-size: 14px; color: #4b5260"
+                  >Ended below target. Funds go to its stated purpose.</span
+                >
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  padding: 16px 20px;
+                  border-top: 1px solid #ecebe6;
+                "
+              >
+                <span style="flex: none; width: 118px"
+                  ><span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: #0f2a1d;
+                      background: #e9c46a;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                    "
+                    >Completed</span
+                  ></span
+                ><span
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #0f5132;
+                  "
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12l5 5 9-10"></path></svg
+                  >All items delivered and confirmed</span
+                >
+              </li>
+            </ul>
+          </section>
+
+          <section
+            aria-labelledby="s-funded"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-funded" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Funding panel: target reached
+            </h2>
+            <div
+              style="
+                background: #ffffff;
+                border: 1px solid #ecebe6;
+                border-radius: 28px;
+                padding: 26px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+              "
+            >
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <span style="font-size: 14px; color: #4b5260">Raised</span
+                ><span
+                  style="
+                    font-size: 38px;
+                    font-weight: 800;
+                    letter-spacing: -0.03em;
+                    line-height: 1;
+                    color: #0f2a1d;
+                  "
+                  >₦120,000</span
+                ><span style="font-size: 15px; color: #4b5260">of a ₦120,000 target</span>
+              </div>
+              <div
+                role="progressbar"
+                aria-label="Raised"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="100"
+                style="height: 12px; border-radius: 999px; background: #eaf4ee; overflow: hidden"
+              >
+                <div style="width: 100%; height: 100%; background: #146c43"></div>
+              </div>
+              <p
+                style="
+                  margin: 0;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  font-size: 15px;
+                  font-weight: 700;
+                  color: #0f5132;
+                  background: #eaf4ee;
+                  border-radius: 16px;
+                  padding: 14px 16px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  style="flex: none"
+                >
+                  <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg
+                >Target reached. Donations closed.
+              </p>
+              <button
+                type="button"
+                style="
+                  min-height: 48px;
+                  font: inherit;
+                  font-weight: 700;
+                  font-size: 16px;
+                  color: #0f5132;
+                  background: #ffffff;
+                  border: 1.5px solid #cfe6d8;
+                  border-radius: 999px;
+                  cursor: pointer;
+                "
+              >
+                Share this campaign
+              </button>
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="s-held"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-held" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Funding panel: all remaining amount held
+            </h2>
+            <div
+              style="
+                background: #ffffff;
+                border: 1px solid #ecebe6;
+                border-radius: 28px;
+                padding: 26px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+              "
+            >
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <span style="font-size: 14px; color: #4b5260">Raised</span
+                ><span
+                  style="
+                    font-size: 38px;
+                    font-weight: 800;
+                    letter-spacing: -0.03em;
+                    line-height: 1;
+                    color: #0f2a1d;
+                  "
+                  >₦380,000</span
+                ><span style="font-size: 15px; color: #4b5260">of a ₦400,000 target</span>
+              </div>
+              <div
+                role="progressbar"
+                aria-label="Raised"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="95"
+                style="height: 12px; border-radius: 999px; background: #eaf4ee; overflow: hidden"
+              >
+                <div
+                  style="width: 95%; height: 100%; background: #146c43; border-radius: 999px"
+                ></div>
+              </div>
+              <p
+                style="
+                  margin: 0;
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 10px;
+                  font-size: 15px;
+                  line-height: 1.5;
+                  font-weight: 600;
+                  color: #6b4e00;
+                  background: #f8ecc9;
+                  border-radius: 16px;
+                  padding: 14px 16px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  style="flex: none; margin-top: 2px"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path></svg
+                >Target nearly reached. Pending payments are being processed.
+              </p>
+              <button
+                type="button"
+                style="
+                  min-height: 48px;
+                  font: inherit;
+                  font-weight: 700;
+                  font-size: 16px;
+                  color: #0f5132;
+                  background: #ffffff;
+                  border: 1.5px solid #cfe6d8;
+                  border-radius: 999px;
+                  cursor: pointer;
+                "
+              >
+                Share this campaign
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Row 3: share fallback and long title -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            align-items: start;
+          "
+        >
+          <section
+            aria-labelledby="s-share"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2 id="s-share" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Share where the phone share sheet is missing
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+              <button
+                type="button"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  min-height: 48px;
+                  padding: 0 22px;
+                  font: inherit;
+                  font-weight: 700;
+                  font-size: 16px;
+                  color: #0f5132;
+                  background: #eaf4ee;
+                  border: 1.5px solid #146c43;
+                  border-radius: 999px;
+                  cursor: pointer;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12l5 5 9-10"></path></svg
+                >Link copied
+              </button>
+              <div
+                role="status"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  background: #161a20;
+                  color: #f7f4ec;
+                  border-radius: 14px;
+                  padding: 12px 16px;
+                  font-size: 15px;
+                "
+              >
+                Campaign link copied. Paste it anywhere to share.
+              </div>
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="s-long"
+            style="display: flex; flex-direction: column; gap: 14px; grid-column: span 2"
+          >
+            <h2 id="s-long" style="margin: 0; font-size: 15px; font-weight: 700; color: #4b5260">
+              Long title, no photo
+            </h2>
+            <article
+              style="
+                max-width: 400px;
+                border: 1px solid #ecebe6;
+                border-radius: 24px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  height: 188px;
+                  background: #eaf4ee;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="72" height="86" viewBox="0 0 72 86" aria-hidden="true">
+                  <path
+                    d="M8 82V40C8 22 20 6 36 6s28 16 28 34v42"
+                    fill="none"
+                    stroke="#cfe6d8"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                  ></path>
+                  <circle cx="36" cy="52" r="7" fill="#cfe6d8"></circle>
+                </svg>
+                <span
+                  style="
+                    position: absolute;
+                    top: 14px;
+                    left: 14px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    background: rgba(255, 255, 255, 0.94);
+                    padding: 5px 11px;
+                    border-radius: 999px;
+                  "
+                  >Ogbomoso, Oyo</span
+                >
+                <span
+                  style="
+                    position: absolute;
+                    top: 14px;
+                    right: 14px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #3a404a;
+                    background: #ecebe6;
+                    padding: 5px 11px;
+                    border-radius: 999px;
+                  "
+                  >Closed</span
+                >
+              </div>
+              <div
+                style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px"
+              >
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <h3
+                    style="
+                      margin: 0;
+                      font-size: 19px;
+                      font-weight: 700;
+                      line-height: 1.25;
+                      display: -webkit-box;
+                      -webkit-line-clamp: 2;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    "
+                    title="Repairing the storm-damaged roof of the Oke-Ode community mosque and its Qur’an school"
+                  >
+                    Repairing the storm-damaged roof of the Oke-Ode community mosque and its Qur’an
+                    school
+                  </h3>
+                  <span
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      font-size: 14px;
+                      color: #4b5260;
+                      min-width: 0;
+                    "
+                    ><svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#146c43"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      role="img"
+                      aria-label="Verified"
+                      style="flex: none"
+                    >
+                      <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path>
+                      <path d="M8.5 12l2.5 2.5 4.5-5"></path></svg
+                    ><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+                      >Example Islamic Society of the Oke-Ode Community, Ogbomoso</span
+                    ></span
+                  >
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px">
+                  <div
+                    role="progressbar"
+                    aria-label="Raised"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="67"
+                    style="height: 8px; border-radius: 999px; background: #eaf4ee; overflow: hidden"
+                  >
+                    <div
+                      style="width: 67%; height: 100%; background: #146c43; border-radius: 999px"
+                    ></div>
+                  </div>
+                  <span style="font-size: 17px; font-weight: 800"
+                    >₦12,610,000
+                    <span style="font-size: 14px; font-weight: 500; color: #6a707a"
+                      >raised of ₦18,900,000</span
+                    ></span
+                  >
+                  <span style="font-size: 14px; color: #4b5260"
+                    >Ended below target. Funds go to its stated purpose.</span
+                  >
+                </div>
+                <a
+                  href="Campaign.dc.html"
+                  style="
+                    text-decoration: none;
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 15px;
+                    padding: 13px 18px;
+                    border-radius: 999px;
+                    background: #f3f2ed;
+                    color: #0f5132;
+                  "
+                  >See where the money went</a
+                >
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1640}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          return {};
+        }
+      }
+    </script>
+  </body>
+</html>

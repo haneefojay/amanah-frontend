@@ -5,7 +5,7 @@ import { Container } from "./container";
 import { exampleCampaign } from "./example-campaign";
 import { CheckIcon, LockIcon, VerifiedIcon } from "./icons";
 import { KhatamPattern } from "./khatam-pattern";
-import { sectionIds } from "./nav-links";
+import { CAMPAIGNS_HREF, sectionIds } from "./nav-links";
 
 const trustPoints = [
   "Fixed targets, never exceeded",
@@ -123,7 +123,7 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap items-center gap-3 min-[380px]:flex-nowrap min-[600px]:flex-wrap">
             <a
-              href={`#${sectionIds.trail}`}
+              href={CAMPAIGNS_HREF}
               className="rounded-full bg-brand-900 px-5 py-4 text-base font-bold whitespace-nowrap text-white hover:bg-brand-700 min-[600px]:px-[30px] min-[600px]:py-[17px] min-[600px]:text-[17px]"
             >
               Browse campaigns

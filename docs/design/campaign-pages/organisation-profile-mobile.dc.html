@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Organisation profile on a phone</title>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@700&amp;family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #ffffff;
+          }
+          a {
+            color: inherit;
+          }
+          a:hover {
+            color: #146c43;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          width: 390px;
+          font-family: &quot;Schibsted Grotesk&quot;, system-ui, sans-serif;
+          color: #161a20;
+          background: #ffffff;
+        "
+      >
+        <header style="border-bottom: 1px solid #ecebe6; background: #ffffff">
+          <div
+            style="
+              padding: 14px 20px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 12px;
+            "
+          >
+            <a
+              href="/"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                text-decoration: none;
+                color: #0f5132;
+              "
+            >
+              <svg width="32" height="32" viewBox="0 0 512 512" aria-hidden="true">
+                <rect width="512" height="512" rx="112" fill="#0f5132"></rect>
+                <path
+                  d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144"
+                  fill="none"
+                  stroke="#f7f4ec"
+                  stroke-width="40"
+                  stroke-linecap="round"
+                ></path>
+                <circle cx="256" cy="300" r="36" fill="#e9c46a"></circle>
+              </svg>
+              <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em">Amanah</span>
+            </a>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <a
+                href="ListMobile.dc.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #ffffff;
+                  background: #0f5132;
+                  padding: 12px 18px;
+                  border-radius: 999px;
+                "
+                >Give now</a
+              >
+              <button
+                type="button"
+                aria-label="Open menu"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 46px;
+                  height: 46px;
+                  border-radius: 999px;
+                  border: 1.5px solid #e2e0d9;
+                  background: #ffffff;
+                  color: #161a20;
+                  cursor: pointer;
+                  flex: none;
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 7h16"></path>
+                  <path d="M4 12h16"></path>
+                  <path d="M4 17h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main style="padding: 8px 20px 56px; display: flex; flex-direction: column; gap: 36px">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <a
+              href="ListMobile.dc.html"
+              style="
+                align-self: flex-start;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 15px;
+                font-weight: 600;
+                color: #0f5132;
+                text-decoration: none;
+                padding: 12px 0;
+              "
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 18l-6-6 6-6"></path></svg
+              >All campaigns</a
+            >
+            <section
+              aria-labelledby="mo-name"
+              style="
+                background: #f6f5f0;
+                border-radius: 26px;
+                padding: 24px 22px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+              "
+            >
+              <span
+                style="
+                  width: 72px;
+                  height: 84px;
+                  border-radius: 999px 999px 16px 16px;
+                  background: #0f5132;
+                  display: flex;
+                  align-items: flex-end;
+                  justify-content: center;
+                  padding-bottom: 16px;
+                  box-sizing: border-box;
+                "
+                ><svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#e9c46a"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 21V11a7 7 0 0 1 14 0v10"></path>
+                  <path d="M3 21h18"></path>
+                  <path d="M10 21v-5a2 2 0 0 1 4 0v5"></path></svg
+              ></span>
+              <span
+                style="
+                  align-self: flex-start;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 7px;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #0f5132;
+                  background: #eaf4ee;
+                  padding: 6px 12px 6px 8px;
+                  border-radius: 999px;
+                  border: 1px solid #cfe6d8;
+                "
+                ><svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#146c43"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path>
+                  <path d="M8.5 12l2.5 2.5 4.5-5"></path></svg
+                >Verified by Amanah</span
+              >
+              <h1
+                id="mo-name"
+                style="
+                  margin: 0;
+                  font-size: 34px;
+                  line-height: 1.04;
+                  letter-spacing: -0.04em;
+                  font-weight: 800;
+                  color: #0f2a1d;
+                "
+              >
+                Example Mosque, Offa
+              </h1>
+              <p style="margin: 0; font-size: 15px; color: #4b5260">Offa, Kwara State</p>
+              <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+                <div
+                  style="
+                    background: #ffffff;
+                    border-radius: 16px;
+                    padding: 14px 16px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                  "
+                >
+                  <dt style="font-size: 13px; color: #4b5260">Address</dt>
+                  <dd style="margin: 0; font-size: 16px; font-weight: 600">
+                    Example Road, Offa, Kwara State
+                  </dd>
+                </div>
+                <div
+                  style="
+                    background: #ffffff;
+                    border-radius: 16px;
+                    padding: 14px 16px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                  "
+                >
+                  <dt style="font-size: 13px; color: #4b5260">On Amanah since</dt>
+                  <dd style="margin: 0; font-size: 16px; font-weight: 600">September 2026</dd>
+                </div>
+              </dl>
+            </section>
+          </div>
+
+          <section
+            aria-labelledby="mo-record"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2
+              id="mo-record"
+              style="
+                margin: 0;
+                font-size: 26px;
+                letter-spacing: -0.03em;
+                font-weight: 800;
+                color: #0f2a1d;
+              "
+            >
+              Track record
+            </h2>
+            <dl style="margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+              <div
+                style="
+                  background: #0f5132;
+                  color: #f7f4ec;
+                  border-radius: 20px;
+                  padding: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                  grid-column: span 2;
+                "
+              >
+                <dt style="font-size: 14px; color: rgba(247, 244, 236, 0.8)">
+                  Completed and confirmed
+                </dt>
+                <dd style="margin: 0; display: flex; align-items: baseline; gap: 8px">
+                  <span
+                    style="
+                      font-size: 34px;
+                      font-weight: 800;
+                      letter-spacing: -0.03em;
+                      line-height: 1;
+                    "
+                    >1</span
+                  ><span style="font-size: 15px; color: rgba(247, 244, 236, 0.8)"
+                    >of 2 that have ended</span
+                  >
+                </dd>
+              </div>
+              <div
+                style="
+                  border: 1px solid #ecebe6;
+                  border-radius: 20px;
+                  padding: 16px 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <dt style="font-size: 13px; color: #4b5260">Campaigns</dt>
+                <dd style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.03em">
+                  4
+                </dd>
+              </div>
+              <div
+                style="
+                  border: 1px solid #ecebe6;
+                  border-radius: 20px;
+                  padding: 16px 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <dt style="font-size: 13px; color: #4b5260">Raised</dt>
+                <dd style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.03em">
+                  ₦1,130,000
+                </dd>
+              </div>
+            </dl>
+            <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5260">
+              A campaign is completed when every item is delivered and a witness has confirmed it.
+            </p>
+          </section>
+
+          <section
+            aria-labelledby="mo-verified"
+            style="
+              border: 1px solid #ecebe6;
+              border-radius: 24px;
+              padding: 20px 22px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            "
+          >
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <h2
+                id="mo-verified"
+                style="margin: 0; font-size: 18px; font-weight: 700; color: #0f2a1d"
+              >
+                What verified means
+              </h2>
+              <span style="font-size: 14px; color: #4b5260">Since 2 Sep 2026</span>
+            </div>
+            <ul
+              style="
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                font-size: 15px;
+                line-height: 1.5;
+                color: #3a404a;
+              "
+            >
+              <li>Registration documents reviewed by the Amanah team.</li>
+              <li>Every campaign is reviewed before it goes live.</li>
+              <li>Its own admins can never be its witnesses.</li>
+            </ul>
+          </section>
+
+          <section
+            aria-labelledby="mo-now"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <h2
+              id="mo-now"
+              style="
+                margin: 0;
+                font-size: 26px;
+                letter-spacing: -0.03em;
+                font-weight: 800;
+                color: #0f2a1d;
+              "
+            >
+              Campaigns
+            </h2>
+            <div
+              role="group"
+              aria-label="Show"
+              style="
+                display: flex;
+                gap: 4px;
+                padding: 4px;
+                background: #f6f5f0;
+                border-radius: 999px;
+                font-size: 14px;
+                font-weight: 600;
+              "
+            >
+              <button
+                type="button"
+                aria-pressed="true"
+                style="
+                  flex: 1;
+                  font: inherit;
+                  min-height: 44px;
+                  border: 0;
+                  border-radius: 999px;
+                  background: #ffffff;
+                  color: #0f2a1d;
+                  box-shadow: 0 1px 2px rgba(15, 42, 29, 0.12);
+                "
+              >
+                All 4
+              </button>
+              <button
+                type="button"
+                aria-pressed="false"
+                style="
+                  flex: 1;
+                  font: inherit;
+                  min-height: 44px;
+                  border: 0;
+                  border-radius: 999px;
+                  background: transparent;
+                  color: #4b5260;
+                "
+              >
+                Raising 2
+              </button>
+              <button
+                type="button"
+                aria-pressed="false"
+                style="
+                  flex: 1;
+                  font: inherit;
+                  min-height: 44px;
+                  border: 0;
+                  border-radius: 999px;
+                  background: transparent;
+                  color: #4b5260;
+                "
+              >
+                Past 2
+              </button>
+            </div>
+            <ul
+              style="
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+              "
+            >
+              <sc-for list="{{live}}" as="c" hint-placeholder-count="2">
+                <li>
+                  <article
+                    style="
+                      background: #ffffff;
+                      border: 1px solid #ecebe6;
+                      border-radius: 22px;
+                      overflow: hidden;
+                      display: flex;
+                      flex-direction: column;
+                    "
+                  >
+                    <div
+                      style="
+                        position: relative;
+                        height: 150px;
+                        background: #eaf4ee;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <sc-if value="{{c.hasImage}}" hint-placeholder-val="{{true}}"
+                        ><img
+                          src="{{c.image}}"
+                          alt="{{c.alt}}"
+                          style="
+                            position: absolute;
+                            inset: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                          "
+                      /></sc-if>
+                      <sc-if value="{{c.noImage}}" hint-placeholder-val="{{false}}"
+                        ><svg width="56" height="66" viewBox="0 0 72 86" aria-hidden="true">
+                          <path
+                            d="M8 82V40C8 22 20 6 36 6s28 16 28 34v42"
+                            fill="none"
+                            stroke="#cfe6d8"
+                            stroke-width="5"
+                            stroke-linecap="round"
+                          ></path>
+                          <circle cx="36" cy="52" r="7" fill="#cfe6d8"></circle></svg
+                      ></sc-if>
+                      <span style="{{c.badgeStyle}}">{{c.badge}}</span>
+                    </div>
+                    <div
+                      style="
+                        padding: 16px 18px 18px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                      "
+                    >
+                      <h3 style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.25">
+                        <a href="CampaignMobile.dc.html" style="text-decoration: none"
+                          >{{c.title}}</a
+                        >
+                      </h3>
+                      <div
+                        role="progressbar"
+                        aria-label="Raised"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="{{c.pct}}"
+                        style="
+                          height: 8px;
+                          border-radius: 999px;
+                          background: #eaf4ee;
+                          overflow: hidden;
+                        "
+                      >
+                        <div style="{{c.barStyle}}"></div>
+                      </div>
+                      <span style="font-size: 16px; font-weight: 800"
+                        >{{c.raised}}
+                        <span style="font-size: 14px; font-weight: 500; color: #6a707a"
+                          >raised of {{c.target}}</span
+                        ></span
+                      >
+                      <span style="{{c.lineStyle}}">{{c.line}}</span>
+                    </div>
+                  </article>
+                </li>
+              </sc-for>
+            </ul>
+          </section>
+        </main>
+
+        <footer style="background: #0f2a1d; color: rgba(247, 244, 236, 0.75); overflow: hidden">
+          <div
+            style="
+              padding: 48px 20px 36px;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 32px 20px;
+            "
+          >
+            <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 14px">
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  color: #f7f4ec;
+                  font-weight: 800;
+                  font-size: 20px;
+                  letter-spacing: -0.02em;
+                "
+                ><svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true">
+                  <rect width="512" height="512" rx="112" fill="#f7f4ec"></rect>
+                  <path
+                    d="M156 380V236c0-55 45-100 100-100s100 45 100 100v144"
+                    fill="none"
+                    stroke="#0f5132"
+                    stroke-width="40"
+                    stroke-linecap="round"
+                  ></path>
+                  <circle cx="256" cy="300" r="36" fill="#e9c46a"></circle></svg
+                >Amanah</span
+              >
+              <p style="margin: 0; font-size: 15px; line-height: 1.6">
+                Transparent giving to verified Islamic organisations in Nigeria.
+              </p>
+            </div>
+            <nav
+              aria-label="Give"
+              style="display: flex; flex-direction: column; gap: 2px; font-size: 15px"
+            >
+              <span style="color: #f7f4ec; font-weight: 700; padding-bottom: 6px">Give</span
+              ><a href="ListMobile.dc.html" style="text-decoration: none; padding: 9px 0"
+                >Browse campaigns</a
+              ><a href="/#how" style="text-decoration: none; padding: 9px 0">How it works</a
+              ><a href="/#cap" style="text-decoration: none; padding: 9px 0">The cap</a>
+            </nav>
+            <nav
+              aria-label="Trust"
+              style="display: flex; flex-direction: column; gap: 2px; font-size: 15px"
+            >
+              <span style="color: #f7f4ec; font-weight: 700; padding-bottom: 6px">Trust</span
+              ><a href="/#trail" style="text-decoration: none; padding: 9px 0">Accountability</a
+              ><a href="/#organisations" style="text-decoration: none; padding: 9px 0"
+                >For organisations</a
+              >
+            </nav>
+          </div>
+          <div
+            style="
+              margin: 0 20px;
+              border-top: 1px solid rgba(247, 244, 236, 0.14);
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
+              gap: 12px;
+              padding-top: 24px;
+              overflow: hidden;
+            "
+          >
+            <span
+              style="
+                font-size: 52px;
+                font-weight: 800;
+                letter-spacing: -0.06em;
+                line-height: 0.78;
+                color: #f7f4ec;
+                margin-bottom: -0.04em;
+              "
+              >Amanah</span
+            >
+            <span
+              lang="ar"
+              dir="rtl"
+              style="
+                font-family: &quot;Reem Kufi&quot;, serif;
+                font-weight: 700;
+                font-size: 48px;
+                line-height: 1.1;
+                color: #e9c46a;
+              "
+              >أمانة</span
+            >
+          </div>
+          <div
+            style="
+              padding: 20px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              gap: 6px 16px;
+              font-size: 14px;
+              color: rgba(247, 244, 236, 0.6);
+              border-top: 1px solid rgba(247, 244, 236, 0.14);
+            "
+          >
+            <span>© 2026 Amanah</span><span>General donations only.</span>
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":3120}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          var badgeBase = 'position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; color: #0f5132; background: #d5ecdd';
+          var lineBase = 'display: flex; align-items: center; gap: 6px; font-size: 14px; ';
+          var chipBase = 'flex: none; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; ';
+          function bar(p) { return 'width: ' + p + '%; height: 100%; border-radius: 999px; background: #146c43'; }
+          var vals = {
+            live: [
+              { title: 'Ramadan food drive', pct: 60, barStyle: bar(60), raised: '₦300,000', target: '₦500,000', line: '₦200,000 to go', lineStyle: lineBase + 'color: #4b5260', badge: 'Live', badgeStyle: badgeBase, hasImage: true, noImage: false, image: '/_blob/323abdc69cea789a56a26185169ce8e2', alt: 'A person carrying a bag of food at a market' },
+              { title: 'Eid clothes for 30 children', pct: 95, barStyle: bar(95), raised: '₦380,000', target: '₦400,000', line: 'Target nearly reached. Pending payments are being processed.', lineStyle: lineBase + 'font-weight: 600; color: #6b4e00', badge: 'Live', badgeStyle: badgeBase, hasImage: false, noImage: true, image: '', alt: '' }
+            ],
+          };
+          var b2 = 'position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; ';
+          vals.live = vals.live.concat([
+            { title: 'Prayer mats for the women’s section', pct: 100, barStyle: bar(100), raised: '₦270,000', target: '₦270,000', line: 'Target reached. Donations closed.', lineStyle: lineBase + 'font-weight: 600; color: #0f5132', badge: 'Target reached', badgeStyle: b2 + 'color: #ffffff; background: #0f5132', hasImage: false, noImage: true, image: '', alt: '' },
+            { title: 'Iftar meals for travellers', pct: 100, barStyle: bar(100), raised: '₦180,000', target: '₦180,000', line: 'All items delivered and confirmed', lineStyle: lineBase + 'font-weight: 600; color: #0f5132', badge: 'Completed', badgeStyle: b2 + 'color: #0f2a1d; background: #e9c46a', hasImage: false, noImage: true, image: '', alt: '' }
+          ]);
+          return vals;
+        }
+      }
+    </script>
+  </body>
+</html>
