@@ -4,6 +4,7 @@ import type { CampaignDetail } from "@/lib/api/schemas";
 import { EvidenceGallery } from "./evidence-gallery";
 import { ExpensesList } from "./expenses-list";
 import { SpentHeld } from "./spent-held";
+import { UpdatesTimeline } from "./updates-timeline";
 
 /**
  * "Where the money went" (F3, spec §7): the full money trail of a campaign, in a full-width band
@@ -45,6 +46,7 @@ export function AccountabilitySection({
         <SpentHeld campaign={c} />
         <ExpensesList expenses={c.expenses} items={c.items} />
         <EvidenceGallery evidence={c.evidence} items={c.items} expenses={c.expenses} />
+        <UpdatesTimeline updates={c.updates} />
       </Container>
     </section>
   );

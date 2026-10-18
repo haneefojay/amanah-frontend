@@ -128,3 +128,23 @@ test.describe("Live refresh (F3.7)", () => {
     );
   });
 });
+
+test.describe("Updates timeline (F3.6)", () => {
+  test("shows the organisation's updates, newest first", async ({ page }) => {
+    await page.goto("/campaigns/ramadan-food-drive-offa");
+    const posts = page
+      .getByRole("region", { name: "Updates from the organisation" })
+      .getByRole("article");
+    await expect(posts).toHaveCount(2);
+    await expect(posts.first()).toContainText("14 October 2026");
+    await expect(posts.first()).toContainText("The rice has arrived at the mosque store.");
+  });
+
+  test("the whole accountability section is accessible", async ({ page }) => {
+    for (const slug of ["ramadan-food-drive-offa", "quran-learning-materials"]) {
+      await page.goto(`/campaigns/${slug}`);
+      await page.getByRole("region", { name: "Where the money went" }).scrollIntoViewIfNeeded();
+      await expectNoA11yViolations(page);
+    }
+  });
+});

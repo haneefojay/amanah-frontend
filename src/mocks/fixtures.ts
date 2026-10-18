@@ -302,6 +302,8 @@ const story: Record<
     items: ItemSeed[];
     expenses?: ExpenseSeed[];
     evidence?: EvidenceSeed[];
+    /** [body, postedAt, photos], newest first. */
+    updates?: [body: string, postedAt: string, photos: string[]][];
   }
 > = {
   "ramadan-food-drive-offa": {
@@ -346,6 +348,18 @@ const story: Record<
         [8.14921, 4.72036],
         "2026-10-14T15:05:00Z",
         "2026-10-14T15:42:00Z",
+      ],
+    ],
+    updates: [
+      [
+        "The rice has arrived at the mosque store. Packing starts after Asr on Thursday with the welfare committee, and Ustadh Ibrahim Yusuf has confirmed the delivery.",
+        "2026-10-14T16:00:00Z",
+        ["food-drive.jpg"],
+      ],
+      [
+        "Thank you to everyone who has given. We are buying the rice first, at Offa Main Market on Monday. The oil and the date packs follow as the rest is raised.",
+        "2026-10-11T09:00:00Z",
+        [],
       ],
     ],
   },
@@ -411,6 +425,18 @@ const story: Record<
         "2026-10-13T10:49:50Z",
       ],
     ],
+    updates: [
+      [
+        "Our witness found 6 of the first 30 school bags missing on delivery. We are checking with the seller and will post what we find here. No more bags will be bought until this is settled.",
+        "2026-10-15T14:00:00Z",
+        [],
+      ],
+      [
+        "Uniforms and exercise books were handed out at the home on Tuesday.",
+        "2026-10-13T12:00:00Z",
+        ["school-supplies.jpg"],
+      ],
+    ],
   },
   "borehole-islamiyya-school": {
     purpose: "A borehole so the Islamiyya school and its neighbours have clean water on site.",
@@ -446,6 +472,13 @@ const story: Record<
         [8.13302, 4.24086],
         "2026-10-12T11:40:00Z",
         "2026-10-12T11:41:10Z",
+      ],
+    ],
+    updates: [
+      [
+        "Drilling is finished and the casing is in. The pump goes in next week.",
+        "2026-10-12T13:00:00Z",
+        ["borehole.jpg"],
       ],
     ],
   },
@@ -560,6 +593,13 @@ const story: Record<
         "2026-09-28T08:05:00Z",
       ],
     ],
+    updates: [
+      [
+        "All the medicines are at the clinic and the witness has confirmed them. Thank you for making this possible.",
+        "2026-09-28T10:00:00Z",
+        ["clinic-medicines.jpg"],
+      ],
+    ],
   },
   "winter-blankets-offa": {
     purpose: "Blankets for 60 families through the harmattan season.",
@@ -571,6 +611,13 @@ const story: Record<
     ],
     expenses: [["Blankets, 60", "Offa Main Market", 180_000, "2026-09-18T10:00:00Z", 0, true]],
     evidence: [["blankets.jpg", null, [8.14921, 4.72036], null, "2026-09-20T12:50:00Z"]],
+    updates: [
+      [
+        "The blankets were handed out after Jumu’ah to all 60 families.",
+        "2026-09-20T14:00:00Z",
+        ["blankets.jpg"],
+      ],
+    ],
   },
 };
 
@@ -603,6 +650,12 @@ export const campaignDetails: Record<string, CampaignDetail> = Object.fromEntrie
       organisation: organisations.find((o) => o.id === c.organisationId)!,
       expenses: [],
       evidence: [],
+      updates: (entry.updates ?? []).map(([body, postedAt, photos], n) => ({
+        id: `3d2c1b0a-9f8e-4b7d-8c6b-3d2c1b0a9f${String(index * 10 + n).padStart(2, "0")}`,
+        body,
+        images: photos.map((photo) => `/images/campaigns/${photo}`),
+        postedAt,
+      })),
     };
     detail.expenses = (entry.expenses ?? []).map(
       ([description, vendorName, naira, spentAt, itemIndex, hasReceipt], n) => {

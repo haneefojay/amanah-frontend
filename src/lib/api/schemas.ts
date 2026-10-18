@@ -156,6 +156,15 @@ export const evidencePhoto = z
   });
 export type EvidencePhoto = z.infer<typeof evidencePhoto>;
 
+/** A short post from the organisation shown in the campaign timeline (spec §6, B9.3). */
+export const campaignUpdate = z.object({
+  id: z.uuid(),
+  body: z.string().min(1),
+  images: z.array(imageUrl),
+  postedAt: z.iso.datetime(),
+});
+export type CampaignUpdate = z.infer<typeof campaignUpdate>;
+
 /**
  * A public campaign with its story, items and accountability data (GET /api/campaigns/:slug,
  * B5.2). Spent is never sent: it is the sum of the expenses, which can't exceed the amount raised.
@@ -173,6 +182,8 @@ export const campaignDetail = campaignSummary
     expenses: z.array(expense),
     /** Newest first, by upload time. */
     evidence: z.array(evidencePhoto),
+    /** Newest first. */
+    updates: z.array(campaignUpdate),
   })
   .refine((c) => c.expenses.reduce((sum, e) => sum + e.amount, 0) <= c.raisedAmount, {
     message: "Expenses can't exceed the amount raised",
