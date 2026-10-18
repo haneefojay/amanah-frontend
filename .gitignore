@@ -49,6 +49,9 @@ next-env.d.ts
 /blob-report/
 /playwright/.cache/
 
+# design-skill working files
+.taste-skill/
+
 # serwist (generated)
 public/sw*
 public/swe-worker*

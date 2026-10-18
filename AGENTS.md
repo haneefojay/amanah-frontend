@@ -16,7 +16,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## 1. Start of every session
 
-1. Read [`CLAUDE.md`](./CLAUDE.md) (project memory and standing instructions).
+1. Read [`CLAUDE.md`](./CLAUDE.md) (project memory and standing instructions). Agents that support skills: load `.claude/skills/amanah/SKILL.md` — it condenses the project and domain rules.
 2. Read [`docs/roadmap/ROADMAP_INDEX.md`](docs/roadmap/ROADMAP_INDEX.md): current focus, milestones, status board and blockers.
 3. Skim the latest entries in [`CHANGELOG.md`](./CHANGELOG.md) to see what changed recently.
 4. For the item you'll work on, read its full entry in [`FRONTEND_ROADMAP.md`](docs/roadmap/FRONTEND_ROADMAP.md) or [`BACKEND_ROADMAP.md`](docs/roadmap/BACKEND_ROADMAP.md), the spec sections it cites, and any related ADRs in [`docs/decisions/`](docs/decisions/README.md).

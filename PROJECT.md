@@ -46,10 +46,10 @@ Entry for the **AMETTSA Inter-Varsity Innovation Challenge** (AMETTSA 5.0 Annual
 
 ## Repositories
 
-| Part | Repository |
-| --- | --- |
+| Part                 | Repository                                    |
+| -------------------- | --------------------------------------------- |
 | Frontend (this repo) | https://github.com/haneefojay/amanah-frontend |
-| Backend | To be created after ADR-004 |
+| Backend              | To be created after ADR-004                   |
 
 ## Where things live
 
