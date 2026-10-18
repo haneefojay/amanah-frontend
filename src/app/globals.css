@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/*
+ * Amanah design tokens. Use these utilities (bg-brand-700, text-ink-600, ...) rather than
+ * raw hex values so the palette can evolve in one place (F1.1).
+ */
+@theme {
+  --color-brand-50: #eef7f1;
+  --color-brand-100: #d5ecdd;
+  --color-brand-500: #2d8a57;
+  --color-brand-700: #146c43;
+  --color-brand-900: #0f5132;
+  --color-gold-300: #f1d58f;
+  --color-gold-500: #e9c46a;
+  --color-sand-50: #fbf9f4;
+  --color-sand-100: #f7f4ec;
+  --color-ink-400: #8a8f98;
+  --color-ink-600: #4b5260;
+  --color-ink-900: #161a20;
+  --color-danger-600: #b42318;
+  --color-warning-600: #b54708;
+  --color-success-600: #067647;
+
+  /* System fonts: zero download cost on slow connections (spec §9, mobile-first). */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--color-sand-100);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Respect the user's motion preference across the app. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

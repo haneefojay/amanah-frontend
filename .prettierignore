@@ -1,0 +1,8 @@
+.next
+node_modules
+coverage
+playwright-report
+test-results
+public/icons
+package-lock.json
+docs/amanah-mvp-spec.md
